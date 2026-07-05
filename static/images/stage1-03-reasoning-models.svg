@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480">
+  <defs>
+    <style>
+      .center { font: bold 16px sans-serif; fill: #fff; }
+      .branch { font: bold 12px sans-serif; fill: #fff; }
+      .leaf { font: 10.5px sans-serif; fill: #444; }
+      .line { stroke-width: 2; fill: none; }
+    </style>
+  </defs>
+
+  <rect width="900" height="480" rx="12" fill="#fafafa"/>
+
+  <!-- Center -->
+  <rect x="340" y="210" width="220" height="50" rx="25" fill="#2563eb"/>
+  <text x="450" y="241" text-anchor="middle" class="center">推理模型核心概念</text>
+
+  <!-- Top-left: Test-time Compute -->
+  <path d="M370 210 Q300 160 220 130" class="line" stroke="#7c3aed"/>
+  <rect x="90" y="108" width="200" height="36" rx="18" fill="#7c3aed"/>
+  <text x="190" y="131" text-anchor="middle" class="branch">Test-time Compute</text>
+  <text x="60" y="85" class="leaf">根据难度动态分配计算量</text>
+  <path d="M150 108 L100 80" class="line" stroke="#7c3aed" stroke-width="1"/>
+  <text x="240" y="85" class="leaf">思考更久 → 答案更好</text>
+  <path d="M230 108 L260 80" class="line" stroke="#7c3aed" stroke-width="1"/>
+
+  <!-- Top-right: 训练方式 -->
+  <path d="M530 210 Q600 160 680 130" class="line" stroke="#059669"/>
+  <rect x="610" y="108" width="200" height="36" rx="18" fill="#059669"/>
+  <text x="710" y="131" text-anchor="middle" class="branch">训练方式: RL 强化学习</text>
+  <text x="620" y="85" class="leaf">正负奖励学习推理策略</text>
+  <path d="M670 108 L650 80" class="line" stroke="#059669" stroke-width="1"/>
+  <text x="770" y="85" class="leaf">自我反思行为自然涌现</text>
+  <path d="M750 108 L780 80" class="line" stroke="#059669" stroke-width="1"/>
+
+  <!-- Left: vs CoT -->
+  <path d="M340 235 Q260 235 180 235" class="line" stroke="#ea580c"/>
+  <rect x="20" y="218" width="210" height="36" rx="18" fill="#ea580c"/>
+  <text x="125" y="241" text-anchor="middle" class="branch">vs CoT Prompt</text>
+  <text x="20" y="280" class="leaf">CoT: 靠 Prompt 临时诱导</text>
+  <path d="M90 254 L60 275" class="line" stroke="#ea580c" stroke-width="1"/>
+  <text x="180" y="280" class="leaf">推理模型: 训练阶段内化</text>
+  <path d="M170 254 L200 275" class="line" stroke="#ea580c" stroke-width="1"/>
+
+  <!-- Right: 使用建议 -->
+  <path d="M560 235 Q640 235 720 235" class="line" stroke="#dc2626"/>
+  <rect x="660" y="218" width="200" height="36" rx="18" fill="#dc2626"/>
+  <text x="760" y="241" text-anchor="middle" class="branch">使用建议</text>
+  <text x="690" y="280" class="leaf">适合: 数学/推理/规划</text>
+  <path d="M730 254 L710 275" class="line" stroke="#dc2626" stroke-width="1"/>
+  <text x="810" y="280" class="leaf">不适合: 简单对话/实时</text>
+  <path d="M790 254 L820 275" class="line" stroke="#dc2626" stroke-width="1"/>
+
+  <!-- Bottom-left: 主流模型 -->
+  <path d="M370 260 Q300 320 220 360" class="line" stroke="#0891b2"/>
+  <rect x="100" y="348" width="180" height="36" rx="18" fill="#0891b2"/>
+  <text x="190" y="371" text-anchor="middle" class="branch">主流推理模型</text>
+  <text x="80" y="410" class="leaf">o1 / o3 / o4-mini (OpenAI)</text>
+  <path d="M150 384 L110 405" class="line" stroke="#0891b2" stroke-width="1"/>
+  <text x="260" y="410" class="leaf">DeepSeek-R1 / QwQ (开源)</text>
+  <path d="M230 384 L270 405" class="line" stroke="#0891b2" stroke-width="1"/>
+
+  <!-- Bottom-right: Agent 应用 -->
+  <path d="M530 260 Q600 320 680 360" class="line" stroke="#ca8a04"/>
+  <rect x="610" y="348" width="200" height="36" rx="18" fill="#ca8a04"/>
+  <text x="710" y="371" text-anchor="middle" class="branch">Agent 中的应用</text>
+  <text x="640" y="410" class="leaf">推理模型做规划</text>
+  <path d="M680 384 L660 405" class="line" stroke="#ca8a04" stroke-width="1"/>
+  <text x="760" y="410" class="leaf">普通模型做执行</text>
+  <path d="M740 384 L770 405" class="line" stroke="#ca8a04" stroke-width="1"/>
+
+  <!-- Bottom note -->
+  <text x="450" y="460" text-anchor="middle" font-size="11" fill="#888">
+    核心直觉：传统模型 = 脱口而出 | 推理模型 = 想清楚再说
+  </text>
+</svg>
