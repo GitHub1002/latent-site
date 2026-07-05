@@ -2,7 +2,7 @@
 # Latent - Hugo + PaperMod 主配置文件
 # ============================================================
 
-baseURL: "https://latent.pages.dev/"
+baseURL: "https://latent-site.pages.dev/"
 locale: zh-cn
 title: Latent
 theme: PaperMod
