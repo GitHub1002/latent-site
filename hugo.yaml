@@ -1,0 +1,181 @@
+# ============================================================
+# Latent - Hugo + PaperMod 主配置文件
+# ============================================================
+
+baseURL: "https://latent.pages.dev/"
+locale: zh-cn
+title: Latent
+theme: PaperMod
+copyright: "© 2026 Latent"
+
+# 默认语言
+defaultContentLanguage: zh
+defaultContentLanguageInSubdir: false
+
+# 启用功能
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+enableEmoji: true
+
+# 分页
+paginate: 10
+
+# 分类体系
+taxonomies:
+  tag: tags
+  category: categories
+
+# 输出格式
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON  # 用于搜索
+
+# 最小化构建
+minify:
+  disableXML: true
+  minifyOutput: true
+
+# ============================================================
+# 多语言配置
+# ============================================================
+languages:
+  zh:
+    label: 中文
+    weight: 1
+    title: Latent
+
+    # 导航菜单
+    menu:
+      main:
+        - name: 首页
+          url: /
+          weight: 1
+        - name: 博客
+          url: /posts/
+          weight: 2
+        - name: 项目
+          url: /projects/
+          weight: 3
+        - name: 归档
+          url: /archives/
+          weight: 4
+        - name: 关于
+          url: /about/
+          weight: 5
+        - name: 搜索
+          url: /search/
+          weight: 6
+
+    # PaperMod 主题参数
+    params:
+      # 网站描述
+      description: "Notes from the latent space of AI — 记录大模型与智能体的学习笔记"
+      author: "Latent"
+
+      # 默认主题模式：light / dark / auto
+      defaultTheme: auto
+
+      # 显示面包屑导航
+      ShowBreadCrumbs: true
+
+      # 显示文章目录
+      ShowToc: true
+      TocOpen: false
+
+      # 显示代码复制按钮
+      ShowCodeCopyButtons: true
+
+      # 显示阅读时间
+      ShowReadingTime: true
+
+      # 显示字数统计
+      ShowWordCount: true
+
+      # 显示文章最后修改时间
+      ShowLastMod: true
+
+      # 显示上一/下一篇文章导航
+      ShowPostNavLinks: true
+
+      # 显示 RSS 图标
+      ShowRssButtonInSectionTermList: true
+
+      # 首页布局：使用 home-info 模式
+      homeInfoParams:
+        Title: "Latent"
+        Content: "Notes from the latent space of AI — 让隐含的知识显形。这里记录大模型（LLM）与智能体（Agent）方向的学习笔记和技术深度文章。"
+
+      # 社交链接
+      socialIcons:
+        - name: github
+          url: "https://github.com/GitHub1002"
+        - name: Rss
+          url: "index.xml"
+
+      # 搜索配置（Fuse.js）
+      fuseOpts:
+        isCaseSensitive: false
+        shouldSort: true
+        location: 0
+        distance: 1000
+        threshold: 0.4
+        minMatchCharLength: 0
+        keys: ["title", "permalink", "summary", "content"]
+
+      # 资源设置
+      assets:
+        favicon: "/favicon.ico"
+        disableHLJS: true
+
+# ============================================================
+# Markdown 渲染配置
+# ============================================================
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    noClasses: false
+    anchorLineNos: false
+    codeFences: true
+    guessSyntax: true
+    lineNos: false
+    style: monokai
+
+# ============================================================
+# 隐私设置
+# ============================================================
+privacy:
+  vimeo:
+    disabled: false
+    simple: true
+  x:
+    disabled: false
+    enableDNT: true
+    simple: true
+  youtube:
+    disabled: false
+    privacyEnhanced: true
+
+# ============================================================
+# Permalinks
+# ============================================================
+permalinks:
+  posts: "/posts/:year/:month/:slug/"
+
+# ============================================================
+# 相关文档
+# ============================================================
+related:
+  includeNewer: true
+  threshold: 60
+  toLower: false
+  indices:
+    - name: tags
+      weight: 100
+    - name: categories
+      weight: 80

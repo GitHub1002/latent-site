@@ -1,0 +1,18 @@
+# Hugo
+public/
+resources/
+.hugo_build.lock
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Theme (如果使用 submodule)
+# themes/PaperMod/
