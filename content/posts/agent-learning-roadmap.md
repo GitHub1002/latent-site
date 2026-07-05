@@ -1,9 +1,9 @@
 ---
-title: "AI Agent 学习路线：从零到生产，每个阶段配一个开源项目（v2）"
+title: "AI Agent 学习路线：从零到生产，每个阶段配一个开源项目"
 date: 2026-07-05
 draft: false
 tags: ["Agent", "LLM"]
-summary: "一份系统的 AI Agent 学习路线图 v2，覆盖 Prompt / Context / Loop / Harness 四大工程类型，以及 MCP、A2A、推理模型、评估、安全、数据飞轮等关键概念。5 个阶段，每阶段配一个 GitHub 开源项目实战。"
+summary: "一份系统的 AI Agent 学习路线图，覆盖 Prompt / Context / Loop / Harness 四大工程类型，以及 MCP、A2A、推理模型、评估、安全、数据飞轮等关键概念。5 个阶段，每阶段配一个 GitHub 开源项目实战。"
 ShowToc: true
 ---
 
@@ -11,26 +11,28 @@ ShowToc: true
 
 对于想入门的同学，最大的困惑是：**知识地图到底有多大？我该按什么顺序学？**
 
-这篇文章给你一份 **v2 版本的完整路线图**，分为 5 个阶段，显式覆盖所有关键概念，每个阶段推荐一个 GitHub 开源项目实战。
+这篇文章给你一份**完整的路线图**，分为 5 个阶段，显式覆盖所有关键概念，每个阶段推荐一个 GitHub 开源项目实战。
 
 ---
 
 ## 路线图总览
 
-![AI Agent 学习路线图 v2](/images/agent-roadmap-v2.svg)
+![AI Agent 学习路线图](/images/agent-roadmap-v2.svg)
 
 ---
 
 ## 四大工程类型
 
-在深入各阶段之前，先理解 Agent 工程的四个递进层次：
+在深入各阶段之前，先理解 Agent 工程的四个递进层次。这四种工程类型**按抽象层次从低到高排列**，高一层包含低一层的所有能力：
 
-| 工程类型 | 核心问题 | 出现时间 |
-|---------|---------|---------|
-| **Prompt Engineering** | "这一句话怎么写？" | 2022-2024 |
-| **Context Engineering** | "给模型看到什么？" | 2025 |
-| **Loop Engineering** | "自主循环怎么跑？" | 2025-2026 |
-| **Harness Engineering** | "整个脚手架怎么搭？" | 2026 |
+| 工程类型 | 核心问题 | 抽象层次 | 概念起源 |
+|---------|---------|---------|---------|
+| **Prompt Engineering** | "这一条指令怎么写？" | 指令级 | 2022 年随 GPT-3 兴起 |
+| **Context Engineering** | "给模型看到什么信息？" | 信息级 | 2025 年成为共识 |
+| **Loop Engineering** | "自主循环怎么跑？" | 循环级 | 2022 年 ReAct 论文奠基 |
+| **Harness Engineering** | "整个脚手架怎么搭？" | 系统级 | 2026 年随生产化需求浮现 |
+
+注意：Loop Engineering 的核心概念（ReAct 2022、Reflexion 2023）比 Context Engineering 这一术语更早出现，但它解决的问题层次（循环控制）在抽象层级上高于 Prompt 和 Context。Harness Engineering 则是最"新"的概念，关注整个系统的环境约束与编排。
 
 它们之间是层层嵌套的关系：Prompt 优化单次指令，Context 构建完整的信息环境，Loop 设计自主执行循环，Harness 编排整个运行架构。
 
