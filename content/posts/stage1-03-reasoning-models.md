@@ -1,9 +1,10 @@
 ---
-title: "推理模型——o1、R1 和 test-time compute 到底在做什么"
+title: "03 | 推理模型——o1、R1 和 test-time compute 到底在做什么"
 date: 2026-07-05
 draft: false
+weight: 103
 tags: ["LLM", "Reasoning Models", "基础"]
-summary: "AI Agent 学习路线第一阶段第 3 篇。解释推理模型（o1/o3、DeepSeek-R1）的工作原理：test-time compute、内部思维链、强化学习训练，以及它和传统 CoT Prompt 的本质区别。"
+summary: "解释推理模型（o1/o3、DeepSeek-R1）的工作原理：test-time compute、内部思维链、强化学习训练，以及它和传统 CoT Prompt 的本质区别。"
 ShowToc: true
 ---
 

@@ -1,9 +1,10 @@
 ---
-title: "Prompt Engineering——从入门到精通"
+title: "02 | Prompt Engineering——从入门到精通"
 date: 2026-07-05
 draft: false
+weight: 102
 tags: ["LLM", "Prompt Engineering", "基础"]
-summary: "AI Agent 学习路线第一阶段第 2 篇。系统讲解 Prompt Engineering 的核心技巧：Zero-shot、Few-shot、Chain-of-Thought、Self-Consistency，以及 System Prompt 设计原则。每个技巧配具体示例和使用场景。"
+summary: "系统讲解 Prompt Engineering 的核心技巧：Zero-shot、Few-shot、Chain-of-Thought、Self-Consistency，以及 System Prompt 设计原则。每个技巧配具体示例和使用场景。"
 ShowToc: true
 ---
 

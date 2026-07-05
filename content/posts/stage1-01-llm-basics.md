@@ -1,9 +1,10 @@
 ---
-title: "大模型是怎么工作的——从 Transformer 到 Tokenization"
+title: "01 | 大模型是怎么工作的——从 Transformer 到 Tokenization"
 date: 2026-07-05
 draft: false
+weight: 101
 tags: ["LLM", "基础"]
-summary: "AI Agent 学习路线第一阶段第 1 篇。不讲公式，用直觉和具体例子解释大模型的核心机制：Transformer 架构、Tokenization 原理、Context Window 概念，以及自回归生成的工作方式。"
+summary: "不讲公式，用直觉和具体例子解释大模型的核心机制：Transformer 架构、Tokenization 原理、Context Window 概念，以及自回归生成的工作方式。"
 ShowToc: true
 ---
 

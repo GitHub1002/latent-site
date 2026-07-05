@@ -2,6 +2,7 @@
 title: "AI Agent 学习路线：从零到生产，每个阶段配一个开源项目"
 date: 2026-07-05
 draft: false
+weight: 100
 tags: ["Agent", "LLM"]
 summary: "一份系统的 AI Agent 学习路线图，覆盖 Prompt / Context / Loop / Harness 四大工程类型，以及 MCP、A2A、推理模型、评估、安全、数据飞轮等关键概念。5 个阶段，每阶段配一个 GitHub 开源项目实战。"
 ShowToc: true

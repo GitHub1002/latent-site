@@ -1,9 +1,10 @@
 ---
-title: "实战——用 Prompt Engineering Guide 搭建你的第一个 LLM 应用"
+title: "04 | 实战——用 Prompt Engineering Guide 搭建你的第一个 LLM 应用"
 date: 2026-07-05
 draft: false
+weight: 104
 tags: ["LLM", "Prompt Engineering", "实战"]
-summary: "AI Agent 学习路线第一阶段第 4 篇（实战篇）。跟着 Prompt Engineering Guide 动手练习，从 API 调用到完整的小项目，把前三篇的理论知识串起来。"
+summary: "跟着 Prompt Engineering Guide 动手练习，从 API 调用到完整的小项目，把前三篇的理论知识串起来。"
 ShowToc: true
 ---
 
