@@ -1,0 +1,204 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 620" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8fafc"/>
+      <stop offset="100%" style="stop-color:#eef2ff"/>
+    </linearGradient>
+    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#2563eb"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6"/>
+      <stop offset="100%" style="stop-color:#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#06b6d4"/>
+      <stop offset="100%" style="stop-color:#0891b2"/>
+    </linearGradient>
+    <linearGradient id="g4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b"/>
+      <stop offset="100%" style="stop-color:#d97706"/>
+    </linearGradient>
+    <linearGradient id="g5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981"/>
+      <stop offset="100%" style="stop-color:#059669"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1100" height="620" rx="16" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="550" y="42" text-anchor="middle" font-size="22" font-weight="700" fill="#1e293b">AI Agent 学习路线图</text>
+  <text x="550" y="64" text-anchor="middle" font-size="12" fill="#64748b">从零到生产 · 每个阶段配一个开源项目</text>
+
+  <!-- Connection lines -->
+  <line x1="550" y1="100" x2="110" y2="180" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4,4"/>
+  <line x1="550" y1="100" x2="330" y2="180" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4,4"/>
+  <line x1="550" y1="100" x2="550" y2="180" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4,4"/>
+  <line x1="550" y1="100" x2="770" y2="180" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4,4"/>
+  <line x1="550" y1="100" x2="990" y2="180" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4,4"/>
+
+  <!-- Central node -->
+  <rect x="470" y="80" width="160" height="40" rx="20" fill="#1e293b" filter="url(#shadow)"/>
+  <text x="550" y="105" text-anchor="middle" font-size="14" font-weight="600" fill="#fff">学习路线</text>
+
+  <!-- Stage 1 -->
+  <g>
+    <rect x="30" y="150" width="160" height="50" rx="12" fill="url(#g1)" filter="url(#shadow)"/>
+    <text x="110" y="172" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">阶段 1</text>
+    <text x="110" y="190" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">LLM 基础</text>
+
+    <line x1="110" y1="200" x2="110" y2="225" stroke="#3b82f6" stroke-width="2"/>
+
+    <!-- Sub-items -->
+    <rect x="20" y="225" width="180" height="130" rx="10" fill="#fff" stroke="#e2e8f0" stroke-width="1" filter="url(#shadow)"/>
+    <text x="35" y="248" font-size="11" fill="#475569">• Transformer 原理</text>
+    <text x="35" y="268" font-size="11" fill="#475569">• Tokenization</text>
+    <text x="35" y="288" font-size="11" fill="#475569">• Prompt 工程</text>
+    <text x="35" y="308" font-size="11" fill="#475569">• API 调用实践</text>
+    <line x1="30" y1="320" x2="190" y2="320" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="110" y="340" text-anchor="middle" font-size="10" font-weight="600" fill="#3b82f6">Prompt-Engineering-Guide</text>
+    <text x="110" y="354" text-anchor="middle" font-size="9" fill="#94a3b8">⭐ 48k+ stars</text>
+  </g>
+
+  <!-- Stage 2 -->
+  <g>
+    <rect x="250" y="150" width="160" height="50" rx="12" fill="url(#g2)" filter="url(#shadow)"/>
+    <text x="330" y="172" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">阶段 2</text>
+    <text x="330" y="190" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">单 Agent 开发</text>
+
+    <line x1="330" y1="200" x2="330" y2="225" stroke="#8b5cf6" stroke-width="2"/>
+
+    <rect x="240" y="225" width="180" height="130" rx="10" fill="#fff" stroke="#e2e8f0" stroke-width="1" filter="url(#shadow)"/>
+    <text x="255" y="248" font-size="11" fill="#475569">• ReAct 范式</text>
+    <text x="255" y="268" font-size="11" fill="#475569">• Function Calling</text>
+    <text x="255" y="288" font-size="11" fill="#475569">• 工具定义与调用</text>
+    <text x="255" y="308" font-size="11" fill="#475569">• 错误恢复策略</text>
+    <line x1="250" y1="320" x2="410" y2="320" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="330" y="340" text-anchor="middle" font-size="10" font-weight="600" fill="#8b5cf6">LangChain</text>
+    <text x="330" y="354" text-anchor="middle" font-size="9" fill="#94a3b8">⭐ 100k+ stars</text>
+  </g>
+
+  <!-- Stage 3 -->
+  <g>
+    <rect x="470" y="150" width="160" height="50" rx="12" fill="url(#g3)" filter="url(#shadow)"/>
+    <text x="550" y="172" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">阶段 3</text>
+    <text x="550" y="190" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">框架进阶</text>
+
+    <line x1="550" y1="200" x2="550" y2="225" stroke="#06b6d4" stroke-width="2"/>
+
+    <rect x="460" y="225" width="180" height="130" rx="10" fill="#fff" stroke="#e2e8f0" stroke-width="1" filter="url(#shadow)"/>
+    <text x="475" y="248" font-size="11" fill="#475569">• 记忆管理</text>
+    <text x="475" y="268" font-size="11" fill="#475569">• RAG 集成</text>
+    <text x="475" y="288" font-size="11" fill="#475569">• 任务规划</text>
+    <text x="475" y="308" font-size="11" fill="#475569">• 向量检索</text>
+    <line x1="470" y1="320" x2="630" y2="320" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="550" y="340" text-anchor="middle" font-size="10" font-weight="600" fill="#06b6d4">LlamaIndex</text>
+    <text x="550" y="354" text-anchor="middle" font-size="9" fill="#94a3b8">⭐ 38k+ stars</text>
+  </g>
+
+  <!-- Stage 4 -->
+  <g>
+    <rect x="690" y="150" width="160" height="50" rx="12" fill="url(#g4)" filter="url(#shadow)"/>
+    <text x="770" y="172" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">阶段 4</text>
+    <text x="770" y="190" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">多 Agent 系统</text>
+
+    <line x1="770" y1="200" x2="770" y2="225" stroke="#f59e0b" stroke-width="2"/>
+
+    <rect x="680" y="225" width="180" height="130" rx="10" fill="#fff" stroke="#e2e8f0" stroke-width="1" filter="url(#shadow)"/>
+    <text x="695" y="248" font-size="11" fill="#475569">• 层级式架构</text>
+    <text x="695" y="268" font-size="11" fill="#475569">• Agent 间通信</text>
+    <text x="695" y="288" font-size="11" fill="#475569">• 角色设计</text>
+    <text x="695" y="308" font-size="11" fill="#475569">• 辩论与协作</text>
+    <line x1="690" y1="320" x2="850" y2="320" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="770" y="340" text-anchor="middle" font-size="10" font-weight="600" fill="#d97706">CrewAI</text>
+    <text x="770" y="354" text-anchor="middle" font-size="9" fill="#94a3b8">⭐ 28k+ stars</text>
+  </g>
+
+  <!-- Stage 5 -->
+  <g>
+    <rect x="910" y="150" width="160" height="50" rx="12" fill="url(#g5)" filter="url(#shadow)"/>
+    <text x="990" y="172" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">阶段 5</text>
+    <text x="990" y="190" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">生产部署</text>
+
+    <line x1="990" y1="200" x2="990" y2="225" stroke="#10b981" stroke-width="2"/>
+
+    <rect x="900" y="225" width="180" height="130" rx="10" fill="#fff" stroke="#e2e8f0" stroke-width="1" filter="url(#shadow)"/>
+    <text x="915" y="248" font-size="11" fill="#475569">• 可观测性</text>
+    <text x="915" y="268" font-size="11" fill="#475569">• 评估指标</text>
+    <text x="915" y="288" font-size="11" fill="#475569">• 安全防护</text>
+    <text x="915" y="308" font-size="11" fill="#475569">• 部署模式</text>
+    <line x1="910" y1="320" x2="1070" y2="320" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="990" y="340" text-anchor="middle" font-size="10" font-weight="600" fill="#10b981">LangFuse</text>
+    <text x="990" y="354" text-anchor="middle" font-size="9" fill="#94a3b8">⭐ 8k+ stars</text>
+  </g>
+
+  <!-- Progress arrows between stages -->
+  <path d="M195 175 L245 175" stroke="#94a3b8" stroke-width="1.5" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M415 175 L465 175" stroke="#94a3b8" stroke-width="1.5" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M635 175 L685 175" stroke="#94a3b8" stroke-width="1.5" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M855 175 L905 175" stroke="#94a3b8" stroke-width="1.5" fill="none" marker-end="url(#arrowhead)"/>
+
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#94a3b8"/>
+    </marker>
+  </defs>
+
+  <!-- Bottom: Advanced directions -->
+  <line x1="550" y1="380" x2="550" y2="410" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4,4"/>
+
+  <rect x="370" y="410" width="360" height="40" rx="20" fill="#1e293b" filter="url(#shadow)"/>
+  <text x="550" y="435" text-anchor="middle" font-size="14" font-weight="600" fill="#fff">进阶方向</text>
+
+  <line x1="550" y1="450" x2="200" y2="490" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4,4"/>
+  <line x1="550" y1="450" x2="400" y2="490" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4,4"/>
+  <line x1="550" y1="450" x2="550" y2="490" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4,4"/>
+  <line x1="550" y1="450" x2="700" y2="490" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4,4"/>
+  <line x1="550" y1="450" x2="900" y2="490" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4,4"/>
+
+  <!-- Advanced items -->
+  <rect x="120" y="480" width="160" height="55" rx="10" fill="#fff" stroke="#e2e8f0" stroke-width="1" filter="url(#shadow)"/>
+  <text x="200" y="502" text-anchor="middle" font-size="12" font-weight="600" fill="#1e293b">MCP 协议</text>
+  <text x="200" y="520" text-anchor="middle" font-size="9" fill="#64748b">Model Context Protocol</text>
+  <text x="200" y="532" text-anchor="middle" font-size="9" fill="#3b82f6">mcp/servers</text>
+
+  <rect x="310" y="480" width="160" height="55" rx="10" fill="#fff" stroke="#e2e8f0" stroke-width="1" filter="url(#shadow)"/>
+  <text x="390" y="502" text-anchor="middle" font-size="12" font-weight="600" fill="#1e293b">Agent 安全</text>
+  <text x="390" y="520" text-anchor="middle" font-size="9" fill="#64748b">Prompt Injection 防护</text>
+  <text x="390" y="532" text-anchor="middle" font-size="9" fill="#3b82f6">NeMo Guardrails</text>
+
+  <rect x="470" y="480" width="160" height="55" rx="10" fill="#fff" stroke="#e2e8f0" stroke-width="1" filter="url(#shadow)"/>
+  <text x="550" y="502" text-anchor="middle" font-size="12" font-weight="600" fill="#1e293b">代码 Agent</text>
+  <text x="550" y="520" text-anchor="middle" font-size="9" fill="#64748b">Code Interpreter / SWE</text>
+  <text x="550" y="532" text-anchor="middle" font-size="9" fill="#3b82f6">OpenHands</text>
+
+  <rect x="630" y="480" width="160" height="55" rx="10" fill="#fff" stroke="#e2e8f0" stroke-width="1" filter="url(#shadow)"/>
+  <text x="710" y="502" text-anchor="middle" font-size="12" font-weight="600" fill="#1e293b">Web Agent</text>
+  <text x="710" y="520" text-anchor="middle" font-size="9" fill="#64748b">浏览器自动化</text>
+  <text x="710" y="532" text-anchor="middle" font-size="9" fill="#3b82f6">Browser Use</text>
+
+  <rect x="820" y="480" width="160" height="55" rx="10" fill="#fff" stroke="#e2e8f0" stroke-width="1" filter="url(#shadow)"/>
+  <text x="900" y="502" text-anchor="middle" font-size="12" font-weight="600" fill="#1e293b">Agent 评估</text>
+  <text x="900" y="520" text-anchor="middle" font-size="9" fill="#64748b">基准测试与指标</text>
+  <text x="900" y="532" text-anchor="middle" font-size="9" fill="#3b82f6">AgentBench</text>
+
+  <!-- Time estimate -->
+  <text x="550" y="575" text-anchor="middle" font-size="11" fill="#94a3b8">预计学习周期：3-6 个月 · 每阶段 2-4 周</text>
+
+  <!-- Legend -->
+  <rect x="20" y="560" width="8" height="8" rx="2" fill="#3b82f6"/>
+  <text x="34" y="568" font-size="9" fill="#64748b">阶段</text>
+  <rect x="70" y="560" width="8" height="8" rx="2" fill="#1e293b"/>
+  <text x="84" y="568" font-size="9" fill="#64748b">里程碑</text>
+  <line x1="120" y1="564" x2="140" y2="564" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4,4"/>
+  <text x="146" y="568" font-size="9" fill="#64748b">知识关联</text>
+
+  <!-- Footer -->
+  <text x="550" y="605" text-anchor="middle" font-size="9" fill="#cbd5e1">Latent · latent-site.pages.dev</text>
+</svg>

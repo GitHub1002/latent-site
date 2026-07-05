@@ -17,6 +17,8 @@ ShowToc: true
 
 ## 路线图总览
 
+![AI Agent 学习路线图](/images/agent-roadmap.svg)
+
 ```
 阶段 1：LLM 基础与 Prompt 工程
     ↓
