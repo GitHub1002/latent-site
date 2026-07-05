@@ -20,7 +20,8 @@ buildExpired: false
 enableEmoji: true
 
 # 分页
-paginate: 10
+pagination:
+  pagerSize: 10
 
 # 分类体系
 taxonomies:
@@ -112,7 +113,7 @@ languages:
       # 社交链接
       socialIcons:
         - name: github
-          url: "https://github.com/GitHub1002"
+          url: "https://github.com/"
         - name: Rss
           url: "index.xml"
 
