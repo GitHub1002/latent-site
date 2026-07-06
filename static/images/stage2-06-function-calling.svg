@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 460">
+  <defs>
+    <style>
+      .center { font: bold 15px sans-serif; fill: #fff; }
+      .branch { font: bold 12px sans-serif; fill: #fff; }
+      .leaf { font: 10.5px sans-serif; fill: #444; }
+      .line { stroke-width: 2; fill: none; }
+      .arrow { font-size: 14px; fill: #888; }
+    </style>
+  </defs>
+
+  <rect width="900" height="460" rx="12" fill="#fafafa"/>
+
+  <!-- Title -->
+  <rect x="300" y="15" width="300" height="40" rx="20" fill="#2563eb"/>
+  <text x="450" y="41" text-anchor="middle" class="center">Function Calling 三步流程</text>
+
+  <!-- Step 1: 定义工具 -->
+  <rect x="60" y="90" width="220" height="45" rx="22" fill="#059669"/>
+  <text x="170" y="118" text-anchor="middle" class="branch">Step 1: 定义工具</text>
+  <text x="170" y="155" text-anchor="middle" class="leaf">JSON Schema 格式</text>
+  <text x="170" y="172" text-anchor="middle" class="leaf">name + description + parameters</text>
+  <text x="170" y="189" text-anchor="middle" class="leaf">required 标注必填参数</text>
+
+  <!-- Arrow 1→2 -->
+  <text x="305" y="115" class="arrow">→</text>
+
+  <!-- Step 2: LLM 选择 -->
+  <rect x="340" y="90" width="220" height="45" rx="22" fill="#7c3aed"/>
+  <text x="450" y="118" text-anchor="middle" class="branch">Step 2: LLM 输出调用意图</text>
+  <text x="450" y="155" text-anchor="middle" class="leaf">输出 JSON: 工具名 + 参数</text>
+  <text x="450" y="172" text-anchor="middle" class="leaf">LLM 不执行，只"决定"</text>
+  <text x="450" y="189" text-anchor="middle" class="leaf">支持并行调用多个工具</text>
+
+  <!-- Arrow 2→3 -->
+  <text x="585" y="115" class="arrow">→</text>
+
+  <!-- Step 3: 执行回传 -->
+  <rect x="620" y="90" width="220" height="45" rx="22" fill="#ea580c"/>
+  <text x="730" y="118" text-anchor="middle" class="branch">Step 3: 执行 + 回传结果</text>
+  <text x="730" y="155" text-anchor="middle" class="leaf">你的代码真正执行工具</text>
+  <text x="730" y="172" text-anchor="middle" class="leaf">结果作为 tool 消息传回</text>
+  <text x="730" y="189" text-anchor="middle" class="leaf">LLM 根据结果生成最终回复</text>
+
+  <!-- Loop back arrow -->
+  <path d="M730 135 Q850 230 450 230 Q50 230 170 135" stroke="#888" stroke-width="1.5" fill="none" stroke-dasharray="5,4"/>
+  <text x="450" y="248" text-anchor="middle" font-size="10" fill="#888">结果传回 → 进入 Agent 下一轮循环</text>
+
+  <!-- Bottom section: 设计原则 -->
+  <rect x="100" y="290" width="700" height="130" rx="10" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="450" y="315" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb">工具设计三原则</text>
+
+  <rect x="140" y="335" width="180" height="32" rx="16" fill="#059669"/>
+  <text x="230" y="356" text-anchor="middle" class="branch">原子性</text>
+  <text x="230" y="382" text-anchor="middle" class="leaf">一个工具做一件事</text>
+
+  <rect x="360" y="335" width="180" height="32" rx="16" fill="#7c3aed"/>
+  <text x="450" y="356" text-anchor="middle" class="branch">参数精简</text>
+  <text x="450" y="382" text-anchor="middle" class="leaf">关键参数 + 合理默认值</text>
+
+  <rect x="580" y="335" width="180" height="32" rx="16" fill="#ea580c"/>
+  <text x="670" y="356" text-anchor="middle" class="branch">描述清晰</text>
+  <text x="670" y="382" text-anchor="middle" class="leaf">说明做什么/何时用/限制</text>
+
+  <!-- Bottom note -->
+  <text x="450" y="448" text-anchor="middle" font-size="11" fill="#888">
+    核心直觉：LLM 是决策引擎，不执行工具 | 工具定义越清晰，Agent 行为越可控
+  </text>
+</svg>

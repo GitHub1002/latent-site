@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480">
+  <defs>
+    <style>
+      .center { font: bold 15px sans-serif; fill: #fff; }
+      .branch { font: bold 12px sans-serif; fill: #fff; }
+      .leaf { font: 10.5px sans-serif; fill: #444; }
+      .line { stroke-width: 2; fill: none; }
+    </style>
+  </defs>
+
+  <rect width="900" height="480" rx="12" fill="#fafafa"/>
+
+  <!-- Title -->
+  <rect x="320" y="15" width="260" height="40" rx="20" fill="#2563eb"/>
+  <text x="450" y="41" text-anchor="middle" class="center">Tool → Skill → MCP 三层架构</text>
+
+  <!-- Layer 1: Tool -->
+  <rect x="60" y="90" width="240" height="45" rx="22" fill="#059669"/>
+  <text x="180" y="118" text-anchor="middle" class="branch">层次 1: Tool（原子工具）</text>
+  <text x="180" y="155" text-anchor="middle" class="leaf">search_web(query)</text>
+  <text x="180" y="172" text-anchor="middle" class="leaf">fetch_url(url)</text>
+  <text x="180" y="189" text-anchor="middle" class="leaf">calculate(expression)</text>
+  <text x="180" y="210" text-anchor="middle" class="leaf" fill="#059669">由 Function Calling 驱动</text>
+
+  <!-- Layer 2: Skill -->
+  <rect x="340" y="90" width="240" height="45" rx="22" fill="#7c3aed"/>
+  <text x="460" y="118" text-anchor="middle" class="branch">层次 2: Skill（组合技能）</text>
+  <text x="460" y="155" text-anchor="middle" class="leaf">research_report(topic)</text>
+  <text x="460" y="172" text-anchor="middle" class="leaf">= search → fetch → analyze → write</text>
+  <text x="460" y="189" text-anchor="middle" class="leaf">competitor_analysis(product)</text>
+  <text x="460" y="210" text-anchor="middle" class="leaf" fill="#7c3aed">多步流程封装，对外接口简单</text>
+
+  <!-- Layer 3: MCP -->
+  <rect x="620" y="90" width="240" height="45" rx="22" fill="#ea580c"/>
+  <text x="740" y="118" text-anchor="middle" class="branch">层次 3: MCP（标准协议）</text>
+  <text x="740" y="155" text-anchor="middle" class="leaf">统一协议: M×N → M+N</text>
+  <text x="740" y="172" text-anchor="middle" class="leaf">Host → Client → Server</text>
+  <text x="740" y="189" text-anchor="middle" class="leaf">Tools + Resources + Prompts</text>
+  <text x="740" y="210" text-anchor="middle" class="leaf" fill="#ea580c">即插即用，像 USB 接口</text>
+
+  <!-- Skill 设计原则 -->
+  <rect x="100" y="250" width="330" height="120" rx="10" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="265" y="275" text-anchor="middle" font-size="12" font-weight="bold" fill="#7c3aed">Skill 设计三原则</text>
+  <text x="130" y="300" class="leaf">1. 内部是确定性流程（不需要 LLM 判断的步骤固定下来）</text>
+  <text x="130" y="320" class="leaf">2. 对外暴露简单接口（Agent 只需传主题，拿回报告）</text>
+  <text x="130" y="340" class="leaf">3. 可以嵌套组合（高层 Skill 复用低层 Skill）</text>
+
+  <!-- MCP 架构 -->
+  <rect x="480" y="250" width="330" height="120" rx="10" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="645" y="275" text-anchor="middle" font-size="12" font-weight="bold" fill="#ea580c">MCP 架构三角色</text>
+  <text x="510" y="300" class="leaf">Host: 你的 Agent 应用，管理多个连接</text>
+  <text x="510" y="320" class="leaf">Client: Host 中的一个连接实例</text>
+  <text x="510" y="340" class="leaf">Server: 提供具体能力（GitHub/Slack/DB）</text>
+  <text x="510" y="360" class="leaf" fill="#888">生态: 官方 + 社区 60k+ stars</text>
+
+  <!-- Bottom: analogy -->
+  <rect x="150" y="400" width="600" height="50" rx="8" fill="#f0f9ff" stroke="#2563eb" stroke-width="1"/>
+  <text x="450" y="420" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="bold">类比</text>
+  <text x="450" y="440" text-anchor="middle" font-size="10.5" fill="#555">
+    Tool = 螺丝刀和扳手 | Skill = "组装桌子"的操作手册 | MCP = 标准化工具箱接口
+  </text>
+</svg>

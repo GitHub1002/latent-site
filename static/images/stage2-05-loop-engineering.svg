@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
+  <defs>
+    <style>
+      .center { font: bold 15px sans-serif; fill: #fff; }
+      .branch { font: bold 12px sans-serif; fill: #fff; }
+      .leaf { font: 10.5px sans-serif; fill: #444; }
+      .line { stroke-width: 2; fill: none; }
+    </style>
+  </defs>
+
+  <rect width="900" height="500" rx="12" fill="#fafafa"/>
+
+  <!-- Center: the loop -->
+  <rect x="330" y="200" width="240" height="50" rx="25" fill="#2563eb"/>
+  <text x="450" y="231" text-anchor="middle" class="center">Agent 核心循环</text>
+
+  <!-- Circular arrows around center to show loop -->
+  <path d="M350 200 Q300 150 350 120 Q400 90 450 100" stroke="#2563eb" stroke-width="2" fill="none" stroke-dasharray="4,3"/>
+  <path d="M550 200 Q600 150 550 120 Q500 90 450 100" stroke="#2563eb" stroke-width="2" fill="none" stroke-dasharray="4,3"/>
+
+  <!-- Top: ReAct -->
+  <rect x="350" y="60" width="200" height="40" rx="20" fill="#7c3aed"/>
+  <text x="450" y="85" text-anchor="middle" class="branch">ReAct 范式 (2022)</text>
+  <text x="340" y="38" class="leaf">Thought: 推理为什么做</text>
+  <text x="340" y="55" class="leaf">→ Action: 选什么工具</text>
+  <text x="540" y="38" class="leaf">→ Observation: 结果是什么</text>
+  <text x="540" y="55" class="leaf">→ 带回下一轮循环</text>
+
+  <!-- Left: Reflexion -->
+  <path d="M330 225 Q240 225 160 225" class="line" stroke="#059669"/>
+  <rect x="40" y="205" width="200" height="40" rx="20" fill="#059669"/>
+  <text x="140" y="230" text-anchor="middle" class="branch">Reflexion 自反思</text>
+  <text x="30" y="270" class="leaf">失败后结构化反思</text>
+  <text x="30" y="288" class="leaf">提取可操作教训</text>
+  <text x="30" y="306" class="leaf">指导后续行动避免重复犯错</text>
+
+  <!-- Right: 工程细节 -->
+  <path d="M570 225 Q660 225 740 225" class="line" stroke="#ea580c"/>
+  <rect x="660" y="205" width="200" height="40" rx="20" fill="#ea580c"/>
+  <text x="760" y="230" text-anchor="middle" class="branch">工程细节</text>
+  <text x="680" y="270" class="leaf">停止条件: 最大轮次/超时</text>
+  <text x="680" y="288" class="leaf">错误恢复: 异常翻译成自然语言</text>
+  <text x="680" y="306" class="leaf">防死循环: 重复检测 + 工具限制</text>
+
+  <!-- Bottom-left: 循环三要素 -->
+  <path d="M370 250 Q310 320 250 370" class="line" stroke="#dc2626"/>
+  <rect x="120" y="360" width="200" height="40" rx="20" fill="#dc2626"/>
+  <text x="220" y="385" text-anchor="middle" class="branch">循环三要素</text>
+  <text x="120" y="425" class="leaf">1. 推理 (Reasoning): 决定做什么</text>
+  <text x="120" y="443" class="leaf">2. 行动 (Action): 执行操作</text>
+  <text x="120" y="461" class="leaf">3. 观察 (Observation): 获取反馈</text>
+
+  <!-- Bottom-right: 生产级 Agent -->
+  <path d="M530 250 Q590 320 650 370" class="line" stroke="#0891b2"/>
+  <rect x="580" y="360" width="220" height="40" rx="20" fill="#0891b2"/>
+  <text x="690" y="385" text-anchor="middle" class="branch">生产级 Agent = 可靠循环</text>
+  <text x="600" y="425" class="leaf">详细日志: 唯一的调试手段</text>
+  <text x="600" y="443" class="leaf">Token 追踪: 控制成本</text>
+  <text x="600" y="461" class="leaf">状态持久化: 支持长任务恢复</text>
+
+  <!-- Bottom note -->
+  <text x="450" y="493" text-anchor="middle" font-size="11" fill="#888">
+    核心直觉：Agent 不是"更聪明的聊天机器人"，而是一个带工具的 while 循环
+  </text>
+</svg>
