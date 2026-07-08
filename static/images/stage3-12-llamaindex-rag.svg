@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480">
+  <defs>
+    <style>
+      .center { font: bold 15px sans-serif; fill: #fff; }
+      .branch { font: bold 12px sans-serif; fill: #fff; }
+      .leaf { font: 10.5px sans-serif; fill: #444; }
+      .line { stroke-width: 2; fill: none; }
+    </style>
+  </defs>
+
+  <rect width="900" height="480" rx="12" fill="#fafafa"/>
+
+  <!-- Center -->
+  <rect x="295" y="210" width="310" height="50" rx="25" fill="#2563eb"/>
+  <text x="450" y="241" text-anchor="middle" class="center">LlamaIndex RAG 知识库实战路线</text>
+
+  <!-- Top-left: 环境准备 -->
+  <path d="M345 210 Q280 155 215 115" class="line" stroke="#059669"/>
+  <rect x="85" y="93" width="200" height="36" rx="18" fill="#059669"/>
+  <text x="185" y="116" text-anchor="middle" class="branch">环境准备</text>
+  <text x="70" y="65" class="leaf">安装 llama-index + chromadb</text>
+  <text x="70" y="82" class="leaf">配置 OpenAI API Key</text>
+  <text x="270" y="65" class="leaf">准备 Markdown/PDF 测试文档</text>
+
+  <!-- Top-right: 文档加载 -->
+  <path d="M555 210 Q620 155 685 115" class="line" stroke="#7c3aed"/>
+  <rect x="600" y="93" width="200" height="36" rx="18" fill="#7c3aed"/>
+  <text x="700" y="116" text-anchor="middle" class="branch">Step 1: 文档加载</text>
+  <text x="610" y="65" class="leaf">Markdown / TXT / PDF / DOCX</text>
+  <text x="610" y="82" class="leaf">网页 (SimpleWebPageReader)</text>
+  <text x="810" y="65" class="leaf">手动创建 Document 对象</text>
+
+  <!-- Left: 切分与索引 -->
+  <path d="M295 235 Q215 235 140 235" class="line" stroke="#ea580c"/>
+  <rect x="15" y="217" width="210" height="36" rx="18" fill="#ea580c"/>
+  <text x="120" y="240" text-anchor="middle" class="branch">Step 2: 切分与索引</text>
+  <text x="15" y="275" class="leaf">SentenceSplitter (512 tokens)</text>
+  <text x="15" y="292" class="leaf">OpenAI Embedding (text-embedding-3-small)</text>
+  <text x="15" y="309" class="leaf">Chroma 向量数据库持久化存储</text>
+
+  <!-- Right: 查询引擎 -->
+  <path d="M605 235 Q685 235 760 235" class="line" stroke="#dc2626"/>
+  <rect x="675" y="217" width="210" height="36" rx="18" fill="#dc2626"/>
+  <text x="780" y="240" text-anchor="middle" class="branch">Step 3: 查询引擎</text>
+  <text x="700" y="275" class="leaf">QueryEngine = 检索 + 生成</text>
+  <text x="700" y="292" class="leaf">查看 source_nodes 验证来源</text>
+  <text x="700" y="309" class="leaf">调 top_k 控制参考文档数量</text>
+
+  <!-- Bottom-left: 高级检索 -->
+  <path d="M345 260 Q280 320 215 370" class="line" stroke="#0891b2"/>
+  <rect x="80" y="358" width="210" height="36" rx="18" fill="#0891b2"/>
+  <text x="185" y="381" text-anchor="middle" class="branch">Step 4-5: 进阶能力</text>
+  <text x="70" y="415" class="leaf">Reranker (Cross-Encoder 二次排序)</text>
+  <text x="70" y="432" class="leaf">Hybrid Search (向量 + BM25)</text>
+  <text x="70" y="449" class="leaf">ChatEngine 多轮对话 (带记忆)</text>
+
+  <!-- Bottom-right: MCP Server -->
+  <path d="M555 260 Q620 320 685 370" class="line" stroke="#ca8a04"/>
+  <rect x="590" y="358" width="210" height="36" rx="18" fill="#ca8a04"/>
+  <text x="695" y="381" text-anchor="middle" class="branch">Step 6: MCP Server</text>
+  <text x="610" y="415" class="leaf">FastMCP 封装 ask_knowledge_base</text>
+  <text x="610" y="432" class="leaf">search_documents 工具</text>
+  <text x="610" y="449" class="leaf">Claude Desktop / Agent 直接调用</text>
+
+  <!-- Bottom note -->
+  <text x="450" y="477" text-anchor="middle" font-size="11" fill="#888">
+    核心洞察：RAG 质量瓶颈在检索而非生成 | 下一阶段 → 多 Agent 协作
+  </text>
+</svg>

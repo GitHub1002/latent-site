@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
+  <defs>
+    <style>
+      .center { font: bold 15px sans-serif; fill: #fff; }
+      .branch { font: bold 12px sans-serif; fill: #fff; }
+      .leaf { font: 10.5px sans-serif; fill: #444; }
+      .line { stroke-width: 2; fill: none; }
+    </style>
+  </defs>
+
+  <rect width="900" height="500" rx="12" fill="#fafafa"/>
+
+  <!-- Center -->
+  <rect x="310" y="215" width="280" height="50" rx="25" fill="#2563eb"/>
+  <text x="450" y="246" text-anchor="middle" class="center">Context Engineering 核心策略</text>
+
+  <!-- Top-left: 信息优先级 -->
+  <path d="M350 215 Q290 165 230 130" class="line" stroke="#059669"/>
+  <rect x="100" y="108" width="200" height="36" rx="18" fill="#059669"/>
+  <text x="200" y="131" text-anchor="middle" class="branch">信息优先级 P0→P4</text>
+  <text x="80" y="78" class="leaf">P0: System Prompt (必放)</text>
+  <text x="80" y="95" class="leaf">P1: 直接相关文档 (高优先)</text>
+  <text x="280" y="78" class="leaf">P2: 近期对话 (中优先)</text>
+  <text x="280" y="95" class="leaf">P4: 无关信息 (不放)</text>
+
+  <!-- Top-right: 动态构建 -->
+  <path d="M550 215 Q610 165 670 130" class="line" stroke="#7c3aed"/>
+  <rect x="590" y="108" width="200" height="36" rx="18" fill="#7c3aed"/>
+  <text x="690" y="131" text-anchor="middle" class="branch">动态上下文构建</text>
+  <text x="620" y="78" class="leaf">简单问题 → 轻量上下文</text>
+  <text x="620" y="95" class="leaf">知识查询 → RAG 检索</text>
+  <text x="810" y="78" class="leaf">复杂推理 → CoT + 完整上下文</text>
+  <text x="810" y="95" class="leaf">不要一刀切</text>
+
+  <!-- Left: 窗口管理 -->
+  <path d="M310 240 Q230 240 150 240" class="line" stroke="#ea580c"/>
+  <rect x="20" y="222" width="200" height="36" rx="18" fill="#ea580c"/>
+  <text x="120" y="245" text-anchor="middle" class="branch">窗口 = 稀缺资源</text>
+  <text x="20" y="285" class="leaf">128K = 输入 + 输出共用</text>
+  <text x="20" y="302" class="leaf">每段信息都要有价值</text>
+  <text x="20" y="319" class="leaf">标注相关度分数辅助筛选</text>
+
+  <!-- Right: Agent 上下文 -->
+  <path d="M590 240 Q670 240 750 240" class="line" stroke="#dc2626"/>
+  <rect x="680" y="222" width="200" height="36" rx="18" fill="#dc2626"/>
+  <text x="780" y="245" text-anchor="middle" class="branch">Agent 上下文压缩</text>
+  <text x="700" y="285" class="leaf">循环越多 → 上下文越臃肿</text>
+  <text x="700" y="302" class="leaf">前 5 轮完整保留</text>
+  <text x="700" y="319" class="leaf">超过 5 轮压缩早期为摘要</text>
+
+  <!-- Bottom-left: 历史管理 -->
+  <path d="M370 265 Q310 330 250 380" class="line" stroke="#0891b2"/>
+  <rect x="110" y="370" width="220" height="36" rx="18" fill="#0891b2"/>
+  <text x="220" y="393" text-anchor="middle" class="branch">历史对话管理三策略</text>
+  <text x="100" y="430" class="leaf">1. 滑动窗口: 保留最近 N 轮</text>
+  <text x="100" y="448" class="leaf">2. 摘要压缩: 早期对话压缩为摘要</text>
+  <text x="100" y="466" class="leaf">3. 结构化记忆: 提取关键信息</text>
+
+  <!-- Bottom-right: System Prompt -->
+  <path d="M530 265 Q590 330 650 380" class="line" stroke="#ca8a04"/>
+  <rect x="570" y="370" width="220" height="36" rx="18" fill="#ca8a04"/>
+  <text x="680" y="393" text-anchor="middle" class="branch">System Prompt 进阶</text>
+  <text x="600" y="430" class="leaf">角色 + 能力 + 行为规范</text>
+  <text x="600" y="448" class="leaf">工具使用规则（何时搜索/何时计算）</text>
+  <text x="600" y="466" class="leaf">输出格式约束（简洁/Markdown）</text>
+
+  <!-- Bottom note -->
+  <text x="450" y="497" text-anchor="middle" font-size="11" fill="#888">
+    核心原则：给模型"看什么"比"怎么说"更重要 | 下一站 → RAG
+  </text>
+</svg>

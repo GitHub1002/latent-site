@@ -7,7 +7,6 @@ tags: ["Agent", "LangChain", "实战", "ReAct"]
 summary: "用 LangChain 从零构建一个带工具调用的 ReAct Agent。包括创建 Agent、添加工具、观察循环日志、把多个工具组合成 Skill。完整可运行代码，跟着做就能跑起来。"
 ShowToc: true
 ---
-
 前三篇我们学了 Agent 循环的理论（ReAct/Reflexion）、Function Calling 的机制、以及 Tool→Skill→MCP 的封装思维。这篇文章把它们全部落地——用 LangChain 框架构建一个真正能运行的 ReAct Agent。
 
 我们的目标是做一个**"智能研究助手" Agent**：给它一个研究主题，它能自主搜索信息、分析数据、计算结果，最终生成一份研究报告。
@@ -21,8 +20,10 @@ ShowToc: true
 ### 安装依赖
 
 ```bash
-pip install langchain langchain-openai langchain-community duckduckgo-search
+pip install langchain langchain-classic langchain-openai langchain-community langsmith ddgs python-dotenv
 ```
+
+> 注意：LangChain 1.3.x 将经典 Agent 框架（`create_react_agent`、`AgentExecutor`）迁移到了独立的 `langchain-classic` 包，拉取 Prompt 模板需要通过 `langsmith` 客户端。
 
 ### 配置 API Key
 
@@ -32,6 +33,8 @@ OPENAI_API_KEY=sk-your-key-here
 # 或者用 DeepSeek：
 # OPENAI_BASE_URL=https://api.deepseek.com
 # OPENAI_API_KEY=sk-your-deepseek-key
+# 如果用 LangSmith Hub 拉取 Prompt（可选）：
+# LANGSMITH_API_KEY=your-langsmith-key
 ```
 
 ```python
@@ -48,19 +51,22 @@ LangChain 提供了 `create_react_agent` 函数，几行代码就能创建一个
 
 ```python
 from langchain_openai import ChatOpenAI
-from langchain.agents import create_react_agent, AgentExecutor
-from langchain import hub
+from langchain_classic.agents import create_react_agent, AgentExecutor
+from langsmith import Client
 
 # 1. 选择 LLM
 llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
 
 # 2. 拉取 ReAct 提示模板
-prompt = hub.pull("hwchase17/react")
+client = Client()
+prompt = client.pull_prompt("hwchase17/react", dangerously_pull_public_prompt=True)
 
 # 3. 暂时不加工具，先看看 Agent 的结构
 agent = create_react_agent(llm, tools=[], prompt=prompt)
 agent_executor = AgentExecutor(agent=agent, tools=[], verbose=True)
 ```
+
+> 从 LangChain 1.3.x 开始，`create_react_agent` 和 `AgentExecutor` 从 `langchain_classic.agents` 导入。Prompt 模板通过 LangSmith 客户端从 Hub 拉取，`dangerously_pull_public_prompt=True` 表示显式允许拉取公共模板。
 
 `verbose=True` 是关键——它会打印 Agent 的每一轮思考、行动和观察，让你能"看到"循环在怎么跑。
 
@@ -72,7 +78,7 @@ agent_executor = AgentExecutor(agent=agent, tools=[], verbose=True)
 
 ```python
 from langchain.tools import tool
-from duckduckgo_search import DDGS
+from ddgs import DDGS
 
 # 工具 1: 网页搜索
 @tool
@@ -179,7 +185,6 @@ def research_and_report(topic: str) -> str:
     """对指定主题进行深度研究：搜索多个来源，分析数据，生成结构化报告。
     适合需要综合多个信息源的研究任务。"""
 
-    # Step 1: 多角度搜索
     queries = [
         f"{topic} market size 2025",
         f"{topic} trends and predictions",
@@ -190,19 +195,15 @@ def research_and_report(topic: str) -> str:
     for query in queries:
         with DDGS() as ddgs:
             results = list(ddgs.text(query, max_results=3))
-        all_results.extend(results)
+        all_results.append("\n".join([f"{r['title']}: {r['body']}" for r in results]))
 
-    # Step 2: 汇总信息
-    combined = "\n".join([
-        f"- {r['title']}: {r['body']}" for r in all_results
-    ])
+    combined = "\n".join([f"- {item}" for item in all_results])
 
-    # Step 3: 用 LLM 生成报告
     from langchain_openai import ChatOpenAI
     llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
 
     report = llm.invoke(
-        f"基于以下搜索结果，为「{topic}」生成一份简洁的研究报告（中文）：\n\n{combined}"
+        f"基于以下搜索结果，为{topic}撰写一份简明报告：\n{combined}"
     )
 
     return report.content
@@ -242,10 +243,12 @@ agent_executor = AgentExecutor(
     max_execution_time=120,  # 秒
 
     # 防护 3: 错误处理
-    handle_parsing_errors=True,  # 自动处理输出解析错误
+    handle_parsing_errors=True,   # 自动处理输出解析错误
+    handle_tool_errors=True,      # 自动处理工具调用错误
 
     # 防护 4: 提前停止回调
-    early_stopping_method="generate",  # 超时时让 LLM 生成当前最佳回答
+    early_stopping_method="generate",    # 超时时让 LLM 生成当前最佳回答
+    early_stopping_threshold=0.5,        # 提前停止的置信度阈值
 )
 ```
 
@@ -256,7 +259,7 @@ agent_executor = AgentExecutor(
 加一个简单的日志系统，记录每轮循环的详细信息：
 
 ```python
-from langchain.callbacks.base import BaseCallbackHandler
+from langchain_core.callbacks.base import BaseCallbackHandler
 import time
 
 class LoopLogger(BaseCallbackHandler):
@@ -326,12 +329,12 @@ for log in logger.logs:
 
 恭喜完成第二阶段！回顾你学到的东西：
 
-| 篇目 | 核心知识 |
-|------|---------|
-| 05 | Agent 的核心是 ReAct 循环：Thought→Action→Observation，以及 Reflexion 自反思 |
-| 06 | Function Calling 的机制：LLM 输出调用意图，外部代码执行，结果回传 |
-| 07 | Tool 是原子操作，Skill 是组合流程，MCP 是标准化连接协议 |
-| 08 | 用 LangChain 构建 ReAct Agent 的完整实战 |
+| 篇目 | 核心知识                                                                       |
+| ---- | ------------------------------------------------------------------------------ |
+| 05   | Agent 的核心是 ReAct 循环：Thought→Action→Observation，以及 Reflexion 自反思 |
+| 06   | Function Calling 的机制：LLM 输出调用意图，外部代码执行，结果回传              |
+| 07   | Tool 是原子操作，Skill 是组合流程，MCP 是标准化连接协议                        |
+| 08   | 用 LangChain 构建 ReAct Agent 的完整实战                                       |
 
 下一阶段我们会进入 **Context Engineering 与 RAG**——学习怎么给 Agent 提供高质量的上下文信息，让它做出更好的决策。你会学到 RAG 全流程、记忆系统、以及 MCP 的深入应用。
 

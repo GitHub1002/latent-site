@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480">
+  <defs>
+    <style>
+      .center { font: bold 15px sans-serif; fill: #fff; }
+      .branch { font: bold 12px sans-serif; fill: #fff; }
+      .leaf { font: 10.5px sans-serif; fill: #444; }
+      .line { stroke-width: 2; fill: none; }
+    </style>
+  </defs>
+
+  <rect width="900" height="480" rx="12" fill="#fafafa"/>
+
+  <!-- Center -->
+  <rect x="320" y="205" width="260" height="50" rx="25" fill="#2563eb"/>
+  <text x="450" y="236" text-anchor="middle" class="center">RAG 全流程三阶段</text>
+
+  <!-- Top-left: Chunking -->
+  <path d="M345 205 Q280 155 215 115" class="line" stroke="#059669"/>
+  <rect x="85" y="93" width="200" height="36" rx="18" fill="#059669"/>
+  <text x="185" y="116" text-anchor="middle" class="branch">文档切分 Chunking</text>
+  <text x="65" y="63" class="leaf">固定大小: chunk_size=512 字符</text>
+  <text x="65" y="80" class="leaf">overlap=64 (约 12%)</text>
+  <text x="265" y="63" class="leaf">语义切分: 按标题/段落自然分割</text>
+  <text x="265" y="80" class="leaf">推荐组合: 粗切+二次切分</text>
+
+  <!-- Top-right: Embedding -->
+  <path d="M555 205 Q620 155 685 115" class="line" stroke="#7c3aed"/>
+  <rect x="590" y="93" width="210" height="36" rx="18" fill="#7c3aed"/>
+  <text x="695" y="116" text-anchor="middle" class="branch">Embedding 文本向量化</text>
+  <text x="620" y="63" class="leaf">text-embedding-3-small: 1536 维</text>
+  <text x="620" y="80" class="leaf">BGE-M3: 1024 维 (中文优选)</text>
+  <text x="810" y="63" class="leaf">语义相似 → 向量距离近</text>
+  <text x="810" y="80" class="leaf">1024 维满足多数场景</text>
+
+  <!-- Left: Vector DB -->
+  <path d="M320 230 Q230 230 140 230" class="line" stroke="#ea580c"/>
+  <rect x="10" y="212" width="200" height="36" rx="18" fill="#ea580c"/>
+  <text x="110" y="235" text-anchor="middle" class="branch">向量数据库存储检索</text>
+  <text x="10" y="275" class="leaf">ChromaDB: 零配置，适合入门</text>
+  <text x="10" y="292" class="leaf">FAISS: 高性能离线检索</text>
+  <text x="10" y="309" class="leaf">Pinecone/Milvus: 生产级</text>
+
+  <!-- Right: Retrieval -->
+  <path d="M580 230 Q670 230 760 230" class="line" stroke="#dc2626"/>
+  <rect x="690" y="212" width="200" height="36" rx="18" fill="#dc2626"/>
+  <text x="790" y="235" text-anchor="middle" class="branch">检索策略 top_k & MMR</text>
+  <text x="710" y="275" class="leaf">相似度搜索: 返回最相似 top-5</text>
+  <text x="710" y="292" class="leaf">MMR: 兼顾相似性和多样性</text>
+  <text x="710" y="309" class="leaf">lambda_mult=0.7 偏向相似</text>
+
+  <!-- Bottom-left: Reranking -->
+  <path d="M370 255 Q300 320 230 370" class="line" stroke="#0891b2"/>
+  <rect x="90" y="360" width="220" height="36" rx="18" fill="#0891b2"/>
+  <text x="200" y="383" text-anchor="middle" class="branch">重排 Reranking 精筛</text>
+  <text x="80" y="420" class="leaf">Cross-encoder: 查询+文档联合打分</text>
+  <text x="80" y="438" class="leaf">召回 top-20 → 精排 top-5</text>
+  <text x="80" y="456" class="leaf">nDCG@5 提升 5-15 个百分点</text>
+
+  <!-- Bottom-right: Prompt Injection -->
+  <path d="M530 255 Q600 320 670 370" class="line" stroke="#ca8a04"/>
+  <rect x="570" y="360" width="230" height="36" rx="18" fill="#ca8a04"/>
+  <text x="685" y="383" text-anchor="middle" class="branch">Prompt 注入与生成</text>
+  <text x="600" y="420" class="leaf">参考文档 + 问题 → 组装 Prompt</text>
+  <text x="600" y="438" class="leaf">标注来源 [1][2]，设"不知道"兜底</text>
+  <text x="600" y="456" class="leaf">文档占窗口 20-40% 为宜</text>
+
+  <!-- Bottom note -->
+  <text x="450" y="478" text-anchor="middle" font-size="11" fill="#888">
+    Indexing(离线) → Retrieval(在线) → Generation(在线) | 不改模型，改模型看到的上下文
+  </text>
+</svg>

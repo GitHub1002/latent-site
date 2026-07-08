@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
+  <defs>
+    <style>
+      .center { font: bold 15px sans-serif; fill: #fff; }
+      .branch { font: bold 12px sans-serif; fill: #fff; }
+      .leaf { font: 10.5px sans-serif; fill: #444; }
+      .line { stroke-width: 2; fill: none; }
+    </style>
+  </defs>
+
+  <rect width="900" height="500" rx="12" fill="#fafafa"/>
+
+  <!-- Center -->
+  <rect x="305" y="210" width="290" height="50" rx="25" fill="#2563eb"/>
+  <text x="450" y="241" text-anchor="middle" class="center">高级 RAG 与记忆系统</text>
+
+  <!-- Top-left: Multi-hop RAG -->
+  <path d="M350 210 Q290 155 230 120" class="line" stroke="#059669"/>
+  <rect x="100" y="100" width="200" height="36" rx="18" fill="#059669"/>
+  <text x="200" y="123" text-anchor="middle" class="branch">Multi-hop RAG</text>
+  <text x="70" y="72" class="leaf">一次检索不够 → 多步迭代</text>
+  <text x="70" y="89" class="leaf">每步结果指导下步查询</text>
+  <text x="270" y="72" class="leaf">LLM 判断"还缺什么"</text>
+  <text x="270" y="89" class="leaf">适合跨文档事实推理</text>
+
+  <!-- Top-right: Self-RAG -->
+  <path d="M550 210 Q610 155 670 120" class="line" stroke="#7c3aed"/>
+  <rect x="590" y="100" width="200" height="36" rx="18" fill="#7c3aed"/>
+  <text x="690" y="123" text-anchor="middle" class="branch">Self-RAG 自适应</text>
+  <text x="610" y="72" class="leaf">Retrieve: 需要检索吗？</text>
+  <text x="610" y="89" class="leaf">IsRel: 文档相关吗？</text>
+  <text x="800" y="72" class="leaf">IsSup: 回答被支持吗？</text>
+  <text x="800" y="89" class="leaf">减少幻觉，按需检索</text>
+
+  <!-- Left: Graph RAG -->
+  <path d="M305 235 Q225 235 145 235" class="line" stroke="#ea580c"/>
+  <rect x="20" y="217" width="200" height="36" rx="18" fill="#ea580c"/>
+  <text x="120" y="240" text-anchor="middle" class="branch">Graph RAG 图谱增强</text>
+  <text x="20" y="278" class="leaf">文档 → 实体提取 → 知识图谱</text>
+  <text x="20" y="295" class="leaf">图遍历 + 文本检索双层</text>
+  <text x="20" y="312" class="leaf">解决跨文档关系推理</text>
+  <text x="20" y="329" class="leaf">Microsoft GraphRAG 项目</text>
+
+  <!-- Right: Hybrid Search -->
+  <path d="M595 235 Q675 235 755 235" class="line" stroke="#dc2626"/>
+  <rect x="680" y="217" width="200" height="36" rx="18" fill="#dc2626"/>
+  <text x="780" y="240" text-anchor="middle" class="branch">Hybrid Search 混合</text>
+  <text x="700" y="278" class="leaf">向量检索 = 语义相似</text>
+  <text x="700" y="295" class="leaf">BM25 = 关键词精确匹配</text>
+  <text x="700" y="312" class="leaf">alpha 权重调节融合</text>
+  <text x="700" y="329" class="leaf">Weaviate/Qdrant 内置支持</text>
+
+  <!-- Bottom-left: Memory Types -->
+  <path d="M370 260 Q310 325 250 375" class="line" stroke="#0891b2"/>
+  <rect x="110" y="363" width="220" height="36" rx="18" fill="#0891b2"/>
+  <text x="220" y="386" text-anchor="middle" class="branch">三种记忆类型</text>
+  <text x="90" y="418" class="leaf">短期 (Working): 当前对话上下文</text>
+  <text x="90" y="436" class="leaf">长期 (Long-term): 偏好/背景/决策</text>
+  <text x="90" y="454" class="leaf">程序性 (Procedural): 操作模式经验</text>
+  <text x="90" y="472" class="leaf">SQLite 结构化 + 向量库语义化</text>
+
+  <!-- Bottom-right: Memory Management -->
+  <path d="M530 260 Q590 325 650 375" class="line" stroke="#ca8a04"/>
+  <rect x="570" y="363" width="220" height="36" rx="18" fill="#ca8a04"/>
+  <text x="680" y="386" text-anchor="middle" class="branch">记忆管理与压缩</text>
+  <text x="600" y="418" class="leaf">时间衰减: 旧记忆降优先级</text>
+  <text x="600" y="436" class="leaf">摘要压缩: 多段对话 → 一段摘要</text>
+  <text x="600" y="454" class="leaf">冲突消解: 新信息覆盖旧记忆</text>
+  <text x="600" y="472" class="leaf">LangChain / LlamaIndex 记忆模块</text>
+
+  <!-- Bottom note -->
+  <text x="450" y="497" text-anchor="middle" font-size="11" fill="#888">
+    目标：从"能用"到"好用" | 下一站 → 实战篇
+  </text>
+</svg>

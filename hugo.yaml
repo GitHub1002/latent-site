@@ -15,7 +15,7 @@ defaultContentLanguageInSubdir: false
 # 启用功能
 enableRobotsTXT: true
 buildDrafts: false
-buildFuture: false
+buildFuture: true
 buildExpired: false
 enableEmoji: true
 
