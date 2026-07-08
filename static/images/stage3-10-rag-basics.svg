@@ -43,7 +43,7 @@
   <!-- Right: Retrieval -->
   <path d="M580 230 Q670 230 760 230" class="line" stroke="#dc2626"/>
   <rect x="690" y="212" width="200" height="36" rx="18" fill="#dc2626"/>
-  <text x="790" y="235" text-anchor="middle" class="branch">检索策略 top_k & MMR</text>
+  <text x="790" y="235" text-anchor="middle" class="branch">检索策略 top_k &amp; MMR</text>
   <text x="710" y="275" class="leaf">相似度搜索: 返回最相似 top-5</text>
   <text x="710" y="292" class="leaf">MMR: 兼顾相似性和多样性</text>
   <text x="710" y="309" class="leaf">lambda_mult=0.7 偏向相似</text>
