@@ -331,54 +331,50 @@ final_prompt = RAG_PROMPT_TEMPLATE.format(
 
 ## 端到端代码示例
 
-下面是一个完整的 RAG 系统，用 LangChain + ChromaDB + OpenAI 实现：
+下面是一个完整的 RAG 系统，用 LangChain + ChromaDB + BGE Embedding（本地） + DeepSeek 实现：
 
 ```python
-# pip install langchain langchain-openai langchain-chroma chromadb
+# pip install langchain langchain-openai langchain-chroma langchain-huggingface chromadb python-dotenv
 
-from langchain_openai import OpenAIEmbeddings, ChatOpenAI
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.runnables import RunnablePassthrough
+from langchain_openai import ChatOpenAI
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.prompts import ChatPromptTemplate
-from langchain.schema import StrOutputParser
-from langchain.schema.runnable import RunnablePassthrough
 
 # ============ 1. 准备文档 ============
-# 假设你有一些技术文档
 documents = [
     "LangChain 是一个用于构建 LLM 应用的框架。它提供了 Chain、Agent、Memory 等核心抽象。",
-    "Chain 是 LangChain 中的核心概念，表示一系列按顺序执行的组件。可以用 LCEL（LangChain Expression Language）构建。",
+    "Chain 是 LangChain 中的核心概念，表示一系列按顺序执行的组件。可以用 LCEL 构建。",
     "Agent 使用 LLM 作为推理引擎，自主决定调用哪些工具。ReAct 是最常用的 Agent 架构。",
     "RAG（检索增强生成）通过检索外部知识库来增强 LLM 的回答能力，减少幻觉。",
-    "向量数据库用于存储和检索文本的向量表示。常见选择包括 Chroma、FAISS、Pinecone。",
-    # ... 更多文档
+    "向量数据库用于存储和检索文本的向量表示。常见选择包括 Chroma、FAISS、Pinecone。"
 ]
+# 这里文档已经是短文本，不需要切分
+# 实际项目中，你会用 RecursiveCharacterTextSplitter 切分长文档
 
-# ============ 2. 切分文档 ============
-splitter = RecursiveCharacterTextSplitter(
-    chunk_size=512,
-    chunk_overlap=64,
-    separators=["\n\n", "\n", "。", ".", " "]
+# ============ 2. 创建本地 Embedding ============
+# 首次运行会从 HuggingFace 下载 BAAI/bge-large-zh-v1.5，约 1.2GB
+embeddings = HuggingFaceEmbeddings(
+    model_name="BAAI/bge-large-zh-v1.5",
+    model_kwargs={"device": "cpu"},  # 没有 GPU 就用 cpu
+    encode_kwargs={"normalize_embeddings": True}
 )
 
-# 这里文档已经很短，实际中你会 split_documents()
-# chunks = splitter.split_documents(loaded_docs)
-
 # ============ 3. 创建向量存储 ============
-embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
-
 vectorstore = Chroma.from_texts(
     texts=documents,
-    embedding=embeddings,
-    collection_name="my_knowledge_base"
+    embedding=embeddings
 )
 
 retriever = vectorstore.as_retriever(
-    search_type="mmr",          # 使用 MMR 保证多样性
-    search_kwargs={
-        "k": 5,                 # 返回 top-5
-        "lambda_mult": 0.7
-    }
+    search_type="similarity",
+    search_kwargs={"k": 2}
 )
 
 # ============ 4. 构建 Prompt ============
@@ -397,7 +393,7 @@ RAG_PROMPT = ChatPromptTemplate.from_template("""
 """)
 
 # ============ 5. 构建 RAG Chain ============
-llm = ChatOpenAI(model="gpt-4o", temperature=0)
+llm = ChatOpenAI(model="deepseek-v4-flash", temperature=0, max_tokens=1000)
 
 def format_docs(docs):
     return "\n\n".join(
@@ -412,12 +408,16 @@ rag_chain = (
 )
 
 # ============ 6. 使用 ============
-answer = rag_chain.invoke("LangChain 中的 Agent 和 Chain 有什么区别？")
-print(answer)
-# 输出会引用 [1] [2] [3] 等文档来源，基于知识库回答
+question = "LangChain 中的 Agent 和 Chain 有什么区别？"
+answer = rag_chain.invoke(question)
+print(f"问题：{question}\n")
+print(f"回答：{answer}")
+# 输出会引用 [1] [2] 等文档来源，基于知识库回答
 ```
 
-这个流程就是完整的 RAG 系统了。在真实项目中，你还需要考虑：文档加载（PDF、网页、数据库）、增量更新（新文档加入时不重建全部索引）、评估（检索质量和生成质量的量化指标）。
+这个流程就是完整的 RAG 系统了。代码中用 `dotenv` 加载 `.env` 文件里的 API Key（比如 `OPENAI_API_KEY` 或自定义的 `BASE_URL`），避免硬编码在代码里。Embedding 用的是本地的 BGE 模型（`BAAI/bge-large-zh-v1.5`），首次运行会从 HuggingFace 下载约 1.2GB，之后就不需要联网了——相比 OpenAI 的 Embedding API，本地方案零调用成本，数据也不出本机。
+
+在真实项目中，你还需要考虑：文档加载（PDF、网页、数据库）、增量更新（新文档加入时不重建全部索引）、评估（检索质量和生成质量的量化指标）。
 
 ---
 

@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 520" font-family="system-ui, -apple-system, 'Microsoft YaHei', sans-serif">
+  <defs>
+    <style>
+      .center { font: bold 15px system-ui, sans-serif; fill: #fff; }
+      .branch { font: bold 12px system-ui, sans-serif; fill: #fff; }
+      .leaf { font: 10.5px system-ui, sans-serif; fill: #444; }
+      .line { stroke-width: 2; fill: none; }
+    </style>
+  </defs>
+
+  <rect width="920" height="520" rx="12" fill="#fafafa"/>
+
+  <!-- Center node -->
+  <rect x="310" y="228" width="300" height="52" rx="26" fill="#2563eb"/>
+  <text x="460" y="260" text-anchor="middle" class="center">Harness Engineering 四层架构</text>
+
+  <!-- Branch 1: 编排层 Orchestration (top-left, green) -->
+  <path d="M310 245 Q220 180 140 120" class="line" stroke="#059669"/>
+  <rect x="20" y="90" width="220" height="38" rx="19" fill="#059669"/>
+  <text x="130" y="114" text-anchor="middle" class="branch">编排层 Orchestration</text>
+  <text x="20" y="150" class="leaf">条件路由: 结果 &lt; 阈值 → 切换策略</text>
+  <text x="20" y="167" class="leaf">并行执行: 多 Agent 同时 → 结果聚合</text>
+  <text x="20" y="184" class="leaf">DAG 流程: 节点依赖 + 分支合并</text>
+
+  <!-- Branch 2: 约束层 Constraints (top-right, purple) -->
+  <path d="M610 245 Q700 180 780 120" class="line" stroke="#7c3aed"/>
+  <rect x="680" y="90" width="220" height="38" rx="19" fill="#7c3aed"/>
+  <text x="790" y="114" text-anchor="middle" class="branch">约束层 Constraints</text>
+  <text x="680" y="150" class="leaf">超时控制: 单次调用 &gt; 30s → 中断</text>
+  <text x="680" y="167" class="leaf">预算上限: $0.50 / 50K tokens 封顶</text>
+  <text x="680" y="184" class="leaf">重试策略: 指数退避 1s→2s→4s→8s</text>
+  <text x="680" y="201" class="leaf">权限边界: 只读目录 / 禁止危险命令</text>
+
+  <!-- Branch 3: 反馈层 Feedback (bottom-left, orange) -->
+  <path d="M310 270 Q220 340 140 390" class="line" stroke="#ea580c"/>
+  <rect x="20" y="380" width="220" height="38" rx="19" fill="#ea580c"/>
+  <text x="130" y="404" text-anchor="middle" class="branch">反馈层 Feedback</text>
+  <text x="20" y="438" class="leaf">LLM-as-Judge: 另一个模型评估质量</text>
+  <text x="20" y="455" class="leaf">Human-in-the-Loop: 关键决策人工确认</text>
+  <text x="20" y="472" class="leaf">Reflexion: Agent 自检输出合理性</text>
+  <text x="20" y="489" class="leaf">自动重试: 评分 &lt; 阈值 → 重新执行</text>
+
+  <!-- Branch 4: 可观测层 Observability (bottom-right, red) -->
+  <path d="M610 270 Q700 340 780 390" class="line" stroke="#dc2626"/>
+  <rect x="660" y="380" width="240" height="38" rx="19" fill="#dc2626"/>
+  <text x="780" y="404" text-anchor="middle" class="branch">可观测层 Observability</text>
+  <text x="660" y="438" class="leaf">Trace: 每步推理 + 工具调用全记录</text>
+  <text x="660" y="455" class="leaf">实时指标: 延迟 / 成本 / 成功率 / 幻觉率</text>
+  <text x="660" y="472" class="leaf">告警: 超阈值自动通知 (邮件/Webhook)</text>
+  <text x="660" y="489" class="leaf">日报: 解决率 / 转人工率 / 平均成本</text>
+
+  <!-- Branch 5: 四种 Engineering 对比 (left-middle, cyan) -->
+  <path d="M310 260 Q200 270 100 290" class="line" stroke="#0891b2"/>
+  <rect x="10" y="272" width="200" height="38" rx="19" fill="#0891b2"/>
+  <text x="110" y="296" text-anchor="middle" class="branch">四种 Engineering 对比</text>
+  <text x="10" y="330" class="leaf">Prompt: 指令级 — "用 JSON 输出"</text>
+  <text x="10" y="347" class="leaf">Context: 信息级 — RAG 结果注入</text>
+  <text x="10" y="364" class="leaf">Loop: 循环级 — ReAct 思考-行动</text>
+
+  <!-- Branch 6: 核心隐喻 (right-middle, yellow) -->
+  <path d="M610 260 Q720 270 810 290" class="line" stroke="#ca8a04"/>
+  <rect x="710" y="272" width="200" height="38" rx="19" fill="#ca8a04"/>
+  <text x="810" y="296" text-anchor="middle" class="branch">Harness = 马具/缰绳</text>
+  <text x="710" y="330" class="leaf">不是马(Agent)本身</text>
+  <text x="710" y="347" class="leaf">而是控制马的装备</text>
+  <text x="710" y="364" class="leaf">= 运行环境 + 约束 + 反馈</text>
+
+  <!-- Bottom note -->
+  <text x="460" y="516" text-anchor="middle" font-size="11" fill="#888">
+    "Agents 不难，Harness 难" | 编排 + 约束 + 反馈 + 可观测 = 生产级 Agent 系统
+  </text>
+</svg>

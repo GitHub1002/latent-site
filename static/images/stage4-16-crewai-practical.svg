@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520">
+  <style>
+    .center { font: bold 15px 'Segoe UI', 'Microsoft YaHei', sans-serif; fill: white; }
+    .branch { font: bold 12px 'Segoe UI', 'Microsoft YaHei', sans-serif; fill: white; }
+    .leaf { font: 10.5px 'Segoe UI', 'Microsoft YaHei', sans-serif; fill: #444; }
+    .line { fill: none; stroke-width: 2; opacity: 0.7; }
+    .note { font: 10px 'Segoe UI', 'Microsoft YaHei', sans-serif; fill: #888; }
+    .bg { fill: #fafafa; }
+    .shadow { filter: drop-shadow(0 2px 4px rgba(0,0,0,0.12)); }
+  </style>
+
+  <!-- Background -->
+  <rect class="bg" width="900" height="520" rx="12"/>
+
+  <!-- Connecting curves (behind nodes) -->
+  <!-- Center to Agent 角色 (top-left) -->
+  <path class="line" stroke="#059669" d="M450,248 C350,248 260,140 170,108"/>
+  <!-- Center to Tools 工具 (top-right) -->
+  <path class="line" stroke="#7c3aed" d="M450,248 C550,248 640,140 720,108"/>
+  <!-- Center to Tasks 任务 (right) -->
+  <path class="line" stroke="#ea580c" d="M450,248 C560,248 640,248 720,248"/>
+  <!-- Center to Crew 组建 (bottom-right) -->
+  <path class="line" stroke="#dc2626" d="M450,268 C550,268 640,370 720,392"/>
+  <!-- Center to Harness 约束 (bottom-left) -->
+  <path class="line" stroke="#0891b2" d="M450,268 C350,268 260,370 170,392"/>
+  <!-- Center to Process 编排 (left) -->
+  <path class="line" stroke="#ca8a04" d="M450,248 C340,248 260,248 170,248"/>
+
+  <!-- Leaf lines: Agent 角色 -->
+  <path class="line" stroke="#059669" stroke-width="1.2" d="M170,108 C130,80 95,62 72,50"/>
+  <path class="line" stroke="#059669" stroke-width="1.2" d="M170,108 C150,88 140,72 132,56"/>
+  <path class="line" stroke="#059669" stroke-width="1.2" d="M170,108 C190,80 210,62 228,50"/>
+
+  <!-- Leaf lines: Tools 工具 -->
+  <path class="line" stroke="#7c3aed" stroke-width="1.2" d="M720,108 C690,80 665,62 642,50"/>
+  <path class="line" stroke="#7c3aed" stroke-width="1.2" d="M720,108 C740,80 760,62 778,50"/>
+
+  <!-- Leaf lines: Tasks 任务 -->
+  <path class="line" stroke="#ea580c" stroke-width="1.2" d="M720,248 C750,228 770,218 792,208"/>
+  <path class="line" stroke="#ea580c" stroke-width="1.2" d="M720,248 C750,260 770,268 792,278"/>
+
+  <!-- Leaf lines: Crew 组建 -->
+  <path class="line" stroke="#dc2626" stroke-width="1.2" d="M720,392 C740,412 760,428 778,440"/>
+  <path class="line" stroke="#dc2626" stroke-width="1.2" d="M720,392 C690,412 665,428 642,440"/>
+
+  <!-- Leaf lines: Harness 约束 -->
+  <path class="line" stroke="#0891b2" stroke-width="1.2" d="M170,392 C130,418 105,432 72,445"/>
+  <path class="line" stroke="#0891b2" stroke-width="1.2" d="M170,392 C150,418 140,432 132,448"/>
+  <path class="line" stroke="#0891b2" stroke-width="1.2" d="M170,392 C195,418 215,432 238,445"/>
+
+  <!-- Leaf lines: Process 编排 -->
+  <path class="line" stroke="#ca8a04" stroke-width="1.2" d="M170,248 C140,228 115,218 92,208"/>
+  <path class="line" stroke="#ca8a04" stroke-width="1.2" d="M170,248 C140,268 115,278 92,288"/>
+
+  <!-- Center node -->
+  <g class="shadow">
+    <rect x="365" y="228" width="170" height="44" rx="22" fill="#2563eb"/>
+    <text class="center" x="450" y="255" text-anchor="middle">CrewAI 多 Agent 实战</text>
+  </g>
+
+  <!-- Branch 1: Agent 角色 (green) -->
+  <g class="shadow">
+    <rect x="100" y="90" width="140" height="36" rx="18" fill="#059669"/>
+    <text class="branch" x="170" y="113" text-anchor="middle">Agent 角色定义</text>
+  </g>
+  <g class="shadow"><rect x="12" y="34" width="120" height="26" rx="13" fill="#d1fae5"/><text class="leaf" x="72" y="52" text-anchor="middle">Researcher 研究员</text></g>
+  <g class="shadow"><rect x="82" y="2" width="108" height="26" rx="13" fill="#d1fae5"/><text class="leaf" x="136" y="20" text-anchor="middle">Analyst 分析师</text></g>
+  <g class="shadow"><rect x="168" y="34" width="120" height="26" rx="13" fill="#d1fae5"/><text class="leaf" x="228" y="52" text-anchor="middle">Writer 写作员</text></g>
+
+  <!-- Branch 2: Tools 工具 (purple) -->
+  <g class="shadow">
+    <rect x="650" y="90" width="140" height="36" rx="18" fill="#7c3aed"/>
+    <text class="branch" x="720" y="113" text-anchor="middle">Tools 工具配置</text>
+  </g>
+  <g class="shadow"><rect x="572" y="34" width="140" height="26" rx="13" fill="#ede9fe"/><text class="leaf" x="642" y="52" text-anchor="middle">SerperDevTool 搜索</text></g>
+  <g class="shadow"><rect x="718" y="34" width="120" height="26" rx="13" fill="#ede9fe"/><text class="leaf" x="778" y="52" text-anchor="middle">自定义 Tool 类</text></g>
+
+  <!-- Branch 3: Tasks 任务 (orange) -->
+  <g class="shadow">
+    <rect x="650" y="230" width="140" height="36" rx="18" fill="#ea580c"/>
+    <text class="branch" x="720" y="253" text-anchor="middle">Tasks 任务编排</text>
+  </g>
+  <g class="shadow"><rect x="798" y="194" width="92" height="26" rx="13" fill="#ffedd5"/><text class="leaf" x="844" y="212" text-anchor="middle">description</text></g>
+  <g class="shadow"><rect x="798" y="264" width="92" height="26" rx="13" fill="#ffedd5"/><text class="leaf" x="844" y="282" text-anchor="middle">context 依赖</text></g>
+
+  <!-- Branch 4: Crew 组建 (red) -->
+  <g class="shadow">
+    <rect x="650" y="374" width="140" height="36" rx="18" fill="#dc2626"/>
+    <text class="branch" x="720" y="397" text-anchor="middle">Crew 组建运行</text>
+  </g>
+  <g class="shadow"><rect x="582" y="426" width="120" height="26" rx="13" fill="#fee2e2"/><text class="leaf" x="642" y="444" text-anchor="middle">crew.kickoff()</text></g>
+  <g class="shadow"><rect x="718" y="426" width="120" height="26" rx="13" fill="#fee2e2"/><text class="leaf" x="778" y="444" text-anchor="middle">inputs 动态输入</text></g>
+
+  <!-- Branch 5: Harness 约束 (cyan) -->
+  <g class="shadow">
+    <rect x="100" y="374" width="140" height="36" rx="18" fill="#0891b2"/>
+    <text class="branch" x="170" y="397" text-anchor="middle">Harness 约束</text>
+  </g>
+  <g class="shadow"><rect x="12" y="430" width="120" height="26" rx="13" fill="#cffafe"/><text class="leaf" x="72" y="448" text-anchor="middle">max_iter 迭代上限</text></g>
+  <g class="shadow"><rect x="72" y="462" width="120" height="26" rx="13" fill="#cffafe"/><text class="leaf" x="132" y="480" text-anchor="middle">max_rpm 频率限制</text></g>
+  <g class="shadow"><rect x="188" y="430" width="110" height="26" rx="13" fill="#cffafe"/><text class="leaf" x="243" y="448" text-anchor="middle">memory 记忆系统</text></g>
+
+  <!-- Branch 6: Process 编排 (yellow) -->
+  <g class="shadow">
+    <rect x="100" y="230" width="140" height="36" rx="18" fill="#ca8a04"/>
+    <text class="branch" x="170" y="253" text-anchor="middle">Process 编排模式</text>
+  </g>
+  <g class="shadow"><rect x="2" y="194" width="120" height="26" rx="13" fill="#fef9c3"/><text class="leaf" x="62" y="212" text-anchor="middle">sequential 流水线</text></g>
+  <g class="shadow"><rect x="2" y="274" width="130" height="26" rx="13" fill="#fef9c3"/><text class="leaf" x="67" y="292" text-anchor="middle">hierarchical 层级</text></g>
+
+  <!-- Bottom note -->
+  <text class="note" x="450" y="510" text-anchor="middle">核心要点：Agent 定义角色 + Task 编排流程 + Crew 组装运行 + Harness 约束保障 = 生产级多 Agent 系统</text>
+</svg>

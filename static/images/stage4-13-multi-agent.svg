@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 500" font-family="system-ui, -apple-system, 'Microsoft YaHei', sans-serif">
+  <defs>
+    <style>
+      .center { font: bold 16px system-ui, sans-serif; fill: #fff; }
+      .branch { font: bold 13px system-ui, sans-serif; fill: #fff; }
+      .leaf { font: 11px system-ui, sans-serif; fill: #444; }
+      .line { stroke-width: 2; fill: none; }
+    </style>
+  </defs>
+
+  <rect width="960" height="500" rx="12" fill="#fafafa"/>
+
+  <!-- Center -->
+  <rect x="340" y="220" width="280" height="50" rx="25" fill="#2563eb"/>
+  <text x="480" y="251" text-anchor="middle" class="center">多 Agent 架构与角色设计</text>
+
+  <!-- Top: 单 Agent 瓶颈 -->
+  <path d="M480 220 L480 140" class="line" stroke="#dc2626"/>
+  <rect x="330" y="100" width="300" height="38" rx="19" fill="#dc2626"/>
+  <text x="480" y="124" text-anchor="middle" class="branch">单 Agent 三大瓶颈</text>
+  <text x="310" y="78" class="leaf">1. 上下文窗口爆炸（20 轮 → 80K tokens）</text>
+  <text x="310" y="95" class="leaf">2. 缺乏专业深度（什么都能做，什么都不精）</text>
+  <text x="650" y="78" class="leaf">3. 容错性差（单点故障全盘崩溃）</text>
+
+  <!-- Left: 层级式 -->
+  <path d="M340 245 Q250 245 160 245" class="line" stroke="#059669"/>
+  <rect x="20" y="226" width="200" height="38" rx="19" fill="#059669"/>
+  <text x="120" y="250" text-anchor="middle" class="branch">层级式 Hierarchical</text>
+  <text x="20" y="290" class="leaf">Manager 拆解 + Worker 执行</text>
+  <text x="20" y="308" class="leaf">适合: 可并行拆解的任务</text>
+  <text x="20" y="326" class="leaf">风险: Manager 是单点瓶颈</text>
+
+  <!-- Right: 辩论式 -->
+  <path d="M620 245 Q710 245 800 245" class="line" stroke="#7c3aed"/>
+  <rect x="740" y="226" width="200" height="38" rx="19" fill="#7c3aed"/>
+  <text x="840" y="250" text-anchor="middle" class="branch">辩论式 Debate</text>
+  <text x="740" y="290" class="leaf">多 Agent 对抗讨论 → 共识</text>
+  <text x="740" y="308" class="leaf">适合: 需要深度决策的场景</text>
+  <text x="740" y="326" class="leaf">代价: token 消耗大，延迟高</text>
+
+  <!-- Bottom-left: 流水线式 -->
+  <path d="M380 270 Q310 340 240 390" class="line" stroke="#ea580c"/>
+  <rect x="80" y="380" width="220" height="38" rx="19" fill="#ea580c"/>
+  <text x="190" y="404" text-anchor="middle" class="branch">流水线式 Pipeline</text>
+  <text x="80" y="440" class="leaf">线性接力: A → B → C → D</text>
+  <text x="80" y="458" class="leaf">适合: 步骤固定的批量任务</text>
+  <text x="80" y="476" class="leaf">风险: 链条脆弱，延迟叠加</text>
+
+  <!-- Bottom-right: 角色设计原则 -->
+  <path d="M580 270 Q650 340 720 390" class="line" stroke="#0891b2"/>
+  <rect x="620" y="380" width="240" height="38" rx="19" fill="#0891b2"/>
+  <text x="740" y="404" text-anchor="middle" class="branch">角色设计三原则</text>
+  <text x="640" y="440" class="leaf">1. 单一职责: 每个 Agent 只做一类事</text>
+  <text x="640" y="458" class="leaf">2. 明确输入输出: 上下游关系清晰</text>
+  <text x="640" y="476" class="leaf">3. 适度冗余: 关键角色设备份</text>
+
+  <!-- Bottom note -->
+  <text x="480" y="497" text-anchor="middle" font-size="11" fill="#888">
+    多不等于好 | 核心优势: 分工 + 冗余 + 专业化 | 下一站 → A2A 协议
+  </text>
+</svg>
