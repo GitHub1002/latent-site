@@ -1,0 +1,169 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 520">
+  <style>
+    .center { font: bold 15px 'Microsoft YaHei', 'PingFang SC', sans-serif; fill: white; }
+    .branch { font: bold 12px 'Microsoft YaHei', 'PingFang SC', sans-serif; fill: white; }
+    .leaf { font: 10.5px 'Microsoft YaHei', 'PingFang SC', sans-serif; fill: #444; }
+    .line { stroke-width: 2; fill: none; }
+    .leaf-line { stroke: #e2e8f0; stroke-width: 1.5; fill: none; }
+  </style>
+  <defs>
+    <filter id="ds" x="-4%" y="-4%" width="108%" height="116%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="920" height="520" fill="#fafafa" rx="12"/>
+
+  <!-- ===== CONNECTION LINES (behind everything) ===== -->
+
+  <!-- Center to B1: 5阶段学习路线 (top-left, teal) -->
+  <path class="line" stroke="#0d9488" d="M 460,275 C 350,275 250,82 195,82"/>
+  <!-- Center to B2: LangFuse 部署 (left, green) -->
+  <path class="line" stroke="#059669" d="M 460,275 C 340,275 240,245 170,245"/>
+  <!-- Center to B3: Ragas 评估 (bottom-left, orange) -->
+  <path class="line" stroke="#ea580c" d="M 460,275 C 350,310 240,415 175,415"/>
+  <!-- Center to B4: 自动化告警 (bottom-right, red) -->
+  <path class="line" stroke="#dc2626" d="M 460,275 C 570,310 680,425 740,425"/>
+  <!-- Center to B5: 数据飞轮 (top-right, purple) -->
+  <path class="line" stroke="#7c3aed" d="M 460,275 C 570,275 680,82 740,82"/>
+  <!-- Center to B6: 进阶方向 (right, pink) -->
+  <path class="line" stroke="#db2777" d="M 460,275 C 570,275 690,255 755,255"/>
+
+  <!-- B1 leaf lines: 5 stages (horizontal spread) -->
+  <path class="leaf-line" d="M 195,82 C 165,75 125,60 95,58"/>
+  <path class="leaf-line" d="M 195,82 C 170,75 140,75 115,78"/>
+  <path class="leaf-line" d="M 195,82 C 215,82 248,82 268,82"/>
+  <path class="leaf-line" d="M 195,82 C 210,90 245,102 265,108"/>
+  <path class="leaf-line" d="M 195,82 C 215,95 258,120 278,130"/>
+
+  <!-- B2 leaf lines: LangFuse -->
+  <path class="leaf-line" d="M 170,245 C 135,220 95,200 68,192"/>
+  <path class="leaf-line" d="M 170,245 C 135,245 95,240 68,237"/>
+  <path class="leaf-line" d="M 170,245 C 135,268 95,282 68,287"/>
+
+  <!-- B3 leaf lines: Ragas -->
+  <path class="leaf-line" d="M 175,415 C 140,395 100,378 70,372"/>
+  <path class="leaf-line" d="M 175,415 C 140,415 100,415 70,415"/>
+  <path class="leaf-line" d="M 175,415 C 140,435 100,452 70,458"/>
+
+  <!-- B4 leaf lines: 自动化告警 -->
+  <path class="leaf-line" d="M 740,425 C 760,408 795,390 825,385"/>
+  <path class="leaf-line" d="M 740,425 C 760,425 795,425 825,425"/>
+  <path class="leaf-line" d="M 740,425 C 760,442 795,460 825,465"/>
+
+  <!-- B5 leaf lines: 数据飞轮 -->
+  <path class="leaf-line" d="M 740,82 C 715,68 680,55 650,50"/>
+  <path class="leaf-line" d="M 740,82 C 715,82 680,82 650,82"/>
+  <path class="leaf-line" d="M 740,82 C 715,96 680,108 650,114"/>
+
+  <!-- B6 leaf lines: 进阶方向 -->
+  <path class="leaf-line" d="M 755,255 C 775,235 805,218 832,212"/>
+  <path class="leaf-line" d="M 755,255 C 775,245 805,240 832,237"/>
+  <path class="leaf-line" d="M 755,255 C 775,265 805,272 832,277"/>
+  <path class="leaf-line" d="M 755,255 C 775,280 805,298 832,305"/>
+
+  <!-- ===== BRANCH NODES ===== -->
+
+  <!-- Center: LangFuse + Ragas 实战 -->
+  <rect x="355" y="256" width="210" height="38" rx="10" fill="#2563eb" filter="url(#ds)"/>
+  <text x="460" y="280" text-anchor="middle" class="center">LangFuse + Ragas 实战</text>
+
+  <!-- B1: 5阶段学习路线 (top-left, teal) -->
+  <rect x="120" y="67" width="150" height="30" rx="8" fill="#0d9488" filter="url(#ds)"/>
+  <text x="195" y="87" text-anchor="middle" class="branch">5阶段学习路线</text>
+
+  <!-- B2: LangFuse 部署 (left, green) -->
+  <rect x="95" y="230" width="150" height="30" rx="8" fill="#059669" filter="url(#ds)"/>
+  <text x="170" y="250" text-anchor="middle" class="branch">LangFuse 部署</text>
+
+  <!-- B3: Ragas 评估 (bottom-left, orange) -->
+  <rect x="100" y="400" width="150" height="30" rx="8" fill="#ea580c" filter="url(#ds)"/>
+  <text x="175" y="420" text-anchor="middle" class="branch">Ragas 评估</text>
+
+  <!-- B4: 自动化告警 (bottom-right, red) -->
+  <rect x="665" y="410" width="150" height="30" rx="8" fill="#dc2626" filter="url(#ds)"/>
+  <text x="740" y="430" text-anchor="middle" class="branch">自动化告警</text>
+
+  <!-- B5: 数据飞轮 (top-right, purple) -->
+  <rect x="675" y="67" width="130" height="30" rx="8" fill="#7c3aed" filter="url(#ds)"/>
+  <text x="740" y="87" text-anchor="middle" class="branch">数据飞轮</text>
+
+  <!-- B6: 进阶方向 (right, pink) -->
+  <rect x="695" y="240" width="120" height="30" rx="8" fill="#db2777" filter="url(#ds)"/>
+  <text x="755" y="260" text-anchor="middle" class="branch">进阶方向</text>
+
+  <!-- ===== LEAF NODES ===== -->
+
+  <!-- B1 leaves: 5 stages (teal tint) -->
+  <rect x="30" y="45" width="130" height="24" rx="6" fill="#f0fdfa" stroke="#0d9488" stroke-width="1"/>
+  <text x="95" y="61" text-anchor="middle" class="leaf">Stage1 LLM基础</text>
+
+  <rect x="55" y="66" width="120" height="24" rx="6" fill="#f0fdfa" stroke="#0d9488" stroke-width="1"/>
+  <text x="115" y="82" text-anchor="middle" class="leaf">Stage2 单Agent</text>
+
+  <rect x="208" y="70" width="120" height="24" rx="6" fill="#f0fdfa" stroke="#0d9488" stroke-width="1"/>
+  <text x="268" y="86" text-anchor="middle" class="leaf">Stage3 RAG</text>
+
+  <rect x="205" y="96" width="120" height="24" rx="6" fill="#f0fdfa" stroke="#0d9488" stroke-width="1"/>
+  <text x="265" y="112" text-anchor="middle" class="leaf">Stage4 多Agent</text>
+
+  <rect x="218" y="118" width="120" height="24" rx="6" fill="#f0fdfa" stroke="#0d9488" stroke-width="1"/>
+  <text x="278" y="134" text-anchor="middle" class="leaf">Stage5 生产化</text>
+
+  <!-- B2 leaves: LangFuse (green tint) -->
+  <rect x="5" y="179" width="126" height="24" rx="6" fill="#ecfdf5" stroke="#059669" stroke-width="1"/>
+  <text x="68" y="195" text-anchor="middle" class="leaf">Docker 本地部署</text>
+
+  <rect x="5" y="225" width="126" height="24" rx="6" fill="#ecfdf5" stroke="#059669" stroke-width="1"/>
+  <text x="68" y="241" text-anchor="middle" class="leaf">Callback 集成</text>
+
+  <rect x="5" y="275" width="126" height="24" rx="6" fill="#ecfdf5" stroke="#059669" stroke-width="1"/>
+  <text x="68" y="291" text-anchor="middle" class="leaf">@observe 装饰器</text>
+
+  <!-- B3 leaves: Ragas (orange tint) -->
+  <rect x="5" y="360" width="130" height="24" rx="6" fill="#fff7ed" stroke="#ea580c" stroke-width="1"/>
+  <text x="70" y="376" text-anchor="middle" class="leaf">构建评估数据集</text>
+
+  <rect x="5" y="403" width="130" height="24" rx="6" fill="#fff7ed" stroke="#ea580c" stroke-width="1"/>
+  <text x="70" y="419" text-anchor="middle" class="leaf">4大核心指标</text>
+
+  <rect x="5" y="446" width="130" height="24" rx="6" fill="#fff7ed" stroke="#ea580c" stroke-width="1"/>
+  <text x="70" y="462" text-anchor="middle" class="leaf">设定评估基线</text>
+
+  <!-- B4 leaves: 自动化告警 (red tint) -->
+  <rect x="762" y="373" width="150" height="24" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="1"/>
+  <text x="837" y="389" text-anchor="middle" class="leaf">Faithfulness&lt;0.7</text>
+
+  <rect x="762" y="413" width="150" height="24" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="1"/>
+  <text x="837" y="429" text-anchor="middle" class="leaf">成本&gt;$0.10/次</text>
+
+  <rect x="762" y="453" width="150" height="24" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="1"/>
+  <text x="837" y="469" text-anchor="middle" class="leaf">延迟&gt;10s</text>
+
+  <!-- B5 leaves: 数据飞轮 (purple tint) -->
+  <rect x="575" y="38" width="150" height="24" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1"/>
+  <text x="650" y="54" text-anchor="middle" class="leaf">导出高分 Trace</text>
+
+  <rect x="575" y="70" width="150" height="24" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1"/>
+  <text x="650" y="86" text-anchor="middle" class="leaf">转 SFT 训练格式</text>
+
+  <rect x="575" y="102" width="150" height="24" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1"/>
+  <text x="650" y="118" text-anchor="middle" class="leaf">持续迭代优化</text>
+
+  <!-- B6 leaves: 进阶方向 (pink tint) -->
+  <rect x="775" y="200" width="130" height="24" rx="6" fill="#fdf2f8" stroke="#db2777" stroke-width="1"/>
+  <text x="840" y="216" text-anchor="middle" class="leaf">Code Agent</text>
+
+  <rect x="775" y="225" width="130" height="24" rx="6" fill="#fdf2f8" stroke="#db2777" stroke-width="1"/>
+  <text x="840" y="241" text-anchor="middle" class="leaf">Web Agent</text>
+
+  <rect x="775" y="265" width="130" height="24" rx="6" fill="#fdf2f8" stroke="#db2777" stroke-width="1"/>
+  <text x="840" y="281" text-anchor="middle" class="leaf">Multimodal Agent</text>
+
+  <rect x="775" y="293" width="130" height="24" rx="6" fill="#fdf2f8" stroke="#db2777" stroke-width="1"/>
+  <text x="840" y="309" text-anchor="middle" class="leaf">Reasoning Agent</text>
+
+  <!-- ===== DECORATIVE: series finale marker ===== -->
+  <text x="460" y="505" text-anchor="middle" style="font: 9px 'Microsoft YaHei', sans-serif; fill: #94a3b8; opacity: 0.7;">系列收官 · 第 20 篇</text>
+</svg>

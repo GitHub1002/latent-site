@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480">
+  <defs>
+    <style>
+      .center { font: bold 15px "Microsoft YaHei", sans-serif; fill: #fff; }
+      .branch { font: bold 12px "Microsoft YaHei", sans-serif; fill: #fff; }
+      .leaf { font: 10.5px "Microsoft YaHei", sans-serif; fill: #444; }
+      .line { fill: none; stroke-width: 2; }
+      .note { font: 10px "Microsoft YaHei", sans-serif; fill: #888; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="480" fill="#fafafa" rx="12"/>
+
+  <!-- Lines: center to branches -->
+  <path class="line" stroke="#059669" d="M450,240 C350,180 270,120 200,80"/>
+  <path class="line" stroke="#7c3aed" d="M450,240 C550,180 630,120 700,80"/>
+  <path class="line" stroke="#ea580c" d="M450,240 C350,300 270,360 200,400"/>
+  <path class="line" stroke="#0891b2" d="M450,240 C550,300 630,360 700,400"/>
+
+  <!-- Lines: branch 1 (top-left) to leaves -->
+  <path class="line" stroke="#059669" d="M200,80 C140,55 110,42 70,40"/>
+  <path class="line" stroke="#059669" d="M200,80 C140,70 110,67 70,65"/>
+  <path class="line" stroke="#059669" d="M200,80 C140,88 110,92 70,92"/>
+  <path class="line" stroke="#059669" d="M200,80 C140,105 110,115 70,118"/>
+
+  <!-- Lines: branch 2 (top-right) to leaves -->
+  <path class="line" stroke="#7c3aed" d="M700,80 C760,55 790,42 830,40"/>
+  <path class="line" stroke="#7c3aed" d="M700,80 C760,70 790,67 830,65"/>
+  <path class="line" stroke="#7c3aed" d="M700,80 C760,88 790,92 830,92"/>
+
+  <!-- Lines: branch 3 (bottom-left) to leaves -->
+  <path class="line" stroke="#ea580c" d="M200,400 C140,375 110,362 70,360"/>
+  <path class="line" stroke="#ea580c" d="M200,400 C140,388 110,385 70,385"/>
+  <path class="line" stroke="#ea580c" d="M200,400 C140,405 110,410 70,412"/>
+  <path class="line" stroke="#ea580c" d="M200,400 C140,420 110,433 70,438"/>
+
+  <!-- Lines: branch 4 (bottom-right) to leaves -->
+  <path class="line" stroke="#0891b2" d="M700,400 C760,375 790,362 830,360"/>
+  <path class="line" stroke="#0891b2" d="M700,400 C760,388 790,385 830,385"/>
+  <path class="line" stroke="#0891b2" d="M700,400 C760,405 790,410 830,412"/>
+  <path class="line" stroke="#0891b2" d="M700,400 C760,420 790,433 830,438"/>
+
+  <!-- Center node -->
+  <rect x="380" y="220" width="140" height="40" rx="20" fill="#2563eb"/>
+  <text class="center" x="450" y="245" text-anchor="middle">Agent 评估方法论</text>
+
+  <!-- Branch 1: 4个评估维度 -->
+  <rect x="140" y="62" width="120" height="32" rx="16" fill="#059669"/>
+  <text class="branch" x="200" y="83" text-anchor="middle">4 个评估维度</text>
+
+  <!-- Leaves for branch 1 -->
+  <text class="leaf" x="68" y="36" text-anchor="end">任务完成率</text>
+  <text class="leaf" x="68" y="62" text-anchor="end">工具调用准确率</text>
+  <text class="leaf" x="68" y="90" text-anchor="end">幻觉率</text>
+  <text class="leaf" x="68" y="116" text-anchor="end">成本效率</text>
+
+  <!-- Branch 2: 3种评估方法 -->
+  <rect x="640" y="62" width="120" height="32" rx="16" fill="#7c3aed"/>
+  <text class="branch" x="700" y="83" text-anchor="middle">3 种评估方法</text>
+
+  <!-- Leaves for branch 2 -->
+  <text class="leaf" x="832" y="36" text-anchor="start">人工评估</text>
+  <text class="leaf" x="832" y="62" text-anchor="start">规则评估</text>
+  <text class="leaf" x="832" y="90" text-anchor="start">LLM-as-Judge</text>
+
+  <!-- Branch 3: Ragas 框架 -->
+  <rect x="145" y="384" width="110" height="32" rx="16" fill="#ea580c"/>
+  <text class="branch" x="200" y="405" text-anchor="middle">Ragas 框架</text>
+
+  <!-- Leaves for branch 3 -->
+  <text class="leaf" x="68" y="356" text-anchor="end">Faithfulness</text>
+  <text class="leaf" x="68" y="382" text-anchor="end">Answer Relevance</text>
+  <text class="leaf" x="68" y="410" text-anchor="end">Context Precision</text>
+  <text class="leaf" x="68" y="436" text-anchor="end">Context Recall</text>
+
+  <!-- Branch 4: 评估闭环 -->
+  <rect x="645" y="384" width="110" height="32" rx="16" fill="#0891b2"/>
+  <text class="branch" x="700" y="405" text-anchor="middle">评估闭环</text>
+
+  <!-- Leaves for branch 4 -->
+  <text class="leaf" x="832" y="356" text-anchor="start">构建测试集</text>
+  <text class="leaf" x="832" y="382" text-anchor="start">自动化评估</text>
+  <text class="leaf" x="832" y="410" text-anchor="start">对比前后分数</text>
+  <text class="leaf" x="832" y="436" text-anchor="start">持续补充用例</text>
+
+  <!-- Bottom note -->
+  <text class="note" x="450" y="468" text-anchor="middle">核心：用多维度指标 + 多种方法交叉验证，建立持续评估闭环，让 Agent 质量可量化、可追踪</text>
+</svg>

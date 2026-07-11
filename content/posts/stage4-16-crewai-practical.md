@@ -62,21 +62,28 @@ print(crewai.__version__)
 # 输出: 0.105.2
 ```
 
-接下来配置 LLM 的 API Key。CrewAI 底层默认用 OpenAI 的模型，但也支持 Anthropic、Azure、本地 Ollama 等。这里我们用 OpenAI 做演示：
+接下来配置 API Key。CrewAI 底层支持多种 LLM，这里我们用 DeepSeek（便宜好用）。同时搜索工具需要 Serper 的 API Key。最方便的方式是建一个 `.env` 文件：
 
 ```bash
-export OPENAI_API_KEY="sk-your-key-here"
-# Windows PowerShell
-$env:OPENAI_API_KEY="sk-your-key-here"
+# .env 文件
+OPENAI_API_KEY=sk-your-deepseek-key-here
+OPENAI_API_BASE=https://api.deepseek.com
+SERPER_API_KEY=your-serper-api-key
 ```
 
-如果你想用其他模型，比如 Anthropic 的 Claude：
+然后在代码中用 `dotenv` 加载：
 
 ```bash
-export ANTHROPIC_API_KEY="sk-ant-your-key-here"
+pip install python-dotenv
 ```
 
-环境就绑好了，整个过程不超过两分钟。
+```python
+import os
+from dotenv import load_dotenv
+load_dotenv()
+```
+
+`OPENAI_API_KEY` 和 `OPENAI_API_BASE` 是 CrewAI 底层走 OpenAI 兼容接口的方式，配合 DeepSeek 的 API 地址就能无缝使用。`SERPER_API_KEY` 在 [serper.dev](https://serper.dev) 注册获取（有免费额度，2500 次搜索）。
 
 ## Step 2: 定义 Agent 角色
 
@@ -87,11 +94,21 @@ export ANTHROPIC_API_KEY="sk-ant-your-key-here"
 来写代码：
 
 ```python
-from crewai import Agent
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
+from crewai import Agent, LLM
 from crewai_tools import SerperDevTool
 
+# 模型配置
+deepseek_model = LLM(
+    model="deepseek-v4-flash",
+    temperature=0.3
+)
+
 # 搜索工具（后面 Step 3 会详细讲）
-search_tool = SerperDevTool()
+search_tool = SerperDevTool(n_results=3, api_key=os.getenv("SERPER_API_KEY"))
 
 # 研究员 Agent
 researcher = Agent(
@@ -102,9 +119,10 @@ researcher = Agent(
 增长率（CAGR）、技术成熟度曲线和头部公司的最新动态。
 你的输出以事实和数据为主，不做主观判断。""",
     tools=[search_tool],
-    llm="gpt-4o",
-    allow_delegation=False,
+    llm=deepseek_model,
     verbose=True,
+    max_iterations=3,
+    allow_delegation=False
 )
 
 # 分析师 Agent
@@ -115,22 +133,24 @@ analyst = Agent(
 你擅长使用波特五力、SWOT 等分析框架，能从杂乱的数据中提取结构化洞察。
 你特别关注：市场份额分布、技术壁垒、融资轮次和估值趋势。
 你的输出需要有明确的结论和量化支撑。""",
-    llm="gpt-4o",
+    llm=deepseek_model,
+    max_iterations=3,
     allow_delegation=False,
-    verbose=True,
+    verbose=True
 )
 
 # 写作员 Agent
 writer = Agent(
     role="行业报告撰写员",
-    goal="将分析师的结构化分析转化为一份专业、可读性强的 {industry} 行业研究报告",
-    backstory="""你是一位经验丰富的商业报告撰写专家，长期为投资机构和企业管理层撰写行业白皮书。
-你的写作风格专业但不晦涩，善用数据和案例支撑观点。
-报告结构清晰：行业概况 → 竞争分析 → 投资建议，每个部分都有小结。
-你注重报告的实用价值——读完这份报告的人，应该能做出更明智的投资决策。""",
-    llm="gpt-4o",
+    goal="将分析师的 {industry} 行业分析转化为一份面向投资者的专业报告",
+    backstory="""你是一位资深的金融写作专家，长期为顶级投行撰写行业研究报告。
+你的文风专业但不晦涩，擅长用清晰的逻辑和生动的数据讲故事。
+你特别注重报告的可读性：执行摘要要一针见血，结论要有明确立场，
+风险提示要具体而非泛泛而谈。""",
+    llm=deepseek_model,
+    max_iterations=3,
     allow_delegation=False,
-    verbose=True,
+    verbose=True
 )
 ```
 
@@ -185,12 +205,12 @@ from pydantic import BaseModel, Field
 
 class IndustryReportInput(BaseModel):
     """自定义工具的输入 schema"""
-    industry: str = Field(description="行业名称，如'量子计算'、'新能源'")
+    industry: str = Field(description="行业名称，如'量子计算'、'新能源'", json_schema_extra={"example": "人工智能"})
 
 
 class IndustryReportTool(BaseTool):
-    name: str = "行业报告摘要工具"
-    description: str = "根据行业名称，返回该行业的近期重要报告摘要和数据来源"
+    name: str = "industry_report"  # 必须用英文！CrewAI 内部会转为 OpenAI function name
+    description: str = "根据行业名称，生成该行业的最新报告摘要。输入行业名称，返回该行业的市场规模、技术进展和融资情况等关键数据。"
     args_schema: type[BaseModel] = IndustryReportInput
 
     def _run(self, industry: str) -> str:
@@ -210,6 +230,8 @@ class IndustryReportTool(BaseTool):
         }
         return reports.get(industry, f"暂未找到 {industry} 的行业报告数据")
 ```
+
+这里有个容易踩的坑：**`name` 字段必须用英文**（字母+数字+下划线）。CrewAI 内部会把工具名转成 OpenAI 的 function name 格式，中文字符会被过滤掉，如果名字全是中文就会变成空字符串，直接报 `ValueError: OpenAI function name cannot be empty`。
 
 这个自定义工具的使用方式和内置工具完全一样：
 
@@ -320,11 +342,17 @@ crew = Crew(
     agents=[researcher, analyst, writer],
     tasks=[research_task, analysis_task, writing_task],
     process=Process.sequential,  # 流水线模式：按 tasks 列表顺序依次执行
-    verbose=True,
-    memory=True,  # 开启记忆功能
-    max_rpm=10,  # 每分钟最多 10 次 LLM 调用
+    verbose=False,   # 关闭详细日志（Windows 控制台 GBK 编码不支持 emoji 输出）
+    memory=False,    # 关闭记忆（DeepSeek 不支持 /embeddings 端点，开启会报 404）
+    max_rpm=5,       # 每分钟最多 5 次 LLM 调用
 )
 ```
+
+几个配置选择的解释：
+
+**`verbose=False`**——CrewAI 的 verbose 日志会输出大量带 emoji 的调试信息。在 macOS/Linux 终端没问题，但在 Windows 控制台下 GBK 编码无法显示 emoji 字符，会刷出满屏的 `codec can't encode character` 错误。关掉后不影响功能，执行过程可以通过 `step_callback` 记录到文件里。
+
+**`memory=False`**——CrewAI 的记忆功能依赖 Embedding 接口（默认调用 `/embeddings`），但 DeepSeek 的 API 不提供这个端点，开启后会报 404。如果你用的是 OpenAI 或支持 Embeddings 的模型，可以开启 `memory=True`。
 
 运行整个流程：
 
@@ -412,18 +440,18 @@ CrewAI 提供两种编排模式：
 
 CrewAI 内置了几个关键的约束参数，我们来逐个配置：
 
-### max_iter：迭代上限
+### max_iterations：迭代上限
 
 防止 Agent 陷入无限循环。比如研究员反复搜索同一个关键词，每次都觉得自己搜集得不够：
 
 ```python
 researcher = Agent(
     # ... 其他参数同上
-    max_iter=5,  # 最多 5 轮 Thought-Action-Observation 循环
+    max_iterations=3,  # 最多 3 轮 Thought-Action-Observation 循环
 )
 ```
 
-实测中，研究员搜集一个行业的信息通常需要 3-5 轮搜索。设为 5 是一个合理的上限——既保证搜集到足够信息，又防止无意义的重复搜索消耗 token。
+实测中，研究员搜集一个行业的信息通常需要 3-5 轮搜索。`max_iterations=3` 对 DeepSeek 这种便宜模型来说是个合理的平衡点——既能搜集到足够信息，又不会无限制地消耗 token。
 
 ### max_rpm：频率限制
 
@@ -432,15 +460,15 @@ researcher = Agent(
 ```python
 crew = Crew(
     # ... 其他参数
-    max_rpm=10,  # 每分钟最多 10 次 LLM 请求
+    max_rpm=5,  # 每分钟最多 5 次 LLM 请求
 )
 ```
 
-这个参数对控制成本至关重要。GPT-4o 的输入价格大约是 $2.5/百万 token，输出是 $10/百万 token。一次完整的研究流程，三个 Agent 加起来大约消耗 15000-25000 个 token（输入+输出），折合 $0.05-0.15。如果不加频率限制，Agent 可能会因为重试或过度搜索，把一次运行的成本推高到 $1 以上。
+这个参数对控制成本很重要。DeepSeek-v4-flash 的价格很低（约 ¥1/百万 token），一次完整的研究流程大约消耗 28000 个 token，折合 ¥0.05 左右。但如果 Agent 反复重试或过度搜索，成本还是会快速累积。
 
 ### memory：记忆系统
 
-CrewAI 支持两种记忆：
+CrewAI 支持短期记忆和长期记忆：
 
 ```python
 crew = Crew(
@@ -449,7 +477,9 @@ crew = Crew(
 )
 ```
 
-短期记忆让同一个 Crew 内的 Agent 可以"看到"其他 Agent 的工作成果，而不仅仅是自己 context 里指定的那个任务。长期记忆则会跨多次运行持久化——如果你今天跑了一次"量子计算"，明天再跑"量子计算"，Agent 能记住上次的分析结果。
+短期记忆让同一个 Crew 内的 Agent 可以"看到"其他 Agent 的工作成果。长期记忆会跨多次运行持久化。
+
+**但注意**：CrewAI 的记忆功能依赖 Embedding 接口（调用 `/embeddings` 端点）。如果你用的是 DeepSeek，它的 API 不提供这个端点，开启 memory 后会报 404。用 OpenAI 或其他支持 Embeddings 的模型时可以正常开启。
 
 ### callback：自定义回调
 
@@ -484,12 +514,11 @@ crew = Crew(
     agents=[researcher, analyst, writer],
     tasks=[research_task, analysis_task, writing_task],
     process=Process.sequential,
-    verbose=True,
-    memory=True,
-    max_rpm=10,
+    verbose=False,       # Windows 下关闭以避免 GBK 编码问题
+    memory=False,        # DeepSeek 不支持 embeddings 端点
+    max_rpm=5,
     step_callback=step_callback,
-    task_callback=task_callback,
-    share_crew=False,  # 不向 CrewAI 官方分享运行数据
+    share_crew=False,    # 不向 CrewAI 官方分享运行数据
 )
 ```
 
@@ -501,11 +530,11 @@ crew = Crew(
 
 | 指标 | 数值 |
 |------|------|
-| 总执行时间 | 约 95 秒 |
-| 研究员搜索次数 | 4 次 SerperDevTool 调用 |
-| LLM 总调用次数 | 约 18 次 |
-| 总 token 消耗 | ~22,000 tokens |
-| 估算成本 | ~$0.12 (GPT-4o) |
+| 总执行时间 | 约 90 秒 |
+| 研究员搜索次数 | 4-6 次 SerperDevTool 调用 |
+| LLM 总调用次数 | 约 9 次（3 个 Agent 各 2-3 次） |
+| 总 token 消耗 | ~28,000 tokens |
+| 估算成本 | ~¥0.05 (deepseek-v4-flash) |
 
 ### 最终报告（节选）
 
@@ -560,29 +589,19 @@ analysis_task = Task(
 
 **原因**：LLM 本身的随机性（temperature）。
 
-**解法**：在 Agent 定义中调低 temperature，并在 backstory 中加入具体的输出示例格式：
-
-```python
-researcher = Agent(
-    # ...
-    llm="gpt-4o",
-    # 也可以在 CrewAI 的 LLM 配置中指定 temperature
-)
-```
-
-CrewAI 支持通过 `LLM` 类做更精细的控制：
+**解法**：通过 `LLM` 类调低 temperature：
 
 ```python
 from crewai import LLM
 
-gpt4o = LLM(
-    model="gpt-4o",
+deepseek_model = LLM(
+    model="deepseek-v4-flash",
     temperature=0.3,  # 降低随机性，输出更稳定
 )
 
 researcher = Agent(
     # ...
-    llm=gpt4o,
+    llm=deepseek_model,
 )
 ```
 
@@ -597,8 +616,8 @@ researcher = Agent(
 ```python
 researcher = Agent(
     # ...
-    max_iter=5,       # 最多 5 轮迭代
-    max_retry_limit=2, # 失败最多重试 2 次
+    max_iterations=3,    # 最多 3 轮迭代
+    max_retry_limit=2,   # 失败最多重试 2 次
 )
 ```
 
@@ -606,38 +625,38 @@ researcher = Agent(
 
 ### 成本过高
 
-**现象**：跑一次研究报告花了 $2+。
+**现象**：跑一次研究报告的成本超出预期。
 
-**原因**：所有 Agent 都在用 GPT-4o，包括只需要做简单整理的分析师。
+**原因**：所有 Agent 都在用同一个模型，没有按任务复杂度分配。
 
 **解法**：按任务复杂度分配模型——重活给大模型，轻活给小模型：
 
 ```python
 from crewai import LLM
 
-gpt4o = LLM(model="gpt-4o", temperature=0.3)
-gpt4o_mini = LLM(model="gpt-4o-mini", temperature=0.3)
+deepseek_v4 = LLM(model="deepseek-v4-flash", temperature=0.3)
+deepseek_r1 = LLM(model="deepseek-r1", temperature=0.3)  # 推理模型，更便宜
 
-# 研究员：需要深度搜索和分析，用大模型
+# 研究员：需要深度搜索和分析，用标准模型
 researcher = Agent(
     # ...
-    llm=gpt4o,
+    llm=deepseek_v4,
 )
 
-# 分析师：主要是结构化整理，用 mini 够了
+# 分析师：主要是结构化整理，用推理模型够了
 analyst = Agent(
     # ...
-    llm=gpt4o_mini,
+    llm=deepseek_r1,
 )
 
-# 写作员：需要高质量输出，用大模型
+# 写作员：需要高质量输出，用标准模型
 writer = Agent(
     # ...
-    llm=gpt4o,
+    llm=deepseek_v4,
 )
 ```
 
-这个改动让单次运行成本从 $0.12 降到约 $0.06，降幅 50%，报告质量损失在 10% 以内（分析师的输出略短一些，但结构化程度没有下降）。
+模型分级的思路是通用的：不管用 OpenAI（gpt-4o + gpt-4o-mini）还是 DeepSeek，都应该让简单任务用便宜的模型，复杂任务用强的模型。
 
 ## 完整代码汇总
 
@@ -646,9 +665,13 @@ writer = Agent(
 ```python
 """
 CrewAI 多 Agent 行业研究系统
-运行方式: python crewai_demo.py
+运行方式: python crew_ai.py
 环境变量: OPENAI_API_KEY, SERPER_API_KEY
 """
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
 import datetime
 from crewai import Agent, Task, Crew, Process, LLM
 from crewai.tools import BaseTool
@@ -659,11 +682,11 @@ from pydantic import BaseModel, Field
 # ============ 自定义工具 ============
 
 class IndustryReportInput(BaseModel):
-    industry: str = Field(description="行业名称")
+    industry: str = Field(description="行业名称", json_schema_extra={"example": "人工智能"})
 
 class IndustryReportTool(BaseTool):
-    name: str = "行业报告摘要工具"
-    description: str = "根据行业名称，返回该行业的近期重要报告摘要"
+    name: str = "industry_report"
+    description: str = "根据行业名称，生成该行业的最新报告摘要。输入行业名称，返回该行业的市场规模、技术进展和融资情况等关键数据。"
     args_schema: type[BaseModel] = IndustryReportInput
 
     def _run(self, industry: str) -> str:
@@ -674,21 +697,23 @@ class IndustryReportTool(BaseTool):
                 "3. PitchBook: 2025 年量子计算融资总额 42 亿美元"
             ),
         }
-        return reports.get(industry, f"暂未找到 {industry} 的行业报告数据")
+        return reports.get(industry, f"未找到关于 {industry} 的最新报告摘要。")
 
 
 # ============ 模型配置 ============
 
-gpt4o = LLM(model="gpt-4o", temperature=0.3)
-gpt4o_mini = LLM(model="gpt-4o-mini", temperature=0.3)
+deepseek_model = LLM(
+    model="deepseek-v4-flash",
+    temperature=0.3
+)
 
-# ============ 工具 ============
+# ============ 工具配置 ============
 
-search_tool = SerperDevTool(n_results=10)
+search_tool = SerperDevTool(n_results=3, api_key=os.getenv("SERPER_API_KEY"))
 report_tool = IndustryReportTool()
 
 
-# ============ Agent 定义 ============
+# ============ Agent 配置 ============
 
 researcher = Agent(
     role="行业研究员",
@@ -698,10 +723,10 @@ researcher = Agent(
 增长率（CAGR）、技术成熟度曲线和头部公司的最新动态。
 你的输出以事实和数据为主，不做主观判断。""",
     tools=[search_tool, report_tool],
-    llm=gpt4o,
-    max_iter=5,
-    allow_delegation=False,
+    llm=deepseek_model,
     verbose=True,
+    max_iterations=3,
+    allow_delegation=False
 )
 
 analyst = Agent(
@@ -711,23 +736,23 @@ analyst = Agent(
 你擅长使用波特五力、SWOT 等分析框架，能从杂乱的数据中提取结构化洞察。
 你特别关注：市场份额分布、技术壁垒、融资轮次和估值趋势。
 你的输出需要有明确的结论和量化支撑。""",
-    llm=gpt4o_mini,
-    max_iter=3,
+    llm=deepseek_model,
+    max_iterations=3,
     allow_delegation=False,
-    verbose=True,
+    verbose=True
 )
 
 writer = Agent(
     role="行业报告撰写员",
-    goal="将分析师的结构化分析转化为一份专业、可读性强的 {industry} 行业研究报告",
-    backstory="""你是一位经验丰富的商业报告撰写专家，长期为投资机构和企业管理层撰写行业白皮书。
-你的写作风格专业但不晦涩，善用数据和案例支撑观点。
-报告结构清晰：行业概况 → 竞争分析 → 投资建议，每个部分都有小结。
-你注重报告的实用价值——读完这份报告的人，应该能做出更明智的投资决策。""",
-    llm=gpt4o,
-    max_iter=3,
+    goal="将分析师的 {industry} 行业分析转化为一份面向投资者的专业报告",
+    backstory="""你是一位资深的金融写作专家，长期为顶级投行撰写行业研究报告。
+你的文风专业但不晦涩，擅长用清晰的逻辑和生动的数据讲故事。
+你特别注重报告的可读性：执行摘要要一针见血，结论要有明确立场，
+风险提示要具体而非泛泛而谈。""",
+    llm=deepseek_model,
+    max_iterations=3,
     allow_delegation=False,
-    verbose=True,
+    verbose=True
 )
 
 
@@ -735,13 +760,13 @@ writer = Agent(
 
 research_task = Task(
     description="""
-    针对 {industry} 行业进行全面的信息搜集。
-    你需要搜集以下信息：
-    1. 市场规模（当前值和预测值，带具体数字）
-    2. 主要公司（至少 5 家，包括名称、核心业务、融资情况）
-    3. 技术趋势（当前主流技术路线和未来方向）
-    4. 行业关键事件（最近 12 个月的重要新闻）
-    输出要求：以结构化的方式呈现原始数据，每条信息标注来源。
+        针对 {industry} 行业进行全面的信息搜集。
+        你需要搜集以下信息：
+        1. 市场规模（当前值和预测值，带具体数字）
+        2. 主要公司（至少 5 家，包括名称、核心业务、融资情况）
+        3. 技术趋势（当前主流技术路线和未来方向）
+        4. 行业关键事件（最近 12 个月的重要新闻）
+        输出要求：以结构化的方式呈现原始数据，每条信息标注来源。
     """,
     expected_output="一份包含市场规模、主要公司、技术趋势和关键事件的结构化数据报告，至少 1500 字",
     agent=researcher,
@@ -756,9 +781,9 @@ analysis_task = Task(
     3. SWOT 分析
     4. 投资价值评估：给出明确的投资建议并说明理由
     """,
-    expected_output="一份包含竞争分析表格、关键洞察列表、SWOT 分析和投资建议的结构化分析报告",
+    expected_output="一份包含竞争格局分析、行业关键洞察、SWOT分析和投资价值评估的深度分析报告",
     agent=analyst,
-    context=[research_task],
+    context=[research_task]
 )
 
 writing_task = Task(
@@ -771,10 +796,10 @@ writing_task = Task(
     4. 关键趋势与洞察
     5. 投资建议和风险提示
     """,
-    expected_output="一份完整的行业研究报告，2000-3000 字",
+    expected_output="一份完整的行业报告，面向投资者，结构清晰，数据充分，约 3000 字",
     agent=writer,
     context=[analysis_task],
-    output_file="industry_report.md",
+    output_file="industry_report.md"
 )
 
 
@@ -791,9 +816,9 @@ crew = Crew(
     agents=[researcher, analyst, writer],
     tasks=[research_task, analysis_task, writing_task],
     process=Process.sequential,
-    verbose=True,
-    memory=True,
-    max_rpm=10,
+    verbose=False,
+    memory=False,
+    max_rpm=5,
     step_callback=step_callback,
     share_crew=False,
 )
@@ -804,7 +829,7 @@ if __name__ == "__main__":
     print(result)
 ```
 
-把这段代码保存为 `crewai_demo.py`，配好环境变量，直接 `python crewai_demo.py` 就能跑。运行结束后，`industry_report.md` 里就是完整的行业报告，`crew_log.txt` 里是详细的执行日志。
+把这段代码保存为 `crew_ai.py`，配好 `.env` 文件，直接 `python crew_ai.py` 就能跑。运行结束后，`industry_report.md` 里就是完整的行业报告，`crew_log.txt` 里是详细的执行日志。
 
 ## 第四阶段总结
 

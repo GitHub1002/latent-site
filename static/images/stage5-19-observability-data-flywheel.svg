@@ -1,0 +1,163 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600">
+  <style>
+    .center { font: bold 15px 'Microsoft YaHei', 'PingFang SC', sans-serif; fill: white; }
+    .branch { font: bold 12px 'Microsoft YaHei', 'PingFang SC', sans-serif; fill: white; }
+    .leaf { font: 10.5px 'Microsoft YaHei', 'PingFang SC', sans-serif; fill: #444; }
+    .line { stroke: #cbd5e1; stroke-width: 2; fill: none; }
+    .leaf-line { stroke: #e2e8f0; stroke-width: 1.5; fill: none; }
+  </style>
+  <defs>
+    <filter id="ds" x="-4%" y="-4%" width="108%" height="116%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="600" fill="#fafafa" rx="12"/>
+
+  <!-- ===== CONNECTION LINES (behind everything) ===== -->
+
+  <!-- Center to 可观测性3层次 (left) -->
+  <path class="line" d="M 378,298 C 320,298 260,288 225,288"/>
+  <!-- Center to LangFuse (top-right) -->
+  <path class="line" d="M 582,282 C 625,240 665,175 708,138"/>
+  <!-- Center to 数据飞轮 (bottom) -->
+  <path class="line" d="M 480,318 C 480,375 480,415 480,448"/>
+  <!-- Center to 复利效应 (top) -->
+  <path class="line" d="M 505,278 C 520,225 610,130 698,82"/>
+  <!-- Center to 上线Checklist (bottom-right) -->
+  <path class="line" d="M 582,310 C 635,355 695,405 738,435"/>
+
+  <!-- 可观测性 leaf lines (col1) -->
+  <path class="leaf-line" d="M 148,288 C 120,248 95,222 72,212"/>
+  <path class="leaf-line" d="M 148,288 C 115,288 85,280 72,278"/>
+  <path class="leaf-line" d="M 148,288 C 120,328 95,340 72,345"/>
+  <!-- 可观测性 leaf lines (col2) -->
+  <path class="leaf-line" d="M 148,288 C 180,245 210,222 245,212"/>
+  <path class="leaf-line" d="M 148,288 C 185,288 225,280 252,278"/>
+  <path class="leaf-line" d="M 148,288 C 180,328 215,340 245,345"/>
+
+  <!-- LangFuse leaf lines -->
+  <path class="leaf-line" d="M 770,138 C 740,155 710,170 690,180"/>
+  <path class="leaf-line" d="M 770,138 C 790,155 810,170 835,180"/>
+  <path class="leaf-line" d="M 770,138 C 740,170 710,205 690,218"/>
+  <path class="leaf-line" d="M 770,138 C 790,170 815,205 835,218"/>
+
+  <!-- 数据飞轮 leaf lines -->
+  <path class="leaf-line" d="M 480,468 C 420,485 365,502 340,512"/>
+  <path class="leaf-line" d="M 480,468 C 455,485 438,502 430,512"/>
+  <path class="leaf-line" d="M 480,468 C 505,485 522,502 530,512"/>
+  <path class="leaf-line" d="M 480,468 C 540,485 595,502 620,512"/>
+
+  <!-- 复利效应 leaf lines -->
+  <path class="leaf-line" d="M 760,82 C 775,100 790,115 808,122"/>
+  <path class="leaf-line" d="M 760,82 C 775,118 790,148 808,158"/>
+  <path class="leaf-line" d="M 760,82 C 775,138 790,182 808,195"/>
+
+  <!-- 上线Checklist leaf lines -->
+  <path class="leaf-line" d="M 800,435 C 815,415 828,400 845,392"/>
+  <path class="leaf-line" d="M 800,435 C 815,435 830,436 845,436"/>
+  <path class="leaf-line" d="M 800,435 C 815,455 828,468 845,478"/>
+
+  <!-- ===== BRANCH NODES ===== -->
+
+  <!-- Center: 可观测性与数据飞轮 -->
+  <rect x="378" y="278" width="204" height="40" rx="10" fill="#2563eb" filter="url(#ds)"/>
+  <text x="480" y="303" text-anchor="middle" class="center">可观测性与数据飞轮</text>
+
+  <!-- Branch 1: 可观测性3层次 (left, green) -->
+  <rect x="83" y="273" width="130" height="30" rx="8" fill="#059669" filter="url(#ds)"/>
+  <text x="148" y="293" text-anchor="middle" class="branch">可观测性3层次</text>
+
+  <!-- Branch 2: LangFuse平台 (top-right, purple) -->
+  <rect x="708" y="120" width="124" height="30" rx="8" fill="#7c3aed" filter="url(#ds)"/>
+  <text x="770" y="140" text-anchor="middle" class="branch">LangFuse平台</text>
+
+  <!-- Branch 3: 数据飞轮4环节 (bottom, orange) -->
+  <rect x="408" y="448" width="144" height="30" rx="8" fill="#ea580c" filter="url(#ds)"/>
+  <text x="480" y="468" text-anchor="middle" class="branch">数据飞轮4环节</text>
+
+  <!-- Branch 4: 复利效应 (top, red) -->
+  <rect x="700" y="67" width="120" height="30" rx="8" fill="#dc2626" filter="url(#ds)"/>
+  <text x="760" y="87" text-anchor="middle" class="branch">复利效应</text>
+
+  <!-- Branch 5: 上线Checklist (bottom-right, yellow) -->
+  <rect x="738" y="420" width="124" height="30" rx="8" fill="#ca8a04" filter="url(#ds)"/>
+  <text x="800" y="440" text-anchor="middle" class="branch">上线Checklist</text>
+
+  <!-- ===== LEAF NODES ===== -->
+
+  <!-- 可观测性 leaves col1 -->
+  <rect x="8" y="198" width="128" height="26" rx="6" fill="#ecfdf5" stroke="#059669" stroke-width="1"/>
+  <text x="72" y="215" text-anchor="middle" class="leaf">日志 Logging</text>
+
+  <rect x="8" y="265" width="128" height="26" rx="6" fill="#ecfdf5" stroke="#059669" stroke-width="1"/>
+  <text x="72" y="282" text-anchor="middle" class="leaf">指标 Metrics</text>
+
+  <rect x="8" y="332" width="128" height="26" rx="6" fill="#ecfdf5" stroke="#059669" stroke-width="1"/>
+  <text x="72" y="349" text-anchor="middle" class="leaf">追踪 Tracing</text>
+
+  <!-- 可观测性 leaves col2 -->
+  <rect x="183" y="198" width="128" height="26" rx="6" fill="#ecfdf5" stroke="#059669" stroke-width="1"/>
+  <text x="247" y="215" text-anchor="middle" class="leaf">结构化可搜索</text>
+
+  <rect x="183" y="265" width="142" height="26" rx="6" fill="#ecfdf5" stroke="#059669" stroke-width="1"/>
+  <text x="254" y="282" text-anchor="middle" class="leaf">延迟/成本/成功率</text>
+
+  <rect x="183" y="332" width="128" height="26" rx="6" fill="#ecfdf5" stroke="#059669" stroke-width="1"/>
+  <text x="247" y="349" text-anchor="middle" class="leaf">全链路Span</text>
+
+  <!-- LangFuse leaves -->
+  <rect x="628" y="168" width="125" height="24" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1"/>
+  <text x="690" y="184" text-anchor="middle" class="leaf">Trace可视化</text>
+
+  <rect x="773" y="168" width="125" height="24" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1"/>
+  <text x="835" y="184" text-anchor="middle" class="leaf">指标仪表盘</text>
+
+  <rect x="628" y="206" width="125" height="24" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1"/>
+  <text x="690" y="222" text-anchor="middle" class="leaf">评分与标注</text>
+
+  <rect x="773" y="206" width="125" height="24" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1"/>
+  <text x="835" y="222" text-anchor="middle" class="leaf">数据集管理</text>
+
+  <!-- 数据飞轮 leaves -->
+  <rect x="285" y="500" width="110" height="26" rx="6" fill="#fff7ed" stroke="#ea580c" stroke-width="1"/>
+  <text x="340" y="517" text-anchor="middle" class="leaf">1.收集完整Trace</text>
+
+  <rect x="405" y="500" width="110" height="26" rx="6" fill="#fff7ed" stroke="#ea580c" stroke-width="1"/>
+  <text x="460" y="517" text-anchor="middle" class="leaf">2.筛选高质量</text>
+
+  <rect x="525" y="500" width="110" height="26" rx="6" fill="#fff7ed" stroke="#ea580c" stroke-width="1"/>
+  <text x="580" y="517" text-anchor="middle" class="leaf">3.生成SFT数据</text>
+
+  <rect x="645" y="500" width="110" height="26" rx="6" fill="#fff7ed" stroke="#ea580c" stroke-width="1"/>
+  <text x="700" y="517" text-anchor="middle" class="leaf">4.微调专用模型</text>
+
+  <!-- 复利效应 leaves -->
+  <rect x="748" y="110" width="120" height="24" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="1"/>
+  <text x="808" y="126" text-anchor="middle" class="leaf">1月 v1 准确率85%</text>
+
+  <rect x="748" y="146" width="120" height="24" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="1"/>
+  <text x="808" y="162" text-anchor="middle" class="leaf">3月 v2 替代60%调用</text>
+
+  <rect x="748" y="183" width="130" height="24" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="1"/>
+  <text x="813" y="199" text-anchor="middle" class="leaf">6月 v3 成本降73%</text>
+
+  <!-- 上线Checklist leaves -->
+  <rect x="785" y="380" width="135" height="24" rx="6" fill="#fefce8" stroke="#ca8a04" stroke-width="1"/>
+  <text x="852" y="396" text-anchor="middle" class="leaf">评估+安全(必须)</text>
+
+  <rect x="785" y="424" width="135" height="24" rx="6" fill="#fefce8" stroke="#ca8a04" stroke-width="1"/>
+  <text x="852" y="440" text-anchor="middle" class="leaf">可观测(必须)</text>
+
+  <rect x="785" y="466" width="148" height="24" rx="6" fill="#fefce8" stroke="#ca8a04" stroke-width="1"/>
+  <text x="859" y="482" text-anchor="middle" class="leaf">性能+成本+持续优化</text>
+
+  <!-- ===== DECORATIVE ELEMENTS ===== -->
+  <!-- Small cycle arrow hint near 数据飞轮 -->
+  <path d="M 395,540 C 380,548 375,555 385,558 L 390,555" stroke="#ea580c" stroke-width="1.2" fill="none" opacity="0.5"/>
+  <path d="M 710,540 C 725,548 730,555 720,558 L 715,555" stroke="#ea580c" stroke-width="1.2" fill="none" opacity="0.5"/>
+  <path d="M 420,555 Q 550,570 690,555" stroke="#ea580c" stroke-width="1" fill="none" stroke-dasharray="4,3" opacity="0.35"/>
+  <text x="555" y="572" text-anchor="middle" style="font: 9px 'Microsoft YaHei', sans-serif; fill: #ea580c; opacity: 0.6;">循环迭代</text>
+
+</svg>

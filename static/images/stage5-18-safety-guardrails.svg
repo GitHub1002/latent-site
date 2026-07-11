@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" font-family="system-ui, -apple-system, sans-serif">
+  <rect width="960" height="540" fill="#fafafa" rx="12"/>
+  <defs>
+    <style>
+      .center { font-weight: 700; font-size: 15px; fill: white; }
+      .branch { font-weight: 700; font-size: 12px; fill: white; }
+      .leaf { font-size: 10.5px; fill: #444; }
+      .line { stroke-width: 2; fill: none; }
+    </style>
+  </defs>
+
+  <!-- Connection lines (bezier curves) -->
+  <!-- To Prompt Injection -->
+  <path class="line" stroke="#dc2626" d="M 480,270 C 380,270 280,80 180,80"/>
+  <!-- To Jailbreak -->
+  <path class="line" stroke="#ea580c" d="M 480,270 C 420,240 340,180 260,195"/>
+  <!-- To Data Exfil -->
+  <path class="line" stroke="#0284c7" d="M 480,270 C 540,240 620,100 720,90"/>
+  <!-- To Privilege Esc -->
+  <path class="line" stroke="#7c3aed" d="M 480,270 C 560,250 680,200 760,210"/>
+  <!-- To DoS -->
+  <path class="line" stroke="#be185d" d="M 480,270 C 520,300 620,320 720,330"/>
+  <!-- To Defense -->
+  <path class="line" stroke="#16a34a" d="M 480,270 C 420,320 320,400 220,420"/>
+  <!-- To Guardrails AI -->
+  <path class="line" stroke="#0891b2" d="M 480,270 C 480,340 480,410 480,440"/>
+  <!-- To Cost Tradeoff -->
+  <path class="line" stroke="#ca8a04" d="M 480,270 C 560,330 660,420 750,440"/>
+
+  <!-- Center node -->
+  <rect x="420" y="245" width="120" height="50" rx="10" fill="#dc2626"/>
+  <text x="480" y="265" text-anchor="middle" class="center">Agent</text>
+  <text x="480" y="282" text-anchor="middle" class="center">安全防护</text>
+
+  <!-- Branch 1: Prompt Injection (top-left) -->
+  <rect x="110" y="55" width="140" height="50" rx="8" fill="#dc2626"/>
+  <text x="180" y="75" text-anchor="middle" class="branch">Prompt 注入</text>
+  <text x="180" y="92" text-anchor="middle" class="branch">攻击</text>
+  <text x="180" y="120" text-anchor="middle" class="leaf">直接注入恶意指令</text>
+  <text x="180" y="135" text-anchor="middle" class="leaf">间接注入(RAG文档)</text>
+  <text x="180" y="150" text-anchor="middle" class="leaf">输入过滤 &amp; 指令隔离</text>
+
+  <!-- Branch 2: Jailbreak (left) -->
+  <rect x="190" y="175" width="140" height="45" rx="8" fill="#ea580c"/>
+  <text x="260" y="195" text-anchor="middle" class="branch">越狱 Jailbreak</text>
+  <text x="260" y="210" text-anchor="middle" class="branch"> </text>
+  <text x="260" y="235" text-anchor="middle" class="leaf">DAN / 角色扮演攻击</text>
+  <text x="260" y="250" text-anchor="middle" class="leaf">绕过安全限制</text>
+  <text x="260" y="265" text-anchor="middle" class="leaf">输出检测 &amp; 对抗测试</text>
+
+  <!-- Branch 3: Data Exfiltration (top-right) -->
+  <rect x="650" y="60" width="140" height="50" rx="8" fill="#0284c7"/>
+  <text x="720" y="80" text-anchor="middle" class="branch">数据泄露</text>
+  <text x="720" y="97" text-anchor="middle" class="branch">Data Exfiltration</text>
+  <text x="720" y="125" text-anchor="middle" class="leaf">System Prompt 泄露</text>
+  <text x="720" y="140" text-anchor="middle" class="leaf">PII / 敏感信息暴露</text>
+  <text x="720" y="155" text-anchor="middle" class="leaf">PII 脱敏 &amp; 输出过滤</text>
+
+  <!-- Branch 4: Privilege Escalation (right) -->
+  <rect x="690" y="190" width="140" height="45" rx="8" fill="#7c3aed"/>
+  <text x="760" y="210" text-anchor="middle" class="branch">权限滥用</text>
+  <text x="760" y="225" text-anchor="middle" class="branch">Privilege Escalation</text>
+  <text x="760" y="250" text-anchor="middle" class="leaf">恶意工具调用</text>
+  <text x="760" y="265" text-anchor="middle" class="leaf">最小权限 &amp; 沙箱执行</text>
+
+  <!-- Branch 5: DoS (right-lower) -->
+  <rect x="650" y="310" width="140" height="45" rx="8" fill="#be185d"/>
+  <text x="720" y="330" text-anchor="middle" class="branch">拒绝服务 DoS</text>
+  <text x="720" y="345" text-anchor="middle" class="branch"> </text>
+  <text x="720" y="368" text-anchor="middle" class="leaf">死循环 / 资源耗尽</text>
+  <text x="720" y="383" text-anchor="middle" class="leaf">循环上限 &amp; 预算控制</text>
+
+  <!-- Branch 6: Defense Strategy (bottom-left) -->
+  <rect x="150" y="400" width="140" height="50" rx="8" fill="#16a34a"/>
+  <text x="220" y="420" text-anchor="middle" class="branch">防御策略体系</text>
+  <text x="220" y="437" text-anchor="middle" class="branch"> </text>
+  <text x="220" y="465" text-anchor="middle" class="leaf">输入过滤 &amp; 指令隔离</text>
+  <text x="220" y="480" text-anchor="middle" class="leaf">输出检测 &amp; PII 脱敏</text>
+  <text x="220" y="495" text-anchor="middle" class="leaf">权限控制 &amp; 审计日志</text>
+
+  <!-- Branch 7: Guardrails AI (bottom-center) -->
+  <rect x="410" y="420" width="140" height="50" rx="8" fill="#0891b2"/>
+  <text x="480" y="440" text-anchor="middle" class="branch">Guardrails AI</text>
+  <text x="480" y="457" text-anchor="middle" class="branch">统一防护框架</text>
+  <text x="480" y="483" text-anchor="middle" class="leaf">Guard + Validator</text>
+  <text x="480" y="498" text-anchor="middle" class="leaf">自动重试机制</text>
+
+  <!-- Branch 8: Cost Tradeoff (bottom-right) -->
+  <rect x="680" y="420" width="140" height="50" rx="8" fill="#ca8a04"/>
+  <text x="750" y="440" text-anchor="middle" class="branch">成本与权衡</text>
+  <text x="750" y="457" text-anchor="middle" class="branch"> </text>
+  <text x="750" y="483" text-anchor="middle" class="leaf">每层 +100-500ms 延迟</text>
+  <text x="750" y="498" text-anchor="middle" class="leaf">按风险等级选防护</text>
+</svg>
