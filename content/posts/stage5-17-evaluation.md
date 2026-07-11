@@ -7,7 +7,6 @@ tags: ["Agent", "Evaluation", "Ragas"]
 summary: "Agent 开发不是写完 Prompt 就结束了——怎么评估 Agent 的质量才是生产化的关键。这篇讲解评估维度（任务完成率、工具调用准确率、幻觉率、成本效率）、评估方法（人工 vs 自动 vs LLM-as-Judge）、Ragas 框架的使用，以及如何建立持续评估的闭环。"
 ShowToc: true
 ---
-
 第四阶段我们聊了多 Agent 架构和 Harness Engineering，到这儿你已经能搭一个能跑的多 Agent 系统了。但"能跑"和"跑得好"完全是两码事。
 
 就像你写了个排序算法，单元测试都过了——但你不知道它在生产环境里平均耗时是多少、在极端输入下会不会崩、跟竞品比性能排第几。Agent 也一样，demo 跑通只是起点，真正上线之前你得回答一个核心问题：**这个 Agent 到底有多靠谱？**
@@ -476,12 +475,12 @@ if __name__ == "__main__":
 
 跑出来的结果可能像这样：
 
-| 指标 | 得分 | 含义 |
-|------|------|------|
-| Faithfulness | 0.92 | 回答中 92% 的声明被上下文支持，幻觉风险低 |
-| Answer Relevance | 0.85 | 回答整体切题，少量冗余信息 |
-| Context Precision | 0.75 | 检索结果中 75% 是相关的，有优化空间 |
-| Context Recall | 0.88 | 关键信息覆盖较全面 |
+| 指标              | 得分 | 含义                                      |
+| ----------------- | ---- | ----------------------------------------- |
+| Faithfulness      | 0.92 | 回答中 92% 的声明被上下文支持，幻觉风险低 |
+| Answer Relevance  | 0.85 | 回答整体切题，少量冗余信息                |
+| Context Precision | 0.75 | 检索结果中 75% 是相关的，有优化空间       |
+| Context Recall    | 0.88 | 关键信息覆盖较全面                        |
 
 拿到这些分数后，你就能精准定位问题：如果 Faithfulness 低，说明 Agent 在"编造"信息，要收紧 Prompt 或加强 grounding；如果 Context Precision 低，说明检索模块在召回噪音，要优化 embedding 模型或调整 top-k 参数。
 
