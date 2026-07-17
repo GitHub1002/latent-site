@@ -16,3 +16,6 @@ Thumbs.db
 
 # Theme (如果使用 submodule)
 # themes/PaperMod/
+
+# WorkBuddy 本地工作记忆（不进公开仓库）
+.workbuddy/
