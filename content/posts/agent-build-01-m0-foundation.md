@@ -1,8 +1,8 @@
 ---
-title: "阶段一·搭地基：让 Agent 跑通第一个问答（M0）"
+title: "系列二 · 01 | 阶段一·搭地基：让 Agent 跑通第一个问答（M0）"
 date: 2026-07-16
 draft: false
-weight: 210
+weight: 610
 tags: ["Agent", "RAG", "FastAPI", "Qwen", "实战", "系列二"]
 summary: "系列二第一篇实战：从空目录搭出 M0 最小闭环——FastAPI + 单轮问答 + 身份注入骨架，并接通外网 Qwen。记录三个真实踩坑：venv 隔离、pip 中断重跑、PowerShell/GitBash 下 curl 传中文 JSON 的引号陷阱。"
 ShowToc: true

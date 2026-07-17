@@ -1,0 +1,92 @@
+<svg viewBox="0 0 680 440" xmlns="http://www.w3.org/2000/svg" font-family="'PingFang SC','Microsoft YaHei',sans-serif">
+  <!-- background -->
+  <rect x="0" y="0" width="680" height="440" fill="#f7f9fc"/>
+
+  <!-- title -->
+  <text x="24" y="34" font-size="18" font-weight="700" fill="#1f2d3d">M1 · 让 Agent 读懂私有文件（RAG）</text>
+  <text x="24" y="56" font-size="12" fill="#6b7785">离线入库（上）　+　在线问答（下）</text>
+
+  <!-- ===== 入库路径（离线）===== -->
+  <text x="24" y="90" font-size="13" font-weight="700" fill="#2563eb">① 离线入库：文件 → 向量库</text>
+  <g>
+    <rect x="24" y="102" width="120" height="48" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+    <text x="84" y="122" font-size="12" font-weight="600" fill="#1e40af" text-anchor="middle">私有文件</text>
+    <text x="84" y="140" font-size="10" fill="#3b82f6" text-anchor="middle">PDF/Word/TXT/MD</text>
+
+    <rect x="178" y="102" width="110" height="48" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+    <text x="233" y="122" font-size="12" font-weight="600" fill="#1e40af" text-anchor="middle">解析 load_file</text>
+    <text x="233" y="140" font-size="10" fill="#3b82f6" text-anchor="middle">PyMuPDF/docx</text>
+
+    <rect x="322" y="102" width="110" height="48" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+    <text x="377" y="122" font-size="12" font-weight="600" fill="#1e40af" text-anchor="middle">切分 split</text>
+    <text x="377" y="140" font-size="10" fill="#3b82f6" text-anchor="middle">~500字/块</text>
+
+    <rect x="466" y="102" width="120" height="48" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+    <text x="526" y="122" font-size="12" font-weight="600" fill="#1e40af" text-anchor="middle">Embedding</text>
+    <text x="526" y="140" font-size="10" fill="#3b82f6" text-anchor="middle">text-embedding-v3</text>
+
+    <rect x="610" y="102" width="50" height="48" rx="8" fill="#1e40af"/>
+    <text x="635" y="122" font-size="11" font-weight="600" fill="#fff" text-anchor="middle">Chroma</text>
+    <text x="635" y="140" font-size="9" fill="#dbeafe" text-anchor="middle">持久化</text>
+  </g>
+  <!-- arrows ingest -->
+  <g stroke="#2563eb" stroke-width="2" marker-end="url(#arrow)">
+    <line x1="144" y1="126" x2="176" y2="126"/>
+    <line x1="288" y1="126" x2="320" y2="126"/>
+    <line x1="432" y1="126" x2="464" y2="126"/>
+    <line x1="586" y1="126" x2="608" y2="126"/>
+  </g>
+
+  <!-- ===== 问答路径（在线）===== -->
+  <text x="24" y="206" font-size="13" font-weight="700" fill="#2563eb">② 在线问答：用户 → Agent 循环 → 检索 → 作答</text>
+  <g>
+    <rect x="24" y="218" width="110" height="48" rx="8" fill="#e0e7ff" stroke="#4f46e5"/>
+    <text x="79" y="238" font-size="12" font-weight="600" fill="#3730a3" text-anchor="middle">用户提问</text>
+    <text x="79" y="256" font-size="10" fill="#6366f1" text-anchor="middle">+ X-User-Id</text>
+
+    <rect x="168" y="218" width="150" height="48" rx="8" fill="#ede9fe" stroke="#7c3aed"/>
+    <text x="243" y="238" font-size="12" font-weight="600" fill="#5b21b6" text-anchor="middle">Orchestrator</text>
+    <text x="243" y="256" font-size="10" fill="#7c3aed" text-anchor="middle">思考→行动→观察 循环</text>
+
+    <rect x="342" y="218" width="150" height="48" rx="8" fill="#fef3c7" stroke="#d97706"/>
+    <text x="417" y="238" font-size="12" font-weight="600" fill="#92400e" text-anchor="middle">search_knowledge_base</text>
+    <text x="417" y="256" font-size="10" fill="#b45309" text-anchor="middle">@tool 检索</text>
+
+    <rect x="516" y="218" width="60" height="48" rx="8" fill="#1e40af"/>
+    <text x="546" y="238" font-size="11" font-weight="600" fill="#fff" text-anchor="middle">Chroma</text>
+    <text x="546" y="256" font-size="9" fill="#dbeafe" text-anchor="middle">top-k</text>
+
+    <rect x="600" y="218" width="60" height="48" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+    <text x="630" y="238" font-size="11" font-weight="600" fill="#166534" text-anchor="middle">LLM</text>
+    <text x="630" y="256" font-size="9" fill="#16a34a" text-anchor="middle">qwen-plus</text>
+  </g>
+  <!-- arrows query -->
+  <g stroke="#4f46e5" stroke-width="2" marker-end="url(#arrow)">
+    <line x1="134" y1="242" x2="166" y2="242"/>
+    <line x1="318" y1="242" x2="340" y2="242"/>
+    <line x1="492" y1="242" x2="514" y2="242"/>
+  </g>
+  <!-- return arrow from LLM back to user (dashed) -->
+  <g stroke="#16a34a" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arrowGreen)">
+    <path d="M630 266 C 630 320, 120 320, 79 266" fill="none"/>
+  </g>
+  <text x="345" y="318" font-size="10" fill="#16a34a">最终答案（基于检索片段 / 或通用知识）</text>
+
+  <!-- decision note -->
+  <rect x="168" y="300" width="488" height="44" rx="8" fill="#fff7ed" stroke="#ea580c"/>
+  <text x="184" y="320" font-size="11" font-weight="600" fill="#9a3412">关键决策：模型自己决定「调不调工具」——</text>
+  <text x="184" y="338" font-size="11" fill="#9a3412">文档类问题 → 检索后作答；通用/闲聊 → 直接回答（不触发 RAG）。</text>
+
+  <!-- footer -->
+  <text x="24" y="376" font-size="11" fill="#6b7785">踩坑：OpenAIEmbeddings 默认会去下载 OpenAI 的 tiktoken 编码表，受限网络下 SSL 报错 → 设 check_embedding_ctx_length=False</text>
+  <text x="24" y="396" font-size="11" fill="#6b7785">权限：M1 的检索工具不区分用户；user_id 透传，留到 M3 在 DB 工具上做隔离。</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#4f46e5"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#16a34a"/>
+    </marker>
+  </defs>
+</svg>

@@ -1,8 +1,8 @@
 ---
-title: "动手做一个企业知识助手 Agent：系列二开篇路线图"
+title: "系列二 · 00 | 开篇路线图：动手做一个企业知识助手 Agent"
 date: 2026-07-16
 draft: false
-weight: 200
+weight: 600
 tags: ["Agent", "RAG", "实战", "系列二"]
 summary: "系列二不再讲概念，而是从零实现一个能用的企业知识助手 Agent：私有文件 RAG 问答、数据库查询、权限控制、友好降级。本文是开篇路线图，给出整体架构、技术选型和 5 个阶段的文章计划。"
 ShowToc: true
