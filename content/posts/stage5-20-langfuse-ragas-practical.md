@@ -79,9 +79,7 @@ curl http://localhost:3000/api/public/health
 # 返回 {"status": "OK"} 就说明跑起来了
 ```
 
-> **关于版本**：这里使用的是 Langfuse Server v2（Docker 镜像 `langfuse/langfuse:2`），只需 PostgreSQL 一个依赖，适合学习。Server v3 新增了 ClickHouse、Redis、S3 等组件，更适合生产环境，但部署复杂度也更高。本文的 Python SDK 代码基于 v3（`pip install langfuse>=3`），与 v2 服务端完全兼容，无需担心。
-
-如果你不想管 Docker，LangFuse Cloud 的免费额度也够学习用——每月 50k 次 observation，个人项目绑绑有余。注册地址 `cloud.langfuse.com`，注册后同样拿到 API Key。
+如果你不想用 Docker，LangFuse Cloud 的免费额度也够学习用——每月 50k 次 observation，个人项目绑绑有余。注册地址 `cloud.langfuse.com`，注册后同样拿到 API Key。
 
 ## Step 2: 接入 LangFuse 追踪
 
@@ -96,20 +94,19 @@ import os
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
-from langfuse import Langfuse, get_client
-from langfuse.langchain import CallbackHandler
+from langfuse.callback import CallbackHandler
 
-# 设置 LangFuse 环境变量（也可以在 .env 中配置）
+# 设置 LangFuse 环境变量
 os.environ["LANGFUSE_PUBLIC_KEY"] = "pk-lf-xxxx"
 os.environ["LANGFUSE_SECRET_KEY"] = "sk-lf-xxxx"
 os.environ["LANGFUSE_HOST"] = "http://localhost:3000"
 
-# 初始化 Langfuse 客户端（全局单例）
-langfuse = Langfuse()
-client = get_client()
-
 # 创建 LangFuse callback handler
-langfuse_handler = CallbackHandler()
+langfuse_handler = CallbackHandler(
+    session_id="rag-session-001",
+    user_id="user-42",
+    tags=["production", "rag-v2"]
+)
 
 # 构建一个简单的 RAG chain
 prompt = ChatPromptTemplate.from_template("""
@@ -125,21 +122,12 @@ prompt = ChatPromptTemplate.from_template("""
 llm = ChatOpenAI(model="gpt-4o", temperature=0)
 chain = prompt | llm | StrOutputParser()
 
-# 调用时传入 callback，session/user 通过 metadata 传递
+# 调用时传入 callback
 result = chain.invoke(
     {"context": "量子计算利用量子比特进行并行计算...", "question": "量子计算有哪些应用场景？"},
-    config={
-        "callbacks": [langfuse_handler],
-        "metadata": {
-            "langfuse_session_id": "rag-session-001",
-            "langfuse_user_id": "user-42",
-        }
-    }
+    config={"callbacks": [langfuse_handler]}
 )
 print(result)
-
-# 确保数据上报到 LangFuse
-client.flush()
 ```
 
 跑完之后打开 LangFuse Web UI (`http://localhost:3000`)，进入 Traces 页面，你会看到刚才那次请求的完整记录：
@@ -153,15 +141,15 @@ client.flush()
 对于不基于 LangChain 的自定义代码，用 `@observe` 装饰器更灵活：
 
 ```python
-from langfuse import Langfuse, observe, get_client
+from langfuse.decorators import observe, langfuse_context
+import numpy as np
 
-# 初始化 Langfuse 客户端（全局单例）
-Langfuse(
+# 初始化
+langfuse_context.configure(
     public_key="pk-lf-xxxx",
     secret_key="sk-lf-xxxx",
     host="http://localhost:3000"
 )
-client = get_client()
 
 @observe()
 def retrieve_documents(query: str, top_k: int = 3) -> list:
@@ -188,10 +176,10 @@ def generate_answer(query: str, context: str) -> str:
         temperature=0
     )
     # 手动记录 token 使用量
-    client.update_current_observation(
-        usage_details={
-            "input_tokens": response.usage.prompt_tokens,
-            "output_tokens": response.usage.completion_tokens,
+    langfuse_context.update_current_observation(
+        usage={
+            "prompt_tokens": response.usage.prompt_tokens,
+            "completion_tokens": response.usage.completion_tokens,
         }
     )
     return response.choices[0].message.content
@@ -212,15 +200,13 @@ def rag_pipeline(query: str) -> dict:
 
 # 运行
 result = rag_pipeline("量子计算在密码学领域有什么影响？")
-client.flush()  # 确保数据上报
+langfuse_context.flush()  # 确保数据上报
 print(result["answer"][:200])
 ```
 
 `@observe` 会自动捕获函数的输入输出、执行时间、异常信息。三层嵌套调用（rag_pipeline → retrieve_documents + generate_answer）在 LangFuse UI 里呈现为一棵树，每层的耗时和输入输出一目了然。
 
 两种方式可以混用：LangChain 部分用 Callback，自定义函数用装饰器，最终都汇聚到同一个 Trace 里。
-
-> **版本提示**：Langfuse Python SDK v3 相比 v2 有几个重要变化：`CallbackHandler` 的导入路径从 `langfuse.callback` 改为 `langfuse.langchain`；`@observe` 装饰器和 `langfuse_context` 不再从 `langfuse.decorators` 导入，改为直接从 `langfuse` 包导入 `observe` 和 `get_client`；配置方式从 `langfuse_context.configure()` 改为先创建 `Langfuse()` 单例再通过 `get_client()` 获取客户端；`session_id`/`user_id` 等上下文信息改为通过 LangChain callback 的 `metadata` 参数传入（键名加 `langfuse_` 前缀）。
 
 ## Step 3: 用 Ragas 构建评估 Pipeline
 
@@ -271,24 +257,18 @@ print(f"评估数据集：{len(dataset)} 个测试用例")
 现在让我们的 RAG 系统跑一遍这些测试题，然后用 Ragas 打分：
 
 ```python
-import asyncio
-from openai import AsyncOpenAI
-from ragas.llms import llm_factory
-from ragas.metrics.collections import (
-    Faithfulness,
-    AnswerRelevancy,
-    ContextPrecision,
-    ContextRecall,
+from ragas import evaluate
+from ragas.metrics import (
+    faithfulness,
+    answer_relevancy,
+    context_precision,
+    context_recall,
 )
+from ragas.llms import LangchainLLMWrapper
+from langchain_openai import ChatOpenAI
 
-# 用 llm_factory 创建评估用 LLM（替代旧版 LangchainLLMWrapper）
-eval_llm = llm_factory("gpt-4o", client=AsyncOpenAI())
-
-# 初始化四个评估指标
-faithfulness_metric = Faithfulness(llm=eval_llm)
-answer_relevancy_metric = AnswerRelevancy(llm=eval_llm)
-context_precision_metric = ContextPrecision(llm=eval_llm)
-context_recall_metric = ContextRecall(llm=eval_llm)
+# 包装 LLM
+eval_llm = LangchainLLMWrapper(ChatOpenAI(model="gpt-4o", temperature=0))
 
 # 让 RAG 系统回答所有测试问题
 results = []
@@ -296,44 +276,29 @@ for item in eval_data["question"]:
     result = rag_pipeline(item)
     results.append(result)
 
-# 逐条评估，收集分数
-all_scores = {"faithfulness": [], "answer_relevancy": [], "context_precision": [], "context_recall": []}
+# 组装评估输入
+eval_input = {
+    "question": eval_data["question"],
+    "answer": [r["answer"] for r in results],
+    "contexts": [r["contexts"] for r in results],
+    "ground_truth": eval_data["ground_truth"],
+}
+eval_dataset = Dataset.from_dict(eval_input)
 
-async def evaluate_single(question, answer, contexts, reference):
-    """评估单条回答的四个指标"""
-    f_score = await faithfulness_metric.ascore(response=answer, retrieved_contexts=contexts)
-    ar_score = await answer_relevancy_metric.ascore(user_input=question, response=answer)
-    cp_score = await context_precision_metric.ascore(user_input=question, retrieved_contexts=contexts, reference=reference)
-    cr_score = await context_recall_metric.ascore(retrieved_contexts=contexts, reference=reference)
-    return f_score.value, ar_score.value, cp_score.value, cr_score.value
-
-async def evaluate_all():
-    for i, question in enumerate(eval_data["question"]):
-        f, ar, cp, cr = await evaluate_single(
-            question=question,
-            answer=results[i]["answer"],
-            contexts=results[i]["contexts"],
-            reference=eval_data["ground_truth"][i],  # Ragas v0.4 参数名改为 reference
-        )
-        all_scores["faithfulness"].append(f)
-        all_scores["answer_relevancy"].append(ar)
-        all_scores["context_precision"].append(cp)
-        all_scores["context_recall"].append(cr)
-
-asyncio.run(evaluate_all())
-
-# 计算平均分
-avg_scores = {k: sum(v) / len(v) for k, v in all_scores.items()}
+# 运行评估
+scores = evaluate(
+    dataset=eval_dataset,
+    metrics=[faithfulness, answer_relevancy, context_precision, context_recall],
+    llm=eval_llm,
+)
 
 # 打印结果
-print(f"整体评分（{len(eval_data['question'])} 条平均）：")
-print(f"  Faithfulness:       {avg_scores['faithfulness']:.3f}")
-print(f"  Answer Relevancy:   {avg_scores['answer_relevancy']:.3f}")
-print(f"  Context Precision:  {avg_scores['context_precision']:.3f}")
-print(f"  Context Recall:     {avg_scores['context_recall']:.3f}")
+print(f"整体评分：")
+print(f"  Faithfulness:       {scores['faithfulness']:.3f}")
+print(f"  Answer Relevancy:   {scores['answer_relevancy']:.3f}")
+print(f"  Context Precision:  {scores['context_precision']:.3f}")
+print(f"  Context Recall:     {scores['context_recall']:.3f}")
 ```
-
-> **版本提示**：如果你之前用的是 Ragas v0.2/v0.3，注意 v0.4 有几个重大变化：`LangchainLLMWrapper` 已废弃，改用 `llm_factory()` 直接创建 LLM 适配器；指标从 `ragas.metrics` 下的实例变量（如 `faithfulness`）改为从 `ragas.metrics.collections` 导入的类（如 `Faithfulness`），需要实例化后使用；`ground_truth` 参数统一改为 `reference`；`ascore()` 返回的是 `ScoreResult` 对象而不是浮点数，需要通过 `.value` 取值。
 
 跑完会输出类似这样的结果：
 
@@ -370,10 +335,10 @@ baseline = {
         "chunk_size": 500,
     },
     "scores": {
-        "faithfulness": avg_scores["faithfulness"],
-        "answer_relevancy": avg_scores["answer_relevancy"],
-        "context_precision": avg_scores["context_precision"],
-        "context_recall": avg_scores["context_recall"],
+        "faithfulness": scores["faithfulness"],
+        "answer_relevancy": scores["answer_relevancy"],
+        "context_precision": scores["context_precision"],
+        "context_recall": scores["context_recall"],
     }
 }
 
@@ -395,30 +360,34 @@ print(f"Baseline 已保存: {baseline['version']}")
 
 ```python
 import asyncio
-from openai import AsyncOpenAI
-from langfuse import Langfuse, observe, get_client
-from ragas.llms import llm_factory
-from ragas.metrics.collections import Faithfulness
+from langfuse import Langfuse
+from langfuse.decorators import observe, langfuse_context
 
-# 初始化 Langfuse 客户端
-Langfuse(
+langfuse = Langfuse(
     public_key="pk-lf-xxxx",
     secret_key="sk-lf-xxxx",
     host="http://localhost:3000"
 )
-client = get_client()
-
-# 用轻量模型做评估，控制成本
-eval_llm = llm_factory("gpt-4o-mini", client=AsyncOpenAI())
-faithfulness_metric = Faithfulness(llm=eval_llm)
 
 async def compute_faithfulness(answer: str, contexts: list) -> float:
-    """异步计算 Faithfulness 分数"""
-    result = await faithfulness_metric.ascore(
-        response=answer,
-        retrieved_contexts=contexts,
+    """异步计算 Faithfulness 分数（简化版）"""
+    from ragas.metrics import faithfulness as faithfulness_metric
+    from ragas.llms import LangchainLLMWrapper
+    from langchain_openai import ChatOpenAI
+
+    eval_llm = LangchainLLMWrapper(ChatOpenAI(model="gpt-4o-mini", temperature=0))
+
+    # 构造单条评估数据
+    single_eval = Dataset.from_dict({
+        "answer": [answer],
+        "contexts": [contexts],
+    })
+
+    score = await faithfulness_metric.ascore(
+        row={"answer": answer, "contexts": contexts},
+        llm=eval_llm,
     )
-    return result.value  # v0.4 返回 ScoreResult 对象，通过 .value 取值
+    return score
 
 @observe(name="monitored-rag")
 async def monitored_rag(query: str) -> dict:
@@ -432,8 +401,8 @@ async def monitored_rag(query: str) -> dict:
     faithfulness_score = await compute_faithfulness(answer, [d["text"] for d in docs])
 
     # 上报分数到 LangFuse
-    client.score(
-        trace_id=client.get_current_trace_id(),
+    langfuse.score(
+        trace_id=langfuse_context.get_current_trace_id(),
         name="faithfulness",
         value=faithfulness_score,
     )
