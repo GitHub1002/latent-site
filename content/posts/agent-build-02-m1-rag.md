@@ -4,7 +4,7 @@ date: 2026-07-17
 draft: false
 weight: 620
 tags: ["Agent", "RAG", "ChromaDB", "Qwen", "FastAPI", "LangChain", "实战", "系列二"]
-summary: "系列二第二篇实战：把公司散落的 PDF/Word 制度文档，经 解析→切分→Embedding(text-embedding-v3)→ChromaDB→检索→封装成工具 全链路接到 /chat。Agent 会自己决定"调不调工具"。记录一个真实踩坑：OpenAIEmbeddings 默认去下载 tiktoken 编码表导致受限网络下 SSL 报错。"
+summary: "系列二第二篇实战：把公司散落的 PDF/Word 制度文档，经 解析→切分→Embedding(text-embedding-v3)→ChromaDB→检索→封装成工具 全链路接到 /chat。Agent 会自己决定“调不调工具”。记录一个真实踩坑：OpenAIEmbeddings 默认去下载 tiktoken 编码表导致受限网络下 SSL 报错。"
 ShowToc: true
 ---
 [上篇 M0·搭地基](/posts/agent-build-01-m0-foundation/) 里，我们让 Agent 能收一句话、调 Qwen 回一句话。但那是个"盲答"的 Agent——它**只看你问了什么，不认识你公司的任何文档**。
