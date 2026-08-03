@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 1060" font-family="'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#444"/>
+    </marker>
+    <marker id="arrowB" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#c0392b"/>
+    </marker>
+    <marker id="arrowC" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#1f6f8b"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="720" height="1060" fill="#fbfaf7"/>
+
+  <!-- Title -->
+  <text x="360" y="38" text-anchor="middle" font-size="22" font-weight="700" fill="#222">nanobot 核心引擎：一次请求的生命周期</text>
+  <text x="360" y="58" text-anchor="middle" font-size="13" fill="#777">AgentLoop（产品层）与 AgentRunner（引擎层）的分工与咬合</text>
+
+  <!-- ===================== OUTER ZONE: AgentLoop ===================== -->
+  <rect x="24" y="80" width="320" height="900" rx="16" fill="#fff6ef" stroke="#e08e4b" stroke-width="2.5"/>
+  <text x="44" y="106" font-size="15" font-weight="700" fill="#b5641b">产品层 · AgentLoop（loop.py）</text>
+  <text x="44" y="124" font-size="11" fill="#9a7b5c">面向「一回合」：会话·权限·装配·持久化·流式</text>
+
+  <g font-size="13" fill="#3a2a1a">
+    <!-- run() -->
+    <rect x="52" y="140" width="264" height="42" rx="9" fill="#ffe9d6" stroke="#e08e4b"/>
+    <text x="64" y="166">run()  ← 从 MessageBus 消费 InboundMessage</text>
+
+    <!-- _dispatch -->
+    <rect x="52" y="200" width="264" height="54" rx="9" fill="#ffe9d6" stroke="#e08e4b"/>
+    <text x="64" y="222">_dispatch(msg)</text>
+    <text x="64" y="241" font-size="11" fill="#7a5631">按 session_key 加锁 · 同会话串行</text>
+    <text x="64" y="255" font-size="11" fill="#7a5631">pending_queue 接收中途注入</text>
+
+    <!-- _process_message staging -->
+    <rect x="52" y="270" width="264" height="78" rx="9" fill="#ffe9d6" stroke="#e08e4b"/>
+    <text x="64" y="292">_process_message → staging 流水线</text>
+    <text x="64" y="311" font-size="11" fill="#7a5631">restore → compact → command</text>
+    <text x="64" y="328" font-size="11" fill="#7a5631">→ build → run → save → respond</text>
+
+    <!-- _build_turn -->
+    <rect x="52" y="362" width="264" height="78" rx="9" fill="#ffe9d6" stroke="#e08e4b"/>
+    <text x="64" y="384">_build_turn（BUILD 阶段）</text>
+    <text x="64" y="403" font-size="11" fill="#7a5631">取历史 + 记忆 + 运行时上下文</text>
+    <text x="64" y="420" font-size="11" fill="#7a5631">续接 provider_state → initial_messages</text>
+
+    <!-- _run_turn -->
+    <rect x="52" y="454" width="264" height="38" rx="9" fill="#ffe9d6" stroke="#e08e4b"/>
+    <text x="64" y="478">_run_turn → 调用 _run_agent_loop</text>
+
+    <!-- _run_agent_loop (ContextVar injection) -->
+    <rect x="52" y="508" width="264" height="120" rx="9" fill="#ffdcc0" stroke="#d2691e" stroke-width="2"/>
+    <text x="64" y="530" font-weight="700" fill="#a8430d">_run_agent_loop（桥梁）</text>
+    <text x="64" y="549" font-size="11" fill="#7a3a12">注入 ContextVar（权限红线）：</text>
+    <text x="64" y="566" font-size="11" fill="#7a3a12">· bind_request_context（身份/workspace）</text>
+    <text x="64" y="583" font-size="11" fill="#7a3a12">· bind_workspace_scope</text>
+    <text x="64" y="600" font-size="11" fill="#7a3a12">· bind_file_states</text>
+    <text x="64" y="618" font-size="11" fill="#7a3a12">构造 AgentRunSpec → runner.run()</text>
+  </g>
+
+  <!-- connector down inside outer zone -->
+  <line x1="184" y1="182" x2="184" y2="200" stroke="#e08e4b" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="184" y1="254" x2="184" y2="270" stroke="#e08e4b" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="184" y1="348" x2="184" y2="362" stroke="#e08e4b" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="184" y1="440" x2="184" y2="454" stroke="#e08e4b" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="184" y1="492" x2="184" y2="508" stroke="#d2691e" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- ===================== BOUNDARY ===================== -->
+  <line x1="24" y1="660" x2="696" y2="660" stroke="#999" stroke-width="2" stroke-dasharray="8 6"/>
+  <rect x="276" y="648" width="168" height="26" rx="13" fill="#fff" stroke="#999"/>
+  <text x="360" y="666" text-anchor="middle" font-size="12" fill="#555">引擎边界 · AgentRunSpec</text>
+
+  <!-- ===================== INNER ZONE: AgentRunner ===================== -->
+  <rect x="376" y="80" width="320" height="900" rx="16" fill="#eef7fb" stroke="#2f8fb0" stroke-width="2.5"/>
+  <text x="396" y="106" font-size="15" font-weight="700" fill="#1f6f8b">引擎层 · AgentRunner（runner.py）</text>
+  <text x="396" y="124" font-size="11" fill="#4f8095">纯模型循环：调 LLM · 执行工具 · 重试压缩</text>
+
+  <g font-size="13" fill="#10303a">
+    <!-- run() -->
+    <rect x="404" y="140" width="264" height="42" rx="9" fill="#d6ecf5" stroke="#2f8fb0"/>
+    <text x="416" y="166">run()  ← hook 壳（before/after/error）</text>
+
+    <!-- _run_core big loop -->
+    <rect x="404" y="200" width="264" height="430" rx="12" fill="#cfe8f3" stroke="#2f8fb0" stroke-width="2"/>
+    <text x="416" y="224" font-weight="700" fill="#155f76">_run_core（for iteration in N）</text>
+
+    <rect x="420" y="236" width="232" height="40" rx="8" fill="#e6f4fa" stroke="#5aa9c4"/>
+    <text x="432" y="260" font-size="12">① ContextGovernor.prepare_for_model</text>
+    <text x="432" y="274" font-size="10.5" fill="#3f6f80">历史裁剪 / 工具结果压缩</text>
+
+    <rect x="420" y="286" width="232" height="56" rx="8" fill="#e6f4fa" stroke="#5aa9c4"/>
+    <text x="432" y="308" font-size="12">② _request_model（调 LLM）</text>
+    <text x="432" y="324" font-size="10.5" fill="#3f6f80">流式 / 超时 / 畸形 tool_call 重试</text>
+
+    <rect x="420" y="352" width="232" height="56" rx="8" fill="#e6f4fa" stroke="#5aa9c4"/>
+    <text x="432" y="374" font-size="12">③ should_execute_tools?</text>
+    <text x="432" y="390" font-size="10.5" fill="#3f6f80">_execute_tools → _run_tool</text>
+    <text x="432" y="403" font-size="10.5" fill="#3f6f80">并发 + SSRF/workspace 安全分类</text>
+
+    <rect x="420" y="418" width="232" height="56" rx="8" fill="#e6f4fa" stroke="#5aa9c4"/>
+    <text x="432" y="440" font-size="12">④ 收尾分支（无工具时）</text>
+    <text x="432" y="456" font-size="10.5" fill="#3f6f80">空响应重试 / length 恢复</text>
+    <text x="432" y="469" font-size="10.5" fill="#3f6f80">error 兜底 / 中途注入检查</text>
+
+    <rect x="420" y="484" width="232" height="56" rx="8" fill="#e6f4fa" stroke="#5aa9c4"/>
+    <text x="432" y="506" font-size="12">⑤ 注入检查 _try_drain_injections</text>
+    <text x="432" y="522" font-size="10.5" fill="#3f6f80">有中途消息 / 持续目标 → continue</text>
+    <text x="432" y="535" font-size="10.5" fill="#3f6f80">否则 break 结束回合</text>
+
+    <rect x="420" y="550" width="232" height="40" rx="8" fill="#d2f0dd" stroke="#3a9d6e"/>
+    <text x="432" y="574" font-size="12">→ AgentRunResult</text>
+    <text x="432" y="587" font-size="10.5" fill="#2f7d56">final_content / messages / usage</text>
+
+    <!-- inner loop arrow: tools -> model -->
+    <path d="M540,408 C620,408 620,330 552,330" fill="none" stroke="#1f6f8b" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arrowC)"/>
+    <text x="612" y="372" font-size="10" fill="#1f6f8b" text-anchor="middle">工具结果</text>
+    <text x="612" y="386" font-size="10" fill="#1f6f8b" text-anchor="middle">回到模型</text>
+  </g>
+
+  <!-- connector down inside inner zone -->
+  <line x1="536" y1="182" x2="536" y2="200" stroke="#2f8fb0" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="536" y1="630" x2="536" y2="648" stroke="#2f8fb0" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- ===================== CROSS BOUNDARY ARROW ===================== -->
+  <path d="M316,568 C360,610 360,630 376,648" fill="none" stroke="#444" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="346" y="632" font-size="10" fill="#444" text-anchor="middle">AgentRunSpec</text>
+
+  <path d="M668,700 C700,740 700,760 668,800" fill="none" stroke="#444" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <path d="M404,700 C372,740 372,760 404,800" fill="none" stroke="#444" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="360" y="772" font-size="10" fill="#444" text-anchor="middle">AgentRunResult</text>
+
+  <!-- ===================== STREAMING BACK ===================== -->
+  <path d="M316,560 C500,560 640,300 640,150" fill="none" stroke="#c0392b" stroke-width="2.5" stroke-dasharray="6 4" marker-end="url(#arrowB)"/>
+  <rect x="556" y="116" width="148" height="40" rx="9" fill="#fde8e6" stroke="#c0392b"/>
+  <text x="630" y="140" text-anchor="middle" font-size="12" font-weight="700" fill="#a5271d">通道回显</text>
+  <text x="630" y="153" text-anchor="middle" font-size="10" fill="#a5271d">TurnDelivery.on_stream</text>
+
+  <!-- ===================== LEGEND ===================== -->
+  <rect x="24" y="1004" width="672" height="44" rx="10" fill="#fff" stroke="#ccc"/>
+  <circle cx="48" cy="1026" r="6" fill="#e08e4b"/>
+  <text x="62" y="1030" font-size="11" fill="#555">AgentLoop 产品层</text>
+  <circle cx="200" cy="1026" r="6" fill="#2f8fb0"/>
+  <text x="214" y="1030" font-size="11" fill="#555">AgentRunner 引擎层</text>
+  <line x1="350" y1="1026" x2="370" y2="1026" stroke="#c0392b" stroke-width="2.5" stroke-dasharray="6 4" marker-end="url(#arrowB)"/>
+  <text x="378" y="1030" font-size="11" fill="#555">流式增量回传</text>
+  <line x1="500" y1="1026" x2="520" y2="1026" stroke="#444" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="528" y="1030" font-size="11" fill="#555">Spec / Result 跨边界</text>
+</svg>
