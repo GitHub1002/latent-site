@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 640" font-family="'PingFang SC','Microsoft YaHei',sans-serif">
+  <!-- 背景 -->
+  <rect width="920" height="640" fill="#fbf7ed"/>
+  <rect x="14" y="14" width="892" height="612" rx="14" fill="none" stroke="#e3d9c2" stroke-width="2" stroke-dasharray="6 6"/>
+
+  <!-- 标题 -->
+  <text x="460" y="48" text-anchor="middle" font-size="22" font-weight="700" fill="#2b2620">nanobot 上下文工程：装配一次 · 治理每轮 · 真相与视图分离</text>
+  <text x="460" y="72" text-anchor="middle" font-size="12.5" fill="#8a7f6b">ContextBuilder（拼剧本） vs ContextGovernor（修剧本），消息从通道到模型的完整流向</text>
+
+  <!-- 左：BUILD 区 -->
+  <g>
+    <rect x="40" y="100" width="360" height="150" rx="12" fill="#eaf3ff" stroke="#7fb3e6" stroke-width="1.6"/>
+    <text x="220" y="124" text-anchor="middle" font-size="14.5" font-weight="700" fill="#1f5fa8">① BUILD（turn 开始，只跑一次）</text>
+    <text x="58" y="148" font-size="12" fill="#33414f">ContextBuilder.build_messages（context.py:206）</text>
+    <text x="58" y="170" font-size="11.5" fill="#4a5560">├ system: 身份+记忆+技能+最近50条</text>
+    <text x="58" y="188" font-size="11.5" fill="#4a5560">├ history: 会话历史（SessionStore）</text>
+    <text x="58" y="206" font-size="11.5" fill="#4a5560">└ 当前轮: 文本+图片base64+运行时ctx</text>
+    <text x="58" y="230" font-size="11.5" fill="#1f5fa8">→ 产出 initial_messages（SDK 不存）</text>
+  </g>
+
+  <!-- 中：持久化 messages 桶 -->
+  <g>
+    <rect x="430" y="100" width="170" height="150" rx="12" fill="#fff4e0" stroke="#e6a23c" stroke-width="1.8"/>
+    <text x="515" y="126" text-anchor="middle" font-size="13.5" font-weight="700" fill="#a86a12">持久化 messages</text>
+    <text x="515" y="146" text-anchor="middle" font-size="11" fill="#8a6a2a">（真相源 / SessionStore）</text>
+    <text x="515" y="172" text-anchor="middle" font-size="11" fill="#4a5560">system · user</text>
+    <text x="515" y="192" text-anchor="middle" font-size="11" fill="#4a5560">assistant+tool_calls</text>
+    <text x="515" y="212" text-anchor="middle" font-size="11" fill="#4a5560">tool 结果（含落盘引用）</text>
+    <text x="515" y="234" text-anchor="middle" font-size="10.5" fill="#a86a12">只 append，从不被治理改</text>
+  </g>
+
+  <!-- 右：GOVERN 每轮 -->
+  <g>
+    <rect x="640" y="100" width="252" height="150" rx="12" fill="#eafaf0" stroke="#5cb87a" stroke-width="1.6"/>
+    <text x="766" y="124" text-anchor="middle" font-size="14" font-weight="700" fill="#2e8b57">② GOVERN（每轮迭代）</text>
+    <text x="766" y="144" text-anchor="middle" font-size="11" fill="#4a5560">ContextGovernor.prepare_for_model</text>
+    <text x="658" y="166" font-size="11" fill="#33414f">9 步流水线：</text>
+    <text x="658" y="184" font-size="10.8" fill="#4a5560">剥占位符 · 剔畸形tool_call</text>
+    <text x="658" y="200" font-size="10.8" fill="#4a5560">丢孤儿/补缺失结果</text>
+    <text x="658" y="216" font-size="10.8" fill="#4a5560">工具结果预算+落盘</text>
+    <text x="658" y="232" font-size="10.8" fill="#4a5560">在飞压缩 · 历史裁剪</text>
+  </g>
+
+  <!-- 箭头 BUILD -> messages -->
+  <path d="M256 250 L500 250" fill="none" stroke="#c9b27a" stroke-width="2.2" marker-end="url(#arrow)"/>
+  <text x="370" y="242" text-anchor="middle" font-size="10.5" fill="#8a7f6b">作为初始内容</text>
+
+  <!-- 循环：messages -> govern -> model -> 工具 -> messages -->
+  <path d="M600 175 C610 250 540 250 515 250" fill="none" stroke="#5cb87a" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="572" y="244" text-anchor="middle" font-size="10" fill="#2e8b57">读副本治理</text>
+
+  <path d="M892 175 C905 250 800 250 766 250" fill="none" stroke="#5cb87a" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="852" y="244" text-anchor="middle" font-size="10" fill="#2e8b57">产出 模型视图</text>
+
+  <!-- model 框 -->
+  <g>
+    <rect x="640" y="280" width="252" height="60" rx="10" fill="#2e8b57" />
+    <text x="766" y="306" text-anchor="middle" font-size="13.5" font-weight="700" fill="#fff">LLM 模型调用</text>
+    <text x="766" y="326" text-anchor="middle" font-size="10.5" fill="#d8f5e3">messages_for_model（修整版视图）</text>
+  </g>
+
+  <path d="M766 340 L766 372" fill="none" stroke="#2e8b57" stroke-width="2.2" marker-end="url(#arrow)"/>
+  <text x="776" y="364" text-anchor="start" font-size="10" fill="#2e8b57">有 tool_calls？</text>
+
+  <!-- 工具执行 -->
+  <g>
+    <rect x="612" y="378" width="308" height="46" rx="10" fill="#fde8e8" stroke="#e06b6b" stroke-width="1.6"/>
+    <text x="766" y="400" text-anchor="middle" font-size="12.5" font-weight="700" fill="#b23b3b">执行工具 + normalize_tool_result（runner.py:562）</text>
+    <text x="766" y="416" text-anchor="middle" font-size="10" fill="#8a4040">超长→落盘 · 空→补提示 · read_file 豁免</text>
+  </g>
+
+  <!-- 工具结果回写 messages -->
+  <path d="M766 424 C766 460 600 470 515 430" fill="none" stroke="#e6a23c" stroke-width="2.2" marker-end="url(#arrow)"/>
+  <text x="620" y="470" text-anchor="middle" font-size="10.5" fill="#a86a12">append 回 持久化 messages（真相）</text>
+
+  <!-- 下一轮 -->
+  <path d="M515 250 C450 250 450 250 430 250" fill="none" stroke="#c9b27a" stroke-width="1.6" stroke-dasharray="4 4" marker-end="url(#arrow)"/>
+  <text x="455" y="240" text-anchor="middle" font-size="9.5" fill="#8a7f6b">下一轮迭代</text>
+
+  <!-- 底部三要点 -->
+  <g>
+    <rect x="40" y="500" width="270" height="96" rx="10" fill="#fff" stroke="#e3d9c2" stroke-width="1.4"/>
+    <text x="58" y="522" font-size="12" font-weight="700" fill="#2b2620">① 装配一次</text>
+    <text x="58" y="544" font-size="10.8" fill="#5a5346">BUILD 只在 turn 开始拼 initial_messages，</text>
+    <text x="58" y="560" font-size="10.8" fill="#5a5346">含 system/history/当前轮，持久化不存它。</text>
+    <text x="58" y="580" font-size="10.8" fill="#5a5346">图片→base64，运行时ctx注入当前轮。</text>
+
+    <rect x="325" y="500" width="270" height="96" rx="10" fill="#fff" stroke="#e3d9c2" stroke-width="1.4"/>
+    <text x="343" y="522" font-size="12" font-weight="700" fill="#2b2620">② 治理每轮</text>
+    <text x="343" y="544" font-size="10.8" fill="#5a5346">GOVERN 每轮对 messages 修整产出视图：</text>
+    <text x="343" y="560" font-size="10.8" fill="#5a5346">自愈畸形/孤儿、落盘超大结果、</text>
+    <text x="343" y="580" font-size="10.8" fill="#5a5346">在飞压缩、超预算再硬裁剪历史。</text>
+
+    <rect x="610" y="500" width="270" height="96" rx="10" fill="#fff" stroke="#e3d9c2" stroke-width="1.4"/>
+    <text x="628" y="522" font-size="12" font-weight="700" fill="#2b2620">③ 真相与视图分离</text>
+    <text x="628" y="544" font-size="10.8" fill="#5a5346">持久化 messages 永不被治理改；</text>
+    <text x="628" y="560" font-size="10.8" fill="#5a5346">模型看到的修整版不写回磁盘，</text>
+    <text x="628" y="580" font-size="10.8" fill="#5a5346">避免合成内容污染真实记录。</text>
+  </g>
+
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 z" fill="#8a7f6b"/>
+    </marker>
+  </defs>
+</svg>
