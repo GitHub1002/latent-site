@@ -1,7 +1,7 @@
 ---
 title: "系列三 · 00 | 开篇:把企业知识助手送上生产级"
 date: 2026-07-28
-draft: true
+draft: false
 weight: 700
 tags:
   - agent

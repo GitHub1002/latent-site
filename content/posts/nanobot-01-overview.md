@@ -1,7 +1,7 @@
 ---
 title: "nanobot 源码解读 · 01 | 开篇：定位、架构、跑起来与目录导览"
 date: 2026-08-03
-draft: true
+draft: false
 weight: 801
 tags: ["nanobot", "源码解读", "Agent框架", "架构"]
 summary: "从定位、整体架构、三种运行入口到完整目录导览，把 nanobot 这个开源个人 AI Agent 框架的全貌摊开。重点讲清 AgentLoop 与 AgentRunner 的分工，它是理解整个项目源码的钥匙。"

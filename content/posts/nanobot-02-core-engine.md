@@ -1,7 +1,7 @@
 ---
 title: "nanobot 源码解读 · 02 | 核心引擎：AgentLoop 与 AgentRunner 的分工"
 date: 2026-08-03
-draft: true
+draft: false
 weight: 802
 tags: ["nanobot", "源码解读", "Agent框架", "核心引擎"]
 summary: "逐函数拆解 nanobot 的两个核心引擎：AgentLoop（面向通道的一回合编排，负责会话、权限、持久化、流式投递）与 AgentRunner（纯模型循环，负责调 LLM、执行工具、重试与上下文治理）。本文把『一条消息从通道进来、到答案流出去』的完整链路讲透，并点明权限红线与安全边界落在哪一层。"

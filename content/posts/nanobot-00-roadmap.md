@@ -1,7 +1,7 @@
 ---
 title: "nanobot 源码解读 · 00 | 路线图：我们要读完一个怎样的框架"
 date: 2026-08-03
-draft: true
+draft: false
 weight: 800
 tags: ["nanobot", "源码解读", "Agent框架"]
 summary: "本文是 nanobot 源码解读系列的路线图。先交代这个开源个人 AI Agent 框架的定位、整体架构与目录结构，并列出后续 9 篇的选题与对应核心源码文件，方便按顺序阅读。"
