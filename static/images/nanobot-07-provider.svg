@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" font-family="'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#555"/>
+    </marker>
+    <style>
+      .box { fill:#fff; stroke:#333; stroke-width:2; rx:12; }
+      .t { font-size:13px; font-weight:700; fill:#222; }
+      .s { font-size:11px; fill:#555; }
+      .cap { font-size:12.5px; font-weight:700; fill:#333; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="800" height="560" fill="#faf8f3"/>
+
+  <!-- 标题 -->
+  <text x="400" y="34" text-anchor="middle" font-size="18" font-weight="800" fill="#2b2b2b">nanobot 07 · 一次模型请求的 Provider 路由</text>
+
+  <!-- 引擎 -->
+  <rect x="40" y="70" width="150" height="56" rx="12" fill="#eef3fb" stroke="#3b6fb0" stroke-width="2"/>
+  <text x="115" y="95" text-anchor="middle" class="t">AgentRunner</text>
+  <text x="115" y="113" text-anchor="middle" class="s">_request_model</text>
+
+  <!-- FallbackProvider -->
+  <rect x="250" y="70" width="170" height="56" rx="12" fill="#fdf1e3" stroke="#c8881f" stroke-width="2"/>
+  <text x="335" y="92" text-anchor="middle" class="t">FallbackProvider</text>
+  <text x="335" y="110" text-anchor="middle" class="s">_try_with_fallback</text>
+
+  <!-- 主 Provider -->
+  <rect x="470" y="50" width="180" height="52" rx="12" fill="#eaf6ec" stroke="#3a9d54" stroke-width="2"/>
+  <text x="560" y="71" text-anchor="middle" class="t">主 OpenAICompat</text>
+  <text x="560" y="89" text-anchor="middle" class="s">chat_stream</text>
+
+  <!-- 降级 Provider -->
+  <rect x="470" y="118" width="180" height="52" rx="12" fill="#fdecec" stroke="#c0504d" stroke-width="2"/>
+  <text x="560" y="139" text-anchor="middle" class="t">降级 Provider(s)</text>
+  <text x="560" y="157" text-anchor="middle" class="s">依次尝试</text>
+
+  <!-- 熔断器 -->
+  <ellipse cx="335" cy="160" rx="58" ry="22" fill="#fff" stroke="#888" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="335" y="156" text-anchor="middle" class="s">熔断器计数</text>
+  <text x="335" y="171" text-anchor="middle" class="s">连续失败→开</text>
+
+  <!-- base 重试层 -->
+  <rect x="250" y="220" width="400" height="48" rx="12" fill="#f3eefb" stroke="#7a4fb0" stroke-width="2"/>
+  <text x="450" y="242" text-anchor="middle" class="t">base.py · LLMProvider._run_with_retry</text>
+  <text x="450" y="260" text-anchor="middle" class="s">瞬态错误退避/Retry-After 重试 · 含图则去图重试 · 流式续接</text>
+
+  <!-- _build_kwargs -->
+  <rect x="70" y="300" width="240" height="54" rx="12" fill="#fff7e6" stroke="#c8881f" stroke-width="2"/>
+  <text x="190" y="322" text-anchor="middle" class="t">_build_kwargs</text>
+  <text x="190" y="340" text-anchor="middle" class="s">按 ProviderSpec 裁剪参数</text>
+
+  <!-- registry 表 -->
+  <rect x="70" y="380" width="240" height="60" rx="12" fill="#eef3fb" stroke="#3b6fb0" stroke-width="2"/>
+  <text x="190" y="404" text-anchor="middle" class="t">registry.PROVIDERS</text>
+  <text x="190" y="422" text-anchor="middle" class="s">唯一真相源</text>
+  <text x="190" y="437" text-anchor="middle" class="s">(backend/keywords/strip/...</text>
+
+  <!-- OpenAI client -->
+  <rect x="470" y="300" width="260" height="54" rx="12" fill="#eaf6ec" stroke="#3a9d54" stroke-width="2"/>
+  <text x="600" y="322" text-anchor="middle" class="t">_ensure_client → AsyncOpenAI</text>
+  <text x="600" y="340" text-anchor="middle" class="s">懒加载 · max_retries=0</text>
+
+  <!-- 远端模型 -->
+  <rect x="470" y="390" width="260" height="50" rx="12" fill="#f0f0f0" stroke="#777" stroke-width="2"/>
+  <text x="600" y="412" text-anchor="middle" class="t">真实模型 API</text>
+  <text x="600" y="430" text-anchor="middle" class="s">OpenAI/Anthropic/网关/本地…</text>
+
+  <!-- 解析返回 -->
+  <rect x="70" y="470" width="660" height="48" rx="12" fill="#fdf1e3" stroke="#c8881f" stroke-width="2"/>
+  <text x="400" y="492" text-anchor="middle" class="t">_parse_chunks → 统一 LLMResponse</text>
+  <text x="400" y="510" text-anchor="middle" class="s">finish_reason / error_kind / tool_calls / usage —— 引擎只认这一个结构</text>
+
+  <!-- 连线 -->
+  <line x1="190" y1="126" x2="250" y2="98" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="420" y1="98" x2="470" y2="76" stroke="#3a9d54" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="420" y1="98" x2="470" y2="144" stroke="#c0504d" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="335" y1="126" x2="335" y2="138" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="335" y1="182" x2="335" y2="220" stroke="#7a4fb0" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="560" y1="170" x2="560" y2="220" stroke="#7a4fb0" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="335" y1="268" x2="190" y2="300" stroke="#c8881f" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="190" y1="354" x2="190" y2="380" stroke="#3b6fb0" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="335" y1="268" x2="600" y2="300" stroke="#3a9d54" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="730" y1="327" x2="730" y2="390" stroke="#777" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="190" y1="434" x2="400" y2="470" stroke="#c8881f" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="600" y1="440" x2="500" y2="470" stroke="#c8881f" stroke-width="2" marker-end="url(#arrow)"/>
+</svg>
