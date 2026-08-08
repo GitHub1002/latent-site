@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 600" font-family="'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif">
+  <!-- 纸张背景 -->
+  <rect x="0" y="0" width="920" height="600" fill="#fffdf5"/>
+  <rect x="10" y="10" width="900" height="580" rx="14" fill="none" stroke="#d9d2bf" stroke-width="2" stroke-dasharray="2 6"/>
+
+  <!-- 标题 -->
+  <text x="460" y="46" text-anchor="middle" font-size="22" font-weight="700" fill="#2b2b2b">nanobot 的记忆与状态：双系统</text>
+  <text x="460" y="70" text-anchor="middle" font-size="13" fill="#7a7060">会话内压缩（保住窗口）  ×  跨会话长期记忆（Dream + git）</text>
+
+  <!-- 列标题 -->
+  <text x="230" y="108" text-anchor="middle" font-size="15" font-weight="700" fill="#1f6f5c">① 会话状态层（单会话内）</text>
+  <text x="690" y="108" text-anchor="middle" font-size="15" font-weight="700" fill="#9a5b29">② 长期记忆层（跨会话）</text>
+
+  <!-- ============ 左列：会话状态 ============ -->
+  <rect x="40" y="130" width="380" height="320" rx="12" fill="#f3faf7" stroke="#1f6f5c" stroke-width="2.5"/>
+  <text x="60" y="158" font-size="13" font-weight="700" fill="#155344">Session 对象</text>
+  <text x="60" y="178" font-size="12" fill="#3a3a3a">messages[last_consolidated:] = 活跃尾部</text>
+
+  <!-- AutoCompact -->
+  <rect x="60" y="195" width="340" height="58" rx="9" fill="#ffffff" stroke="#1f6f5c" stroke-width="2"/>
+  <text x="76" y="218" font-size="13" font-weight="700" fill="#155344">AutoCompact（空闲 TTL 主动压）</text>
+  <text x="76" y="238" font-size="11.5" fill="#555">后台扫描过期会话 → 摘要存 _last_summary</text>
+
+  <!-- Consolidator -->
+  <rect x="60" y="268" width="340" height="58" rx="9" fill="#ffffff" stroke="#1f6f5c" stroke-width="2"/>
+  <text x="76" y="291" font-size="13" font-weight="700" fill="#155344">Consolidator.archive（按 token 预算）</text>
+  <text x="76" y="311" font-size="11.5" fill="#555">切在 user 边界 → 摘要写 history.jsonl</text>
+
+  <!-- 注入系统提示 -->
+  <rect x="60" y="341" width="340" height="52" rx="9" fill="#eafaf1" stroke="#1f6f5c" stroke-width="2"/>
+  <text x="76" y="362" font-size="13" font-weight="700" fill="#155344">[Archived Context Summary]</text>
+  <text x="76" y="382" font-size="11.5" fill="#555">注入 system 提示，替代被压掉旧消息</text>
+
+  <!-- 游标标注 -->
+  <text x="60" y="425" font-size="11.5" fill="#777">↳ last_consolidated 游标只增不回退</text>
+  <text x="60" y="443" font-size="11.5" fill="#777">↳ LLM 失败 → raw_archive 原样落盘</text>
+
+  <!-- ============ 右列：长期记忆 ============ -->
+  <rect x="500" y="130" width="380" height="320" rx="12" fill="#fdf4ea" stroke="#9a5b29" stroke-width="2.5"/>
+  <text x="520" y="158" font-size="13" font-weight="700" fill="#7a3f12">history.jsonl（带游标追加日志）</text>
+  <text x="520" y="178" font-size="12" fill="#3a3a3a">每轮 append_history → Dream 原料堆</text>
+
+  <!-- Dream -->
+  <rect x="520" y="195" width="340" height="58" rx="9" fill="#ffffff" stroke="#9a5b29" stroke-width="2"/>
+  <text x="536" y="218" font-size="13" font-weight="700" fill="#7a3f12">Dream（/dream 或定时触发）</text>
+  <text x="536" y="238" font-size="11.5" fill="#555">读未消费 history + 当前记忆文件</text>
+
+  <!-- 三个文件 -->
+  <rect x="520" y="268" width="340" height="58" rx="9" fill="#ffffff" stroke="#9a5b29" stroke-width="2"/>
+  <text x="536" y="291" font-size="13" font-weight="700" fill="#7a3f12">改写 SOUL / USER / MEMORY.md</text>
+  <text x="536" y="311" font-size="11.5" fill="#555">工具白名单仅限这三个文件</text>
+
+  <!-- git 提交 -->
+  <rect x="520" y="341" width="340" height="52" rx="9" fill="#fbeede" stroke="#9a5b29" stroke-width="2"/>
+  <text x="536" y="362" font-size="13" font-weight="700" fill="#7a3f12">GitStore.auto_commit（真实 diff）</text>
+  <text x="536" y="382" font-size="11.5" fill="#555">成功才 set_last_dream_cursor 推进</text>
+
+  <text x="520" y="425" font-size="11.5" fill="#9a6b45">↳ 失败 → 游标不推进，下次重跑</text>
+  <text x="520" y="443" font-size="11.5" fill="#9a6b45">↳ 可 git revert 回滚误改</text>
+
+  <!-- ============ 底部消息流向 ============ -->
+  <line x1="430" y1="290" x2="500" y2="290" stroke="#888" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="465" y="282" text-anchor="middle" font-size="10.5" fill="#666">history.jsonl</text>
+
+  <text x="460" y="486" text-anchor="middle" font-size="13" font-weight="700" fill="#333">一次用户消息的完整流向</text>
+  <g font-size="10.5" font-weight="700" text-anchor="middle">
+    <rect x="60"  y="498" width="140" height="44" rx="9" fill="#eafaf1" stroke="#1f6f5c" stroke-width="2"/>
+    <rect x="222" y="498" width="140" height="44" rx="9" fill="#eafaf1" stroke="#1f6f5c" stroke-width="2"/>
+    <rect x="384" y="498" width="140" height="44" rx="9" fill="#eafaf1" stroke="#1f6f5c" stroke-width="2"/>
+    <rect x="546" y="498" width="140" height="44" rx="9" fill="#eafaf1" stroke="#1f6f5c" stroke-width="2"/>
+    <rect x="708" y="498" width="140" height="44" rx="9" fill="#eafaf1" stroke="#1f6f5c" stroke-width="2"/>
+    <text x="130" y="518" fill="#155344">compact</text>
+    <text x="130" y="533" font-weight="400" fill="#3a3a3a" font-size="9.5">注入旧摘要</text>
+    <text x="292" y="518" fill="#155344">build</text>
+    <text x="292" y="533" font-weight="400" fill="#3a3a3a" font-size="9.5">拼 system+history</text>
+    <text x="454" y="518" fill="#155344">run</text>
+    <text x="454" y="533" font-weight="400" fill="#3a3a3a" font-size="9.5">模型循环</text>
+    <text x="616" y="518" fill="#155344">save</text>
+    <text x="616" y="533" font-weight="400" fill="#3a3a3a" font-size="9.5">写 history.jsonl</text>
+    <text x="778" y="518" fill="#155344">respond</text>
+    <text x="778" y="533" font-weight="400" fill="#3a3a3a" font-size="9.5">回复用户</text>
+  </g>
+  <g stroke="#1f6f5c" stroke-width="2" marker-end="url(#arrow)">
+    <line x1="200" y1="520" x2="220" y2="520"/>
+    <line x1="362" y1="520" x2="382" y2="520"/>
+    <line x1="524" y1="520" x2="544" y2="520"/>
+    <line x1="686" y1="520" x2="706" y2="520"/>
+  </g>
+  <text x="460" y="572" text-anchor="middle" font-size="11.5" fill="#9a5b29">history.jsonl 未消费部分 → Dream 周期提炼 → 改写 SOUL/USER/MEMORY.md + git 提交（跨会话沉淀）</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#888"/>
+    </marker>
+  </defs>
+</svg>

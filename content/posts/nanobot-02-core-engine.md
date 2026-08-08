@@ -297,6 +297,8 @@ for iteration in range(spec.max_iterations):
 
 一句话：**`AgentLoop` 决定「你能不能、用什么身份做」，`AgentRunner` 决定「做的时候撞到安全墙怎么处理」**。
 
+![nanobot 核心引擎两层架构](/images/nanobot-02-core-engine.svg)
+
 ---
 
 ## 六、小结

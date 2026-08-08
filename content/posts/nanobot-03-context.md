@@ -27,21 +27,7 @@ ShowToc: true
 
 把两次请求之间的数据流画出来，是理解本篇的钥匙：
 
-```mermaid
-flowchart TD
-    A["通道来的一条用户消息<br/>+ media + runtime_context_blocks"] --> B["AgentLoop._build_initial_messages<br/>(loop.py:711)"]
-    B --> C["ContextBuilder.build_messages<br/>(context.py:206)"]
-    C --> D["① 拼 system prompt<br/>build_system_prompt (context.py:70)"]
-    C --> E["② 拼 history<br/>(会话历史，来自 SessionStore)"]
-    C --> F["③ 拼当前轮<br/>build_current_message (context.py:265)"]
-    D & E & F --> G["initial_messages<br/>(SDK 不存，只作这次请求的起点)"]
-    G --> H["AgentRunner._run_core 循环<br/>(runner.py:419)"]
-    H --> I["每一轮: ContextGovernor.prepare_for_model<br/>(context_governance.py:76)"]
-    I --> J["修干净+压小后的 messages_for_model"]
-    J --> K["_request_model 调 LLM"]
-    K --> L["工具结果 append 回 messages (持久化副本)"]
-    L -.下一轮.-> I
-```
+![nanobot 上下文工程消息流](/images/nanobot-03-context.svg)
 
 注意一个**关键设计**：`ContextBuilder` 只跑**一次**（在 turn 开始时，拼出"初始剧本"）；而 `ContextGovernor` 在模型循环的**每一轮**都跑（因为每轮工具调用后 `messages` 都变了，需要重新治理）。这就是为什么 `ContextGovernor` 的方法是 `@staticmethod` 且"只改副本、不动持久化历史"——它每轮都要对一个不断变长的列表做"廉价修复"。
 
