@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 560" font-family="'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#444"/>
+    </marker>
+    <style>
+      .box { fill:#fffdf7; stroke:#3a3a3a; stroke-width:2; rx:10; }
+      .soft { fill:#f3f7ff; stroke:#3a6ea5; }
+      .hard { fill:#fdecec; stroke:#b23b3b; }
+      .eng { fill:#f6f3ec; stroke:#555; }
+      .accent { fill:#fdf0d8; stroke:#9a5b29; }
+      .label { font-size:12px; fill:#333; }
+      .small { font-size:10.5px; fill:#666; }
+      .title { font-size:15px; font-weight:700; fill:#222; }
+    </style>
+  </defs>
+
+  <!-- 背景 -->
+  <rect x="0" y="0" width="820" height="560" fill="#fbf9f3"/>
+
+  <!-- 标题 -->
+  <text x="410" y="34" text-anchor="middle" class="title">一次工具调用的完整消息流向</text>
+  <text x="410" y="54" text-anchor="middle" class="small">runner._execute_tools → 并发分组 → _run_tool × N → 安全分类 → 回模型</text>
+
+  <!-- 模型 -->
+  <rect x="40" y="78" width="150" height="58" rx="12" class="accent"/>
+  <text x="115" y="104" text-anchor="middle" class="label">模型输出</text>
+  <text x="115" y="122" text-anchor="middle" class="small">tool_calls 列表</text>
+
+  <!-- 引擎入口 -->
+  <rect x="240" y="78" width="180" height="58" rx="12" class="eng"/>
+  <text x="330" y="102" text-anchor="middle" class="label">_execute_tools</text>
+  <text x="330" y="120" text-anchor="middle" class="small">runner.py:1556</text>
+
+  <!-- 并发分组 -->
+  <rect x="460" y="78" width="180" height="58" rx="12" class="eng"/>
+  <text x="550" y="102" text-anchor="middle" class="label">_partition_batches</text>
+  <text x="550" y="120" text-anchor="middle" class="small">safe 并行 / 其余串行</text>
+
+  <!-- 箭头 模型→引擎→分组 -->
+  <line x1="190" y1="107" x2="238" y2="107" stroke="#444" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="420" y1="107" x2="458" y2="107" stroke="#444" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- _run_tool 主框 -->
+  <rect x="240" y="170" width="400" height="250" rx="14" class="box" stroke-dasharray="5 4"/>
+  <text x="440" y="192" text-anchor="middle" class="label">_run_tool  (runner.py:1618)  —— 每个工具调用一次</text>
+
+  <!-- 步骤 1 -->
+  <rect x="270" y="204" width="340" height="36" rx="8" class="soft"/>
+  <text x="440" y="226" text-anchor="middle" class="small">① 重复外查拦截 (repeated_external_lookup)</text>
+
+  <!-- 步骤 2 -->
+  <rect x="270" y="248" width="340" height="36" rx="8" class="soft"/>
+  <text x="440" y="270" text-anchor="middle" class="small">② prepare_call: 解析 / cast / validate 参数</text>
+
+  <!-- 步骤 3 -->
+  <rect x="270" y="292" width="340" height="36" rx="8" class="accent"/>
+  <text x="440" y="314" text-anchor="middle" class="small">③ tool.execute: 进入具体工具实现</text>
+
+  <!-- 步骤 4: 安全边界 -->
+  <rect x="270" y="336" width="340" height="36" rx="8" class="hard"/>
+  <text x="440" y="358" text-anchor="middle" class="small">④ 工具内安全边界: SSRF / workspace 越界</text>
+
+  <!-- 步骤 5: 分类 -->
+  <rect x="270" y="380" width="340" height="30" rx="8" class="box"/>
+  <text x="440" y="400" text-anchor="middle" class="small">⑤ _classify_violation: 软边界(可重试) vs 硬边界(不可重试)</text>
+
+  <!-- 内部竖向箭头 -->
+  <line x1="440" y1="240" x2="440" y2="246" stroke="#666" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="440" y1="284" x2="440" y2="290" stroke="#666" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="440" y1="328" x2="440" y2="334" stroke="#666" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="440" y1="372" x2="440" y2="378" stroke="#666" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- 分组 → _run_tool -->
+  <line x1="550" y1="136" x2="440" y2="168" stroke="#444" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 三类工具（右侧） -->
+  <rect x="600" y="200" width="180" height="220" rx="12" class="eng"/>
+  <text x="690" y="222" text-anchor="middle" class="label">三类具体工具</text>
+  <rect x="616" y="234" width="148" height="46" rx="8" class="box"/>
+  <text x="690" y="252" text-anchor="middle" class="small">shell.py ExecTool</text>
+  <text x="690" y="268" text-anchor="middle" class="small">_guard_command 护栏</text>
+  <rect x="616" y="288" width="148" height="46" rx="8" class="box"/>
+  <text x="690" y="306" text-anchor="middle" class="small">filesystem.py</text>
+  <text x="690" y="322" text-anchor="middle" class="small">_resolve_read/write</text>
+  <rect x="616" y="342" width="148" height="46" rx="8" class="box"/>
+  <text x="690" y="360" text-anchor="middle" class="small">web.py WebFetch</text>
+  <text x="690" y="376" text-anchor="middle" class="small">SSRF 三道防线</text>
+
+  <!-- _run_tool 步骤3 → 具体工具 -->
+  <line x1="640" y1="310" x2="598" y2="310" stroke="#444" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 结果回模型 -->
+  <rect x="240" y="448" width="400" height="54" rx="12" class="accent"/>
+  <text x="440" y="470" text-anchor="middle" class="label">ToolMessage 回写 messages（持久化副本）</text>
+  <text x="440" y="488" text-anchor="middle" class="small">成功→结果文本；软错→hint 引导重试；硬错→明确告知用户别绕过</text>
+  <line x1="440" y1="420" x2="440" y2="446" stroke="#444" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 回环到模型 -->
+  <line x1="240" y1="475" x2="190" y2="475" stroke="#444" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M190,475 L190,136 L238,136" fill="none" stroke="#9a5b29" stroke-width="2" stroke-dasharray="4 4" marker-end="url(#arrow)"/>
+  <text x="200" y="300" class="small" fill="#9a5b29">下一轮循环</text>
+
+  <!-- 底部两层安全边界注释 -->
+  <rect x="40" y="448" width="180" height="84" rx="10" class="hard"/>
+  <text x="130" y="470" text-anchor="middle" class="label">两条安全边界</text>
+  <text x="130" y="490" text-anchor="middle" class="small">网络层: security/network.py (SSRF)</text>
+  <text x="130" y="508" text-anchor="middle" class="small">路径层: security/workspace_policy.py</text>
+  <text x="130" y="524" text-anchor="middle" class="small" fill="#b23b3b">应用层防护 ≠ OS 沙箱</text>
+</svg>
