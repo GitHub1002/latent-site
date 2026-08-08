@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 560" font-family="'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#555"/>
+    </marker>
+    <style>
+      .box { fill:#fffdf7; stroke:#444; stroke-width:2; rx:10; }
+      .t   { font-size:12.5px; fill:#222; }
+      .th  { font-size:13.5px; font-weight:700; fill:#1a1a1a; }
+      .cap { font-size:11px; fill:#777; }
+      .red { fill:#b23b3b; }
+      .blue{ fill:#2b6cb0; }
+      .grn { fill:#2f7d4f; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="680" height="560" fill="#fbf8f1"/>
+
+  <!-- 标题 -->
+  <text x="340" y="30" text-anchor="middle" font-size="17" font-weight="800" fill="#222">nanobot 06 · MCP 集成：消息流向</text>
+  <text x="340" y="48" text-anchor="middle" class="cap">MCP 工具 = 继承自 Tool 的远程来源，引擎对它无特殊待遇</text>
+
+  <!-- ===== 启动期建连 ===== -->
+  <rect x="24" y="64" width="320" height="178" rx="12" fill="#f3f7ff" stroke="#2b6cb0" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="184" y="84" text-anchor="middle" class="th blue">启动期 · 建连与注册</text>
+  <rect x="44" y="96" width="280" height="26" rx="6" class="box"/>
+  <text x="184" y="113" text-anchor="middle" class="t">config.mcpServers → _connect_mcp</text>
+  <line x1="184" y1="122" x2="184" y2="134" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="44" y="134" width="280" height="26" rx="6" class="box"/>
+  <text x="184" y="151" text-anchor="middle" class="t">open_single_server 建传输</text>
+  <text x="184" y="166" text-anchor="middle" class="cap">stdio / sse / streamableHttp</text>
+  <line x1="184" y1="160" x2="184" y2="172" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="44" y="172" width="280" height="22" rx="6" class="box"/>
+  <text x="184" y="187" text-anchor="middle" class="t">ClientSession.initialize() + list_tools()</text>
+  <line x1="184" y1="194" x2="184" y2="206" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="44" y="206" width="280" height="22" rx="6" class="box"/>
+  <text x="184" y="221" text-anchor="middle" class="t">逐个 MCPToolWrapper(继承 Tool)</text>
+  <line x1="184" y1="228" x2="184" y2="240" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="44" y="240" width="280" height="22" rx="6" fill="#eaf6ee" stroke="#2f7d4f" stroke-width="2"/>
+  <text x="184" y="255" text-anchor="middle" class="t grn">registry.register → 名字 mcp_{srv}_{tool}</text>
+
+  <!-- ===== 单次调用 ===== -->
+  <rect x="336" y="64" width="320" height="178" rx="12" fill="#fff8f3" stroke="#b27a2b" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="496" y="84" text-anchor="middle" class="th" fill="#9a5b29">一次用户消息 · 调用</text>
+  <rect x="356" y="96" width="280" height="22" rx="6" class="box"/>
+  <text x="496" y="111" text-anchor="middle" class="t">模型选 mcp_fs_read_file</text>
+  <line x1="496" y1="118" x2="496" y2="130" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="356" y="130" width="280" height="22" rx="6" class="box"/>
+  <text x="496" y="145" text-anchor="middle" class="t">runner._run_tool（05 篇机制）</text>
+  <text x="496" y="160" text-anchor="middle" class="cap">并发分组 · 安全分类 · 超时</text>
+  <line x1="496" y1="152" x2="496" y2="164" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="356" y="164" width="280" height="22" rx="6" class="box"/>
+  <text x="496" y="179" text-anchor="middle" class="t">wrapper.execute(**kwargs)</text>
+  <line x1="496" y1="186" x2="496" y2="198" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="356" y="198" width="280" height="22" rx="6" fill="#fdeaea" stroke="#b23b3b" stroke-width="2"/>
+  <text x="496" y="213" text-anchor="middle" class="t red">session.call_tool(原始名, 参数)</text>
+  <line x1="496" y1="220" x2="496" y2="232" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="356" y="232" width="280" height="22" rx="6" class="box"/>
+  <text x="496" y="247" text-anchor="middle" class="t">_render_call_result → ToolResult 回写</text>
+
+  <!-- 中间件：MCPToolWrapper 即 Tool -->
+  <rect x="24" y="262" width="632" height="40" rx="10" fill="#eef3ff" stroke="#2b6cb0" stroke-width="2"/>
+  <text x="340" y="280" text-anchor="middle" class="th blue">MCPToolWrapper 继承自 Tool —— 引擎对它毫无特殊分支</text>
+  <text x="340" y="296" text-anchor="middle" class="cap">name/description/parameters/execute 同套接口 · 复用 05 全部注册·并发·安全·结果回写</text>
+  <line x1="184" y1="242" x2="184" y2="262" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="496" y1="254" x2="496" y2="262" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 远端 Server -->
+  <rect x="492" y="300" width="160" height="120" rx="12" fill="#f4f0ff" stroke="#6b46c1" stroke-width="2"/>
+  <text x="572" y="322" text-anchor="middle" class="th" fill="#6b46c1">远端 MCP Server</text>
+  <text x="572" y="344" text-anchor="middle" class="t">stdio 子进程</text>
+  <text x="572" y="362" text-anchor="middle" class="t">或 HTTP 服务</text>
+  <text x="572" y="384" text-anchor="middle" class="cap">真正执行工具逻辑</text>
+  <text x="572" y="402" text-anchor="middle" class="cap">返回 文本/图片</text>
+  <line x1="496" y1="209" x2="492" y2="330" stroke="#b23b3b" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+  <line x1="492" y1="360" x2="356" y2="243" stroke="#2f7d4f" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+  <text x="430" y="320" text-anchor="middle" class="cap red">call_tool 走网络</text>
+  <text x="430" y="430" text-anchor="middle" class="cap grn">结果回传</text>
+
+  <!-- 韧性层 -->
+  <rect x="24" y="320" width="300" height="100" rx="12" fill="#fffaf0" stroke="#8a6d2f" stroke-width="2" stroke-dasharray="5 4"/>
+  <text x="174" y="340" text-anchor="middle" class="th" fill="#8a6d2f">韧性写在每一层</text>
+  <text x="40" y="362" class="t">• 启动期 TCP 探针：端口不通不进传输（防崩）</text>
+  <text x="40" y="382" class="t">• execute：超时 / 取消 / 瞬时错误退避重试</text>
+  <text x="40" y="402" class="t">• 会话终止 → 自动重连后重试（用户无感）</text>
+
+  <!-- 安全收口 -->
+  <rect x="24" y="436" width="300" height="98" rx="12" fill="#fef6f6" stroke="#b23b3b" stroke-width="2" stroke-dasharray="5 4"/>
+  <text x="174" y="456" text-anchor="middle" class="th red">安全在边界收口（复用 05）</text>
+  <text x="40" y="478" class="t">• HTTP URL：validate_url_target 黑名单（SSRF）</text>
+  <text x="40" y="498" class="t">• PinnedDNSAsyncTransport：钉死 DNS 防 rebinding</text>
+  <text x="40" y="518" class="t">• 重定向逐跳重验 · _redact_url 脱敏日志</text>
+
+  <!-- 热重载 -->
+  <rect x="356" y="436" width="300" height="98" rx="12" fill="#f1f8f4" stroke="#2f7d4f" stroke-width="2" stroke-dasharray="5 4"/>
+  <text x="506" y="456" text-anchor="middle" class="th grn">不重启即热重载</text>
+  <text x="372" y="478" class="t">• request_mcp_reload → 运行时控制消息</text>
+  <text x="372" y="498" class="t">• reload_servers 对比 current vs next</text>
+  <text x="372" y="518" class="t">• removed/added/changed → 注销·重建·重挂回调</text>
+
+  <line x1="184" y1="440" x2="184" y2="436" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="496" y1="440" x2="496" y2="436" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
+</svg>
