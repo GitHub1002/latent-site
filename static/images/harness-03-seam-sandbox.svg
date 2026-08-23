@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 500" font-family="'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif">
+  <defs>
+    <marker id="arrowC" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#1f6f8b"/></marker>
+    <marker id="arrowB" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#e08e4b"/></marker>
+  </defs>
+  <rect x="0" y="0" width="720" height="500" fill="#fbfaf7"/>
+  <text x="360" y="34" text-anchor="middle" font-size="21" font-weight="700" fill="#222">能力 seam 与统一沙箱世界</text>
+  <text x="360" y="54" text-anchor="middle" font-size="13" fill="#777">换一个 Provider（实现），Bash / PTY / LSP 一次性全部搬走</text>
+
+  <!-- SD/Provider/Consumer triangle -->
+  <g font-size="13" fill="#16282e">
+    <polygon points="200,90 360,90 280,170" fill="#eef7f9" stroke="#1f6f8b" stroke-width="2"/>
+    <text x="200" y="86" text-anchor="middle" font-weight="700" fill="#1f6f8b">SD 接口</text>
+    <text x="360" y="86" text-anchor="middle" font-weight="700" fill="#1f6f8b">Provider 实现</text>
+    <text x="280" y="192" text-anchor="middle" font-weight="700" fill="#1f6f8b">Consumer 消费方</text>
+    <text x="280" y="116" text-anchor="middle" font-size="11" fill="#5a8a99">能力 = 三角色</text>
+  </g>
+
+  <!-- hub -->
+  <rect x="276" y="220" width="200" height="74" rx="14" fill="#bfe3ec" stroke="#1f6f8b" stroke-width="2.5"/>
+  <text x="376" y="248" text-anchor="middle" font-size="14" font-weight="700" fill="#1f6f8b">沙箱模式 + 策略</text>
+  <text x="376" y="270" text-anchor="middle" font-size="11" fill="#3d6f7d">ctx.sandboxPolicy</text>
+  <text x="376" y="286" text-anchor="middle" font-size="10.5" fill="#3d6f7d">统一默认模式 + 工作区根</text>
+
+  <!-- surrounding nodes -->
+  <g font-size="12.5" fill="#3a2a1a">
+    <rect x="40"  y="232" width="150" height="46" rx="9" fill="#fff6ef" stroke="#e08e4b"/><text x="115" y="260" text-anchor="middle">ctx.fs</text>
+    <rect x="40"  y="360" width="150" height="46" rx="9" fill="#fff6ef" stroke="#e08e4b"/><text x="115" y="388" text-anchor="middle">ctx.subprocess</text>
+    <rect x="290" y="380" width="172" height="46" rx="9" fill="#fff6ef" stroke="#e08e4b"/><text x="376" y="408" text-anchor="middle">ctx.shell / terminals</text>
+    <rect x="540" y="232" width="150" height="46" rx="9" fill="#fff6ef" stroke="#e08e4b"/><text x="615" y="260" text-anchor="middle">ctx.lsp</text>
+    <rect x="540" y="360" width="150" height="46" rx="9" fill="#fff6ef" stroke="#e08e4b"/><text x="615" y="388" text-anchor="middle">ctx.sandbox</text>
+  </g>
+
+  <path d="M190,255 L276,257" stroke="#1f6f8b" stroke-width="2" marker-end="url(#arrowC)"/>
+  <path d="M190,383 L300,300" stroke="#1f6f8b" stroke-width="2" marker-end="url(#arrowC)"/>
+  <path d="M376,380 L376,294" stroke="#1f6f8b" stroke-width="2" marker-end="url(#arrowC)"/>
+  <path d="M540,255 L476,257" stroke="#1f6f8b" stroke-width="2" marker-end="url(#arrowC)"/>
+  <path d="M540,383 L470,300" stroke="#1f6f8b" stroke-width="2" marker-end="url(#arrowC)"/>
+
+  <!-- e2b side note -->
+  <rect x="40" y="430" width="640" height="46" rx="10" fill="#f0ece4" stroke="#bbb" stroke-width="1.5"/>
+  <text x="56" y="458" font-size="12.5" fill="#555">ctx.e2b 持有一个共享 SDK 句柄 + 远程工作目录 + 最终处置，使 fs-e2b 与 subprocess-e2b 处于<span fill="#b5641b" font-weight="700">同一 Linux 运行时</span>；</text>
+  <text x="56" y="472" font-size="12.5" fill="#555">而 sandboxPolicy 让 bash 与 fs 不会限制到不同的根目录——这就是「换一个 Provider，全部搬走」的底气。</text>
+</svg>

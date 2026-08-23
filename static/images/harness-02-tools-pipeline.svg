@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 640" font-family="'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif">
+  <defs>
+    <marker id="arrowB" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#e08e4b"/></marker>
+    <marker id="arrowC" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#1f6f8b"/></marker>
+  </defs>
+  <rect x="0" y="0" width="720" height="640" fill="#fbfaf7"/>
+  <text x="360" y="34" text-anchor="middle" font-size="21" font-weight="700" fill="#222">工具执行流水线：循环不变，把关全在流水线里</text>
+  <text x="360" y="54" text-anchor="middle" font-size="13" fill="#777">一次调用依次经过 策略前处理 → 单调守卫 → 环绕分派 → 策略后处理 → 结果观测</text>
+
+  <!-- MAIN FLOW -->
+  <g font-size="12.5" fill="#3a2a1a">
+    <rect x="40" y="78"  width="346" height="40" rx="9" fill="#ffe9d6" stroke="#e08e4b"/><text x="52" y="103">① 模型产出 tool-call 块</text>
+    <rect x="40" y="128" width="346" height="40" rx="9" fill="#fff0d8" stroke="#e08e4b"/><text x="52" y="153">② 记录 tool/call 事件（执行「前」即落盘）</text>
+    <rect x="40" y="178" width="346" height="40" rx="9" fill="#ffe9d6" stroke="#e08e4b"/><text x="52" y="203">③ tools/pre-execute 瀑布：钩子 · 权限 · 沙箱</text>
+    <rect x="40" y="228" width="346" height="40" rx="9" fill="#ffe9d6" stroke="#e08e4b"/><text x="52" y="253">④ 单调守卫：deny / abstain（身份受保护）</text>
+    <rect x="40" y="278" width="346" height="40" rx="9" fill="#ffe9d6" stroke="#e08e4b"/><text x="52" y="303">⑤ ctx.approval 一次性询问（不可用 → deny）</text>
+    <rect x="40" y="328" width="346" height="40" rx="9" fill="#ffe9d6" stroke="#e08e4b"/><text x="52" y="353">⑥ tools/execute 瀑布：超时 · 重试 · 指标</text>
+    <rect x="40" y="378" width="346" height="40" rx="9" fill="#ffe9d6" stroke="#e08e4b"/><text x="52" y="403">⑦ 工具本体 execute()</text>
+    <rect x="40" y="428" width="346" height="40" rx="9" fill="#ffe9d6" stroke="#e08e4b"/><text x="52" y="453">⑧ tools/post-execute 瀑布：接受/拦截/替换/补上下文</text>
+    <rect x="40" y="478" width="346" height="40" rx="9" fill="#ffe9d6" stroke="#e08e4b"/><text x="52" y="503">⑨ finalizeContent → tools/result（冻结权威结果）</text>
+    <rect x="40" y="528" width="346" height="40" rx="9" fill="#fff0d8" stroke="#e08e4b"/><text x="52" y="553">⑩ 记录 tool/result 事件（唯一面向模型的产出）</text>
+
+    <path d="M213,118 L213,128" stroke="#e08e4b" stroke-width="2" marker-end="url(#arrowB)"/>
+    <path d="M213,168 L213,178" stroke="#e08e4b" stroke-width="2" marker-end="url(#arrowB)"/>
+    <path d="M213,218 L213,228" stroke="#e08e4b" stroke-width="2" marker-end="url(#arrowB)"/>
+    <path d="M213,268 L213,278" stroke="#e08e4b" stroke-width="2" marker-end="url(#arrowB)"/>
+    <path d="M213,318 L213,328" stroke="#e08e4b" stroke-width="2" marker-end="url(#arrowB)"/>
+    <path d="M213,368 L213,378" stroke="#e08e4b" stroke-width="2" marker-end="url(#arrowB)"/>
+    <path d="M213,418 L213,428" stroke="#e08e4b" stroke-width="2" marker-end="url(#arrowB)"/>
+    <path d="M213,468 L213,478" stroke="#e08e4b" stroke-width="2" marker-end="url(#arrowB)"/>
+    <path d="M213,518 L213,528" stroke="#e08e4b" stroke-width="2" marker-end="url(#arrowB)"/>
+  </g>
+
+  <!-- INSET: concurrency -->
+  <rect x="410" y="78" width="282" height="490" rx="16" fill="#eef7f9" stroke="#1f6f8b" stroke-width="2.5"/>
+  <text x="430" y="104" font-size="15" font-weight="700" fill="#1f6f8b">并发调度：executeToolCalls</text>
+  <text x="430" y="122" font-size="11" fill="#5a8a99">一个批次里多工具如何编排</text>
+  <g font-size="12.5" fill="#16282e">
+    <rect x="430" y="138" width="242" height="56" rx="9" fill="#d7eef3" stroke="#1f6f8b"/><text x="442" y="160" font-weight="700">独占屏障 exclusive</text><text x="442" y="180" font-size="11" fill="#3d6f7d">遇到非 parallel 调用即开新屏障</text>
+    <rect x="430" y="204" width="242" height="56" rx="9" fill="#d7eef3" stroke="#1f6f8b"/><text x="442" y="226" font-weight="700">有界并行池</text><text x="442" y="246" font-size="11" fill="#3d6f7d">fillPool 维护 maxParallelToolCalls</text>
+    <rect x="430" y="270" width="242" height="56" rx="9" fill="#d7eef3" stroke="#1f6f8b"/><text x="442" y="292" font-weight="700">模型序提交 commitReady</text><text x="442" y="312" font-size="11" fill="#3d6f7d">只沿模型序连续提交就绪 slot</text>
+    <rect x="430" y="336" width="242" height="74" rx="9" fill="#bfe3ec" stroke="#1f6f8b" stroke-width="2"/><text x="442" y="358" font-weight="700">abort 语义</text><text x="442" y="378" font-size="11" fill="#3d6f7d">已开始 → 照常提交</text><text x="442" y="396" font-size="11" fill="#3d6f7d">未开始 → 合成 TOOL_ABORTED</text><text x="442" y="413" font-size="11" fill="#3d6f7d">_BEFORE_DISPATCH</text>
+    <rect x="430" y="420" width="242" height="54" rx="9" fill="#d7eef3" stroke="#1f6f8b"/><text x="442" y="442" font-weight="700">目的</text><text x="442" y="462" font-size="11" fill="#3d6f7d">让 replay 仍然有效</text>
+  </g>
+  <text x="551" y="560" text-anchor="middle" font-size="11" fill="#5a8a99">结果顺序 = 模型意图顺序</text>
+</svg>
