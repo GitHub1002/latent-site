@@ -14,9 +14,9 @@ ShowToc: true
 
 市面上讲 Agent 的教程大多停留在"调一个 chain / 用一个框架"，很少带你**真正读完一个框架的源码**。而这个项目恰好满足"可读"这个前提：核心引擎只有两个文件（`agent/loop.py` 约 2264 行、`agent/runner.py` 约 1670 行），其余能力（工具、Provider、Channel、记忆、安全）都以清晰的分层挂在核心之外。
 
-这个系列的目标，就是**逐层把 nanobot 读透**——从"一个请求怎么走到答案"，到上下文工程、长期记忆、工具与安全边界、MCP、模型路由、多 Agent、以及一个框架如何接入 20+ 聊天平台并对外提供 API。全部基于你本地 `D:\github_projects\nanobot` 的真实代码，逐文件、逐函数讲解。
+这个系列的目标，就是**逐层把 nanobot 读透**——从"一个请求怎么走到答案"，到上下文工程、长期记忆、工具与安全边界、MCP、模型路由、多 Agent、以及一个框架如何接入 20+ 聊天平台并对外提供 API。源码以 [HKUDS/nanobot](https://github.com/HKUDS/nanobot) 为准，行号按各篇脚注里的日期快照，不绑定某台机器的本地路径。
 
-> 说明：本系列**只解读 nanobot 这个项目本身**，不与其它项目做任何对照，独立成篇。
+> 说明：本系列正文按 nanobot 自己的分层往下读。读完之后，可以用 [DeepSeek Harness 对照篇]({{< relref "harness-vs-nanobot.md" >}}) 和 [PocketPilot]({{< relref "pocketpilot-01-thesis.md" >}}) 看同一组问题的另外两种答法——对照是加分项，不是本系列的前提。
 
 ## 二、后续篇章规划（9 篇 + 本路线图）
 

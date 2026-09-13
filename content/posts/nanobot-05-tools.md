@@ -588,4 +588,4 @@ consistent across tools, but they are not a replacement for an OS sandbox.
 
 ---
 
-*本篇基于你本地 `D:\github_projects\nanobot` 的真实源码（读取于 2026-08-09 版本）逐函数拆解，所有行号与代码均可在对应文件中核对。*
+*本篇基于 [HKUDS/nanobot](https://github.com/HKUDS/nanobot) 2026-08-09 版本快照逐函数拆解，所有行号与代码均可在对应文件中核对。*

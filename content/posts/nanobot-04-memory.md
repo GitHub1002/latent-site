@@ -363,4 +363,4 @@ if session_summary:
 
 ---
 
-*本篇所有行号基于你本地 `D:\github_projects\nanobot` 的 `agent/memory.py`、`agent/autocompact.py`、`session/manager.py`、`command/builtin.py`、`templates/agent/dream.md`。本系列只解读 nanobot 本身，不与其它项目联动。*
+*本篇所有行号基于 [HKUDS/nanobot](https://github.com/HKUDS/nanobot) 的 `agent/memory.py`、`agent/autocompact.py`、`session/manager.py`、`command/builtin.py`、`templates/agent/dream.md`。本篇把 nanobot 的记忆机制讲清；和 PocketPilot 文件记忆、Harness 会话日志的对照见后续源码样本，不作为本篇前提。*

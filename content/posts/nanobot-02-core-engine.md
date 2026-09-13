@@ -312,4 +312,4 @@ for iteration in range(spec.max_iterations):
 
 下一篇 **03 · 上下文工程** 会专门钻进 `_build_initial_messages` 调用的 `ContextBuilder`（`agent/context.py`）与 `ContextGovernor`（`agent/context_governance.py`），讲清「历史怎么裁剪、记忆怎么注入、工具结果怎么截断、超限时怎么自动压缩」——也就是 nanobot 能在小上下文里跑长任务的核心机制。
 
-> 本文所有行号基于你本地 `D:\github_projects\nanobot` 源码：`agent/loop.py`、`agent/runner.py`（截至 2026-08-03 的版本）。建议对照阅读。
+> 本文所有行号基于 [HKUDS/nanobot](https://github.com/HKUDS/nanobot) 的 `agent/loop.py`、`agent/runner.py`（截至 2026-08-03 的版本快照）。建议对照阅读。
