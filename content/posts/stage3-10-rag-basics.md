@@ -1,10 +1,12 @@
 ---
-title: "10 | RAG 入门——让 LLM 用你的私有知识回答问题"
+title: "系列一 · 10 | RAG 入门——让 LLM 用你的私有知识回答问题"
+aliases:
+  - /posts/2026/07/10-rag-入门让-llm-用你的私有知识回答问题/
 date: 2026-07-07
 draft: false
 weight: 302
 tags: ["Agent", "RAG", "Context Engineering"]
-summary: "RAG 全流程详解：文档切分策略、Embedding 模型选择、向量检索原理、重排优化、Prompt 注入。每个环节配具体数值和代码示例。"
+summary: "RAG 全流程详解：文档切分策略、Embedding 模型选择、向量检索原理、重排优化、把检索结果写入上下文。每个环节配具体数值和代码示例。"
 ShowToc: true
 ---
 
@@ -282,7 +284,7 @@ docs = compression_retriever.invoke("如何配置 Nginx 反向代理")
 
 ---
 
-## Prompt 注入：把检索结果交给 LLM
+## 上下文组装：把检索结果交给 LLM
 
 检索到了相关文档，最后一步是把它们组装成 Prompt。这一步看似简单，但细节决定回答质量。
 
@@ -447,7 +449,7 @@ RAG 的核心思路非常简单：**不改模型，改模型看到的上下文�
 - **Embedding** 决定了语义表示的精度
 - **向量检索** 决定了能不能找到对的信息
 - **重排** 决定了最终进入 Prompt 的信息质量
-- **Prompt 注入** 决定了 LLM 怎么用这些信息
+- **上下文组装** 决定了 LLM 怎么用这些信息
 
 任何一个环节做得不好，都会影响最终效果。这也是为什么 RAG 看似简单，做好却不容易。
 

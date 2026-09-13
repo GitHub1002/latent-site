@@ -1,5 +1,7 @@
 ---
-title: "18 | 安全防护——Prompt 注入、越狱与输出验证"
+title: "系列一 · 18 | 安全防护——Prompt 注入、越狱与输出验证"
+aliases:
+  - /posts/2026/07/18-安全防护prompt-注入越狱与输出验证/
 date: 2026-07-09
 draft: false
 weight: 502

@@ -1,5 +1,7 @@
 ---
-title: "系列三 · 00 | 开篇:把企业知识助手送上生产级"
+title: "系列三 · 00 | 开篇：把企业知识助手送上生产级"
+aliases:
+  - /posts/2026/07/系列三-00-开篇把企业知识助手送上生产级/
 date: 2026-07-28
 draft: false
 weight: 700
@@ -33,10 +35,10 @@ ShowToc: true
 | 阶段 | 文件 | 标题 | 覆盖能力 |
 |---|---|---|---|
 | 路线图 | `agent-prod-00-roadmap.md` | 系列三 · 00 \| 开篇:把企业知识助手送上生产级 | 总纲 + 地图 |
-| 一 | `agent-prod-01-langgraph.md` | 系列三 · 01 \| 阶段一·用 LangGraph 重写编排:从 ReAct 循环到可控状态图 | StateGraph + Checkpointer + 流式 |
-| 二 | `agent-prod-02-mcp.md` | 系列三 · 02 \| 阶段二·把工具封装成 MCP Server:让 Agent 说"标准语言" | FastMCP + stdio + 外部调试 |
-| 三 | `agent-prod-03-evals.md` | 系列三 · 03 \| 阶段三·给 Agent 装上评估:用 LangSmith 量化准确率与越权拦截 | eval 数据集 + tracing + 指标 |
-| 四 | `agent-prod-04-docker.md` | 系列三 · 04 \| 阶段四·Docker 一键部署:让作品集可在线体验 | Dockerfile + compose + 演示 |
+| 一 | `agent-prod-01-langgraph.md` | 系列三 · 01 \| 用 LangGraph 重写编排：从 ReAct 循环到可控状态图 | StateGraph + Checkpointer + 流式 |
+| 二 | `agent-prod-02-mcp.md` | 系列三 · 02 \| 把工具封装成 MCP Server：让 Agent 说「标准语言」 | FastMCP + stdio + 外部调试 |
+| 三 | `agent-prod-03-evals.md` | 系列三 · 03 \| 给 Agent 装上评估：量化准确率与越权拦截 | eval 数据集 + tracing + 指标 |
+| 四 | `agent-prod-04-docker.md` | 系列三 · 04 \| Docker 一键部署：让作品集可在线体验 | Dockerfile + compose + 演示 |
 
 > weight 约定:系列三统一 700+ 段(路线图 700,后续 701–704),排在系列二(600+)之后。
 

@@ -1,5 +1,7 @@
 ---
-title: "02 | Prompt Engineering——从入门到精通"
+title: "系列一 · 02 | Prompt：六种常用写法"
+aliases:
+  - /posts/2026/07/02-prompt-engineering从入门到精通/
 date: 2026-07-05
 draft: false
 weight: 102

@@ -1,5 +1,7 @@
 ---
-title: "16 | 实战——用 CrewAI 构建多 Agent 协作系统"
+title: "系列一 · 16 | 实战——用 CrewAI 构建多 Agent 协作系统"
+aliases:
+  - /posts/2026/07/16-实战用-crewai-构建多-agent-协作系统/
 date: 2026-07-08
 draft: false
 weight: 404

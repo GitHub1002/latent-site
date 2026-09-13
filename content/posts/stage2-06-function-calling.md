@@ -1,5 +1,7 @@
 ---
-title: "06 | Function Calling——让 LLM 调用外部工具"
+title: "系列一 · 06 | Function Calling——让 LLM 调用外部工具"
+aliases:
+  - /posts/2026/07/06-function-calling让-llm-调用外部工具/
 date: 2026-07-06
 draft: false
 weight: 202
@@ -156,7 +158,7 @@ def execute_tool(name, arguments):
         # 模拟天气 API
         return {"city": arguments["city"], "temp": 12, "condition": "多云"}
     elif name == "calculator":
-        return {"result": eval(arguments["expression"])}  # 实际中请用安全的计算方式
+        return {"result": eval(arguments["expression"])}  # 教程示意。生产不要 eval 用户字符串，用 AST 白名单或真正的计算器 API。
     return {"error": f"未知工具: {name}"}
 
 # 3. 第一轮：LLM 决定调用什么工具

@@ -1,5 +1,7 @@
 ---
-title: "系列二 · 02 | 阶段二·让 Agent 读懂私有文件（M1）：RAG 全链路打通"
+title: "系列二 · 02 | 让 Agent 读懂私有文件：RAG 全链路"
+aliases:
+  - /posts/2026/07/系列二-02-阶段二让-agent-读懂私有文件m1rag-全链路打通/
 date: 2026-07-17
 draft: false
 weight: 620

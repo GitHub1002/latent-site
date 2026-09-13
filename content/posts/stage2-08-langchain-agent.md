@@ -1,5 +1,7 @@
 ---
-title: "08 | 实战——用 LangChain 构建一个 ReAct Agent"
+title: "系列一 · 08 | 实战——用 LangChain 构建一个 ReAct Agent"
+aliases:
+  - /posts/2026/07/08-实战用-langchain-构建一个-react-agent/
 date: 2026-07-06
 draft: false
 weight: 204
@@ -102,7 +104,7 @@ def calculator(expression: str) -> str:
     except Exception as e:
         return f"计算错误: {e}"
 
-# 工具 3: Python 代码执行
+# 工具 3: Python 代码执行（教程示意：exec 没有沙箱。生产用独立进程 / 容器，不要直接 exec 模型给的代码。）
 @tool
 def run_python(code: str) -> str:
     """执行 Python 代码并返回输出。适合数据处理和分析任务。"""

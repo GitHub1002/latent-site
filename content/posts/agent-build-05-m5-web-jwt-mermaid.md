@@ -1,5 +1,7 @@
 ---
-title: "系列二 · 05 | 阶段五·交给同事：Web 界面 + JWT 登录 + Mermaid 渲染"
+title: "系列二 · 05 | 交给同事：Web 界面、JWT 与 Mermaid"
+aliases:
+  - /posts/2026/07/系列二-05-阶段五交给同事web-界面--jwt-登录--mermaid-渲染/
 date: 2026-07-18
 draft: false
 weight: 650

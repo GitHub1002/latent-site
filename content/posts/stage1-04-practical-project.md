@@ -1,16 +1,18 @@
 ---
-title: "04 | 实战——用 Prompt Engineering Guide 搭建你的第一个 LLM 应用"
+title: "系列一 · 04 | 实战：做一个文章摘要器"
+aliases:
+  - /posts/2026/07/04-实战用-prompt-engineering-guide-搭建你的第一个-llm-应用/
 date: 2026-07-05
 draft: false
 weight: 104
 tags: ["LLM", "Prompt Engineering", "实战"]
-summary: "跟着 Prompt Engineering Guide 动手练习，从 API 调用到完整的小项目，把前三篇的理论知识串起来。"
+summary: "动手做一个技术文章摘要器：从最小 API 调用叠上 System Prompt、Few-shot、CoT 和结构化输出，把前三篇的技巧串起来。Prompt Engineering Guide 放在文末当练习材料，不是本篇逐步对照的教程。"
 ShowToc: true
 ---
 
 前三篇文章我们学了大模型的工作原理、Prompt Engineering 的 6 大技巧、以及推理模型的概念。这篇文章是**动手篇**——我们要写代码，把这些理论变成可以运行的程序。
 
-我们选用的学习资源是 [Prompt Engineering Guide](https://github.com/dair-ai/Prompt-Engineering-Guide)，它是目前最全面的 Prompt 工程教程（GitHub 48k+ stars）。但光看不练没用，所以这篇文章会带你做一个完整的小项目：**一个基于 LLM 的技术文章摘要生成器**。
+这篇文章做一个能跑的小项目：**基于 LLM 的技术文章摘要器**。技巧来自上一篇，不按 [Prompt Engineering Guide](https://github.com/dair-ai/Prompt-Engineering-Guide) 的章节逐步对照；Guide 放在文末，供你自己加练。
 
 ![实战项目架构](/images/stage1-04-practical-project.svg)
 

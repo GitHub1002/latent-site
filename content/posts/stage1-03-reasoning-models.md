@@ -1,5 +1,7 @@
 ---
-title: "03 | 推理模型——o1、R1 和 test-time compute 到底在做什么"
+title: "系列一 · 03 | 推理模型——o1、R1 和 test-time compute 到底在做什么"
+aliases:
+  - /posts/2026/07/03-推理模型o1r1-和-test-time-compute-到底在做什么/
 date: 2026-07-05
 draft: false
 weight: 103
@@ -182,7 +184,7 @@ o1 系列模型的思维链是**隐藏的**——你只能看到最终答案和�
 
 ## 下一步
 
-现在我们掌握了 LLM 基础（第 1 篇）、Prompt Engineering（第 2 篇）、推理模型的概念（本篇）。下一篇文章是**实战篇**——我们会跟着 Prompt Engineering Guide 动手练习，把这三篇的理论串起来，为进入第二阶段的 Agent 开发做准备。
+现在我们掌握了 LLM 基础（第 1 篇）、Prompt Engineering（第 2 篇）、推理模型的概念（本篇）。下一篇文章是**实战篇**——做一个技术文章摘要器，把前三篇的技巧叠在同一条调用链上，为进入第二阶段的 Agent 开发做准备。
 
 ---
 

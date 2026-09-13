@@ -1,5 +1,7 @@
 ---
-title: "01 | 大模型是怎么工作的——从 Transformer 到 Tokenization"
+title: "系列一 · 01 | 大模型是怎么工作的——从 Transformer 到 Tokenization"
+aliases:
+  - /posts/2026/07/01-大模型是怎么工作的从-transformer-到-tokenization/
 date: 2026-07-05
 draft: false
 weight: 101
@@ -175,4 +177,25 @@ Tokenization 不只是底层细节，它会直接影响你使用 LLM 的体验�
 步骤 3: 最后一层输出一个概率分布（覆盖整个词表，比如 50000 个 token）
 步骤 4: 根据概率采样一个 token
 步骤 5: 把新 token 追加到输入末尾，回到步骤 2
-步骤 6: 重复，直到生成结束符（
+步骤 6: 重复，直到采到结束符（EOS）或达到最大输出长度
+```
+
+「采样」这一步决定了**同一句输入为什么会得到不同输出**。常见旋钮：
+
+- **Temperature**：接近 0 时几乎总选概率最高的 token，输出更稳；调高后更愿意选次优 token，更散、更「有创意」，也更容易跑偏。
+- **Top-p**：只在累计概率达到 p 的那一小撮 token 里抽，用来砍掉长尾胡话。
+
+摘要、分类、工具参数这类任务，Temperature 宜低；头脑风暴可以高。Agent 里把 Temperature 当开关，不要当装饰。
+
+上面「今天天气真」后面的概率、GPT-4 的 token ID、7B/70B 的层数，都是**示意**，用来建立直觉，不是某次实测。
+
+---
+
+## 小结
+
+- LLM 每次只预测下一个 token；长回答是自回归一步步走出来的，不是先「想完整篇再誊写」。
+- Transformer 里，自注意力管「看哪里」，FFN 管「存了什么」；层数往上，抽象也往上。
+- Token 不是字也不是词。中文通常比英文更费窗口、更费钱；数字被切碎是算术不稳的原因之一。
+- Context Window 是输入+输出共用的预算。Agent 的工具结果和检索文档都在吃这笔预算，所以后面才有 Context Engineering。
+
+下一篇 [**系列一 · 02 | Prompt：六种常用写法**]({{< relref "stage1-02-prompt-engineering.md" >}}) 会讲怎么用输入去推这台概率机器：Zero-shot、Few-shot、CoT、Self-Consistency、System Prompt、结构化输出。

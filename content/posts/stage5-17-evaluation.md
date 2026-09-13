@@ -1,5 +1,7 @@
 ---
-title: "17 | 评估方法论——怎么知道 Agent 做得好不好？"
+title: "系列一 · 17 | 评估方法论——怎么评估 Agent"
+aliases:
+  - /posts/2026/07/17-评估方法论怎么知道-agent-做得好不好/
 date: 2026-07-09
 draft: false
 weight: 501

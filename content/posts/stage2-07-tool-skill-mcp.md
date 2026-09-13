@@ -1,5 +1,7 @@
 ---
-title: "07 | 从 Tool 到 Skill——封装思维与 MCP 协议"
+title: "系列一 · 07 | 从 Tool 到 Skill：封装多步流程（附 MCP）"
+aliases:
+  - /posts/2026/07/07-从-tool-到-skill封装思维与-mcp-协议/
 date: 2026-07-06
 draft: false
 weight: 203
@@ -15,6 +17,8 @@ ShowToc: true
 2. 当工具越来越多时，怎么**标准化地管理**这些工具连接？
 
 前者是 **Skill 封装思维**，后者是 **MCP 协议**要解决的问题。
+
+先把两个容易混的「Skill」分开：本文说的 Skill，是**把多个原子 Tool 收成一段确定流程**，对外只暴露一个函数。这和后来 Claude Code / PocketPilot 里的 `SKILL.md`（把操作手册按需塞进上下文）不是同一件事。后者在源码样本里再讲。
 
 ![Tool → Skill → MCP 三层架构](/images/stage2-07-tool-skill-mcp.svg)
 

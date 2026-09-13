@@ -1,5 +1,7 @@
 ---
-title: "09 | Context Engineering——比 Prompt 更重要的「给模型看什么」"
+title: "系列一 · 09 | Context Engineering——比 Prompt 更重要的「给模型看什么」"
+aliases:
+  - /posts/2026/07/09-context-engineering比-prompt-更重要的给模型看什么/
 date: 2026-07-07
 draft: false
 weight: 301
