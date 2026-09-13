@@ -1,5 +1,7 @@
 ---
-title: "05 | Loop Engineering——Agent 的核心循环"
+title: "系列一 · 05 | Loop Engineering——Agent 的核心循环"
+aliases:
+  - /posts/2026/07/05-loop-engineeringagent-的核心循环/
 date: 2026-07-06
 draft: false
 weight: 201

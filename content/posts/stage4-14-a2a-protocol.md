@@ -1,5 +1,7 @@
 ---
-title: "14 | A2A 协议——Agent 之间怎么通信？"
+title: "系列一 · 14 | A2A 协议——Agent 之间怎么传消息"
+aliases:
+  - /posts/2026/07/14-a2a-协议agent-之间怎么通信/
 date: 2026-07-08
 draft: false
 weight: 402

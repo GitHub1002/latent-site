@@ -1,5 +1,7 @@
 ---
-title: "11 | 高级 RAG 与记忆系统——从能用到好用"
+title: "系列一 · 11 | 高级 RAG 与记忆系统——从能用到好用"
+aliases:
+  - /posts/2026/07/11-高级-rag-与记忆系统从能用到好用/
 date: 2026-07-07
 draft: false
 weight: 303

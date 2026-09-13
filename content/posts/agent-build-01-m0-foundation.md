@@ -1,5 +1,7 @@
 ---
-title: "系列二 · 01 | 阶段一·搭地基：让 Agent 跑通第一个问答（M0）"
+title: "系列二 · 01 | 搭地基：跑通第一个问答"
+aliases:
+  - /posts/2026/07/系列二-01-阶段一搭地基让-agent-跑通第一个问答m0/
 date: 2026-07-16
 draft: false
 weight: 610

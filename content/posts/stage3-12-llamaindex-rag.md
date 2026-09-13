@@ -1,5 +1,7 @@
 ---
-title: "12 | 实战——用 LlamaIndex 构建知识库问答系统"
+title: "系列一 · 12 | 实战——用 LlamaIndex 构建知识库问答系统"
+aliases:
+  - /posts/2026/07/12-实战用-llamaindex-构建知识库问答系统/
 date: 2026-07-07
 draft: false
 weight: 304

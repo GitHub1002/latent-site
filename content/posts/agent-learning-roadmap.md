@@ -109,7 +109,7 @@ ShowToc: true
 ### 需要学什么
 
 - **Context Engineering**："给模型看到什么"比"怎么说"更重要——动态构建上下文窗口，管理信息优先级
-- RAG 全流程：文档切分、Embedding 选型、向量检索、重排、Prompt 注入
+- RAG 全流程：文档切分、Embedding 选型、向量检索、重排、把检索结果写入上下文
 - **高级 RAG**：Multi-hop、Self-RAG、Graph RAG
 - **记忆系统**：短期对话记忆、长期知识记忆、记忆压缩策略
 - **MCP（Model Context Protocol）**：Anthropic 提出的标准化工具连接协议——Agent 世界的"USB 接口"

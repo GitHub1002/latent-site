@@ -1,5 +1,7 @@
 ---
-title: "13 | 多 Agent 架构——为什么一个 Agent 不够用？"
+title: "系列一 · 13 | 多 Agent 架构——一个 Agent 不够用的时候"
+aliases:
+  - /posts/2026/07/13-多-agent-架构为什么一个-agent-不够用/
 date: 2026-07-08
 draft: false
 weight: 401

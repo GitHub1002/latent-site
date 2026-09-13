@@ -1,5 +1,7 @@
 ---
-title: '15 | Harness Engineering——"Agents 不难，Harness 难"'
+title: "系列一 · 15 | Harness Engineering——脚手架比循环更难"
+aliases:
+  - /posts/2026/07/15-harness-engineeringagents-不难harness-难/
 date: 2026-07-08
 draft: false
 weight: 403

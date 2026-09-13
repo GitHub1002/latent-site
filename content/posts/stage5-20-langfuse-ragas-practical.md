@@ -1,5 +1,7 @@
 ---
-title: "20 | 实战——用 LangFuse + Ragas 构建 Agent 评估与监控体系"
+title: "系列一 · 20 | 实战——用 LangFuse + Ragas 构建 Agent 评估与监控体系"
+aliases:
+  - /posts/2026/07/20-实战用-langfuse--ragas-构建-agent-评估与监控体系/
 date: 2026-07-09
 draft: false
 weight: 504

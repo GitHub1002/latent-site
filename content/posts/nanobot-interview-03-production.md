@@ -1,5 +1,7 @@
 ---
-title: nanobot 面试通关（三）进阶与生产 20 题
+title: "nanobot 面试通关（三）进阶与生产 20 题"
+aliases:
+  - /posts/2026/08/nanobot-面试通关三进阶与生产-20-题/
 date: 2026-08-09
 draft: false
 weight: 852

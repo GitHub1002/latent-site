@@ -1,5 +1,7 @@
 ---
-title: "DeepSeek Harness 源码解读 · 03 | 能力 seam 与统一沙箱世界：换一个 Provider，Bash/PTY/LSP 全搬走"
+title: "DeepSeek Harness 源码解读 · 03 | 能力 seam 与统一沙箱"
+aliases:
+  - /posts/2026/08/deepseek-harness-源码解读-03-能力-seam-与统一沙箱世界换一个-providerbash/pty/lsp-全搬走/
 date: 2026-08-23
 draft: false
 weight: 893

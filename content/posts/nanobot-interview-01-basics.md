@@ -1,5 +1,7 @@
 ---
-title: nanobot 面试通关（一）基础与架构 20 题
+title: "nanobot 面试通关（一）基础与架构 20 题"
+aliases:
+  - /posts/2026/08/nanobot-面试通关一基础与架构-20-题/
 date: 2026-08-09
 draft: false
 weight: 850
