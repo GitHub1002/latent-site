@@ -10,6 +10,14 @@ ShowPostNavLinks: false
 
 ## 精选项目
 
+### PocketPilot
+
+本地优先、策略可控、可审计的个人 Agent Runtime（Python 3.12 + Next.js）。用户授权工作区后，Agent 可以读文件、抽文档、写报告；**凡有副作用的工具调用都必须先过策略检查与人工审批**，过程以结构化事件落库，并可经 SSE 观察。
+
+`Python` `FastAPI` `Next.js` `Agent Runtime` · [系列解读 →]({{< relref "posts/pocketpilot-01-thesis.md" >}})
+
+---
+
 ### AgentForge
 
 轻量级多 Agent 系统框架，支持可配置的通信模式（Peer、Hierarchical、Debate）。

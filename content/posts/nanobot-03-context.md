@@ -1,5 +1,6 @@
 ---
 title: "nanobot 源码解读 · 03 | 上下文工程：一条消息如何被拼成 LLM 能读懂的「剧本」"
+date: 2026-08-06
 draft: false
 weight: 803
 tags: ["nanobot", "源码解读", "上下文工程", "Agent框架", "ContextGovernance"]
@@ -461,4 +462,4 @@ initial_messages = [
 
 ---
 
-*本篇基于 `nanobot@Aug 2` 源码：`nanobot/agent/context.py`、`nanobot/agent/context_governance.py`、`nanobot/agent/runner.py`、`nanobot/agent/loop.py`。行号以你本地 `D:\github_projects\nanobot` 为准。*
+*本篇基于 `nanobot@2026-08-02` 源码快照：`nanobot/agent/context.py`、`nanobot/agent/context_governance.py`、`nanobot/agent/runner.py`、`nanobot/agent/loop.py`。行号按该快照，不绑定本机盘符。*

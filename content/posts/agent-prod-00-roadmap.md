@@ -9,9 +9,11 @@ tags:
   - langgraph
   - mcp
   - 系列三
-summary: "系列三总纲:把企业知识助手从 MVP 升级到生产级,聚焦招聘最高频的四块工程能力——LangGraph、MCP、Agent 评估、Docker 部署。含四阶段地图与标题表。"
+summary: "系列三总纲：把企业知识助手从 MVP 升级到生产级。开篇先标明当前状态——地图已发、01–04 尚未动笔、系列暂停——再保留四阶段地图与红线，避免读者把未完成当成已交付。"
 ShowToc: true
 ---
+
+> **状态（2026-09）**：本篇是地图，不是完成声明。计划中的 01–04（LangGraph / MCP / Evals / Docker）**尚未动笔，系列暂停**。生产化相关内容请先看 [系列一阶段五]({{< relref "stage5-17-evaluation.md" >}})、[nanobot 09 · 接入与产品化]({{< relref "nanobot-09-productize.md" >}})，以及 [PocketPilot]({{< relref "pocketpilot-01-thesis.md" >}}) 里评测、SSE 审计与 Docker Compose 的实践。下面的标题表保留，方便以后续写，不要当成已经发布。
 
 ## 为什么要开「系列三」
 

@@ -4,7 +4,7 @@ date: 2026-07-05
 draft: false
 weight: 100
 tags: ["Agent", "LLM"]
-summary: "一份系统的 AI Agent 学习路线图，覆盖 Prompt / Context / Loop / Harness 四大工程类型，以及 MCP、A2A、推理模型、评估、安全、数据飞轮等关键概念。5 个阶段，每阶段配一个 GitHub 开源项目实战。"
+summary: "一份系统的 AI Agent 学习路线图，覆盖 Prompt / Context / Loop / Harness 四大工程类型。开篇先交代本站各系列怎么接，再按 5 个阶段配开源项目实战。"
 ShowToc: true
 ---
 
@@ -13,6 +13,21 @@ ShowToc: true
 对于想入门的同学，最大的困惑是：**知识地图到底有多大？我该按什么顺序学？**
 
 这篇文章给你一份**完整的路线图**，分为 5 个阶段，显式覆盖所有关键概念，每个阶段推荐一个 GitHub 开源项目实战。
+
+本站后来又写了动手课和源码样本。概念地图仍然从本文进；不要从首页最新文章倒着读。
+
+### 本站系列怎么接
+
+| 路径 | 读什么 | 状态 |
+|------|--------|------|
+| **概念课** | 本文 → [系列一]({{< relref "stage1-01-llm-basics.md" >}})（阶段 1–5） | 完整 |
+| **动手课** | [系列二 · 企业知识助手]({{< relref "agent-build-00-roadmap.md" >}}) | 完整（M0–M5） |
+| **动手课 · 生产化** | [系列三 · 地图]({{< relref "agent-prod-00-roadmap.md" >}}) | **暂停**：只有开篇，01–04 未写 |
+| **源码样本 · 分层引擎** | [nanobot 00–09]({{< relref "nanobot-00-roadmap.md" >}}) + [面试通关]({{< relref "nanobot-interview-01-basics.md" >}}) | 完整 |
+| **源码样本 · 插件树** | [DeepSeek Harness 01–03]({{< relref "harness-01-plugin-engine.md" >}}) → [对照篇]({{< relref "harness-vs-nanobot.md" >}}) | 完整 |
+| **源码样本 · 策略可控** | [PocketPilot 01–04]({{< relref "pocketpilot-01-thesis.md" >}}) | 本站自己的个人 Agent Runtime |
+
+建议顺序：概念课过一遍主干 → 系列二体会「做一个能用的」→ 再用 nanobot / Harness / PocketPilot 三份源码对照「Runtime 有几种长法」。PocketPilot 的卖点不是又一个循环，而是**副作用必须过策略与人工审批**。
 
 ---
 
