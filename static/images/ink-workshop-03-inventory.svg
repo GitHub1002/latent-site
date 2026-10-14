@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 430" font-family="Segoe UI, PingFang SC, Microsoft YaHei, sans-serif">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#5f6368"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="900" height="430" fill="#ffffff"/>
+  <text x="24" y="32" font-size="20" fill="#202124" font-weight="700">&#x5E93;&#x5B58;&#x53EA;&#x56DE;&#x7B54;&#x6263;&#x6210;&#x6CA1;&#x6263;&#x6210;</text>
+  <text x="24" y="54" font-size="13" fill="#5f6368">&#x6761;&#x4EF6;&#x66F4;&#x65B0;&#x6321;&#x4F4F;&#x8D85;&#x5356; &#xB7; &#x6307;&#x7EB9;&#x6321;&#x4F4F;&#x6362;&#x884C;&#x91CD;&#x653E;</text>
+
+  <rect x="24" y="78" width="260" height="120" rx="10" fill="#e6f4ea" stroke="#34a853" stroke-width="1.5"/>
+  <text x="40" y="108" font-size="13" fill="#137333" font-weight="700">&#x5E97;&#x94FA;&#x4E8B;&#x52A1;</text>
+  <text x="40" y="132" font-size="14" fill="#202124">PENDING + outbox</text>
+  <text x="40" y="156" font-size="12" fill="#5f6368">&#x8FD4;&#x56DE; 202</text>
+  <text x="40" y="178" font-size="12" fill="#5f6368">&#x4E0D;&#x78B0; available</text>
+
+  <line x1="284" y1="138" x2="328" y2="138" stroke="#5f6368" stroke-width="2" marker-end="url(#arr)"/>
+
+  <rect x="328" y="78" width="244" height="120" rx="10" fill="#f3e8fd" stroke="#a142f4" stroke-width="1.5"/>
+  <text x="344" y="108" font-size="13" fill="#7627bb" font-weight="700">RabbitMQ</text>
+  <text x="344" y="132" font-size="14" fill="#202124">deduct / release</text>
+  <text x="344" y="156" font-size="12" fill="#5f6368">&#x53EF;&#x91CD;&#x590D;&#x3001;&#x53EF;&#x8FDB;&#x6B7B;&#x4FE1;</text>
+  <text x="344" y="178" font-size="12" fill="#5f6368">ink.stock</text>
+
+  <line x1="572" y1="138" x2="616" y2="138" stroke="#5f6368" stroke-width="2" marker-end="url(#arr)"/>
+
+  <rect x="616" y="78" width="260" height="120" rx="10" fill="#fce8e6" stroke="#ea4335" stroke-width="1.5"/>
+  <text x="632" y="108" font-size="13" fill="#c5221f" font-weight="700">&#x5E93;&#x5B58;&#x4E8B;&#x52A1;</text>
+  <text x="632" y="132" font-size="14" fill="#202124">available &gt;= qty</text>
+  <text x="632" y="156" font-size="12" fill="#5f6368">&#x4E3B;&#x952E;&#x94A5;&#x5319; + SHA-256</text>
+  <text x="632" y="178" font-size="12" fill="#5f6368">&#x7ED3;&#x679C;&#x518D;&#x8FDB;&#x53D1;&#x4EF6;&#x7BB1;</text>
+
+  <rect x="24" y="230" width="852" height="88" rx="10" fill="#fef7e0" stroke="#f9ab00" stroke-width="1.5"/>
+  <text x="40" y="260" font-size="13" fill="#b06000" font-weight="700">&#x56DE;&#x5230;&#x5E97;&#x94FA;</text>
+  <text x="40" y="284" font-size="14" fill="#202124">RESERVED / REJECTED / RELEASED &#x2192; CANCELLED</text>
+  <text x="40" y="306" font-size="12" fill="#5f6368">applyStockResult &#x53EA;&#x63A5;&#x53D7; PENDING&#xFF1B;markCancelled &#x53EA;&#x63A5;&#x53D7; RELEASING</text>
+
+  <rect x="24" y="338" width="412" height="70" rx="10" fill="#e8f0fe" stroke="#4285f4" stroke-width="1.5"/>
+  <text x="40" y="368" font-size="14" fill="#202124">&#x5546;&#x54C1;&#x5E93;&#x4ECD;&#x8D70; HTTP&#xFF1A;&#x5B9A;&#x4EF7;&#x5FEB;&#x7167;</text>
+  <text x="40" y="392" font-size="12" fill="#5f6368">&#x8D85;&#x65F6;&#x8BA9;&#x8FD9;&#x5F20;&#x5355;&#x5931;&#x8D25;&#xFF0C;&#x4E0D;&#x5FC5;&#x4E0A;&#x6D88;&#x606F;</text>
+
+  <rect x="456" y="338" width="420" height="70" rx="10" fill="#e8eaed" stroke="#5f6368" stroke-width="1.5"/>
+  <text x="476" y="368" font-size="14" fill="#202124">&#x5E93;&#x5B58;&#x4E0D;&#x8BFB;&#x8BA2;&#x5355;&#x8868;</text>
+  <text x="476" y="392" font-size="12" fill="#5f6368">&#x6D88;&#x606F;&#x53EA;&#x5E26; orderId &#x548C;&#x72B6;&#x6001;</text>
+
+</svg>

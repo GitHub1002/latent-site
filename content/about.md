@@ -20,6 +20,7 @@ AI Researcher / Engineer · 坐标中国
 1. **概念课**：[学习路线图]({{< relref "posts/agent-learning-roadmap.md" >}}) → 系列一（阶段 1–5）
 2. **动手课**：[系列二 · 企业知识助手]({{< relref "posts/agent-build-00-roadmap.md" >}})（完整）。[系列三]({{< relref "posts/agent-prod-00-roadmap.md" >}}) 目前只有地图，正文暂停。
 3. **源码样本**：[nanobot]({{< relref "posts/nanobot-00-roadmap.md" >}})（分层引擎）→ [DeepSeek Harness]({{< relref "posts/harness-01-plugin-engine.md" >}})（插件树）→ [对照]({{< relref "posts/harness-vs-nanobot.md" >}}) → [PocketPilot]({{< relref "posts/pocketpilot-01-thesis.md" >}})（策略可控的个人 Runtime）
+4. **工程样本**：[墨坊]({{< relref "posts/ink-workshop-01-thesis.md" >}})（拆开下单与扣库存的分布式小店，不是 Agent）
 
 ## 研究方向
 

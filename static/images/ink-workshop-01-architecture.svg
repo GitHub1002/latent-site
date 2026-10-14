@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 490" font-family="Segoe UI, PingFang SC, Microsoft YaHei, sans-serif">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#5f6368"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="900" height="490" fill="#ffffff"/>
+  <text x="24" y="32" font-size="20" fill="#202124" font-weight="700">&#x58A8;&#x574A;&#x8FDB;&#x7A0B;&#x4E0E;&#x6570;&#x636E;&#x8FB9;&#x754C;</text>
+  <text x="24" y="54" font-size="13" fill="#5f6368">&#x6D4F;&#x89C8;&#x5668;&#x548C; curl &#x53EA;&#x6253; 8080&#xFF1B;&#x4E09;&#x5E93;&#x4E0D;&#x5171;&#x4EAB;&#x8868;&#xFF1B;&#x5E93;&#x5B58;&#x8D70;&#x6D88;&#x606F;</text>
+
+  <rect x="24" y="78" width="852" height="58" rx="10" fill="#e8f0fe" stroke="#4285f4" stroke-width="1.5"/>
+  <text x="40" y="104" font-size="13" fill="#1967d2" font-weight="700">&#x5165;&#x53E3;</text>
+  <text x="40" y="124" font-size="14" fill="#202124">Vite :5173  &#xB7;  curl  &#xB7;  &#x53EA;&#x8BBF;&#x95EE;&#x7F51;&#x5173; :8080</text>
+
+  <line x1="450" y1="136" x2="450" y2="164" stroke="#5f6368" stroke-width="2" marker-end="url(#arr)"/>
+
+  <rect x="24" y="164" width="852" height="70" rx="10" fill="#fef7e0" stroke="#f9ab00" stroke-width="1.5"/>
+  <text x="40" y="192" font-size="13" fill="#b06000" font-weight="700">&#x7F51;&#x5173; GatewayApplication</text>
+  <text x="40" y="214" font-size="14" fill="#202124">&#x9650;&#x6D41; 20/s &#xB7; &#x7194;&#x65AD; shop &#xB7; lb://ink-workshop</text>
+  <text x="560" y="214" font-size="12" fill="#5f6368">&#x4E0D;&#x6CE8;&#x518C;&#x3001;&#x65E0;&#x6570;&#x636E;&#x5E93;</text>
+
+  <line x1="450" y1="234" x2="450" y2="262" stroke="#5f6368" stroke-width="2" marker-end="url(#arr)"/>
+
+  <rect x="24" y="262" width="412" height="100" rx="10" fill="#e6f4ea" stroke="#34a853" stroke-width="1.5"/>
+  <text x="40" y="290" font-size="13" fill="#137333" font-weight="700">&#x5E97;&#x94FA; &#xD7;2  &#xB7;  ink_order</text>
+  <text x="40" y="314" font-size="14" fill="#202124">:8083  /  :8084</text>
+  <text x="40" y="338" font-size="12" fill="#5f6368">&#x8BA2;&#x5355; &#xB7; &#x7528;&#x6237; &#xB7; &#x53D1;&#x4EF6;&#x7BB1; SKIP LOCKED</text>
+
+  <rect x="456" y="262" width="200" height="100" rx="10" fill="#fff" stroke="#34a853" stroke-width="1.5"/>
+  <text x="476" y="290" font-size="13" fill="#137333" font-weight="700">&#x5546;&#x54C1;&#x5E93;</text>
+  <text x="476" y="314" font-size="14" fill="#202124">:8082</text>
+  <text x="476" y="338" font-size="12" fill="#5f6368">ink_catalog &#xB7; HTTP</text>
+
+  <rect x="676" y="262" width="200" height="100" rx="10" fill="#fce8e6" stroke="#ea4335" stroke-width="1.5"/>
+  <text x="696" y="290" font-size="13" fill="#c5221f" font-weight="700">&#x5E93;&#x5B58;</text>
+  <text x="696" y="314" font-size="14" fill="#202124">:8081</text>
+  <text x="696" y="338" font-size="12" fill="#5f6368">ink_inventory &#xB7; MQ</text>
+
+  <rect x="24" y="384" width="412" height="76" rx="10" fill="#f3e8fd" stroke="#a142f4" stroke-width="1.5"/>
+  <text x="40" y="412" font-size="13" fill="#7627bb" font-weight="700">RabbitMQ  ink.stock</text>
+  <text x="40" y="436" font-size="13" fill="#202124">&#x6263;&#x51CF; / &#x56DE;&#x8865; / &#x7ED3;&#x679C; &#xB7; &#x6B7B;&#x4FE1;</text>
+
+  <rect x="456" y="384" width="420" height="76" rx="10" fill="#e8eaed" stroke="#5f6368" stroke-width="1.5"/>
+  <text x="476" y="412" font-size="13" fill="#3c4043" font-weight="700">Nacos &#xB7; Zipkin</text>
+  <text x="476" y="436" font-size="13" fill="#202124">&#x53EA;&#x6709;&#x5E97;&#x94FA;&#x6CE8;&#x518C; &#xB7; X-Request-Id</text>
+
+</svg>
