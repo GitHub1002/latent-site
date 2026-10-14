@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 450" font-family="Segoe UI, PingFang SC, Microsoft YaHei, sans-serif">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#5f6368"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="900" height="450" fill="#ffffff"/>
+  <text x="24" y="32" font-size="20" fill="#202124" font-weight="700">&#x6D41;&#x91CF;&#x53EA;&#x4ECE; 8080 &#x8FDB;&#x6765;</text>
+  <text x="24" y="54" font-size="13" fill="#5f6368">&#x9650;&#x6D41;&#x548C;&#x7194;&#x65AD;&#x662F;&#x95E8;&#x53E3;&#x7684;&#x786C;&#x89C4;&#x5219;&#xFF1B;&#x5185;&#x90E8;&#x7AEF;&#x53E3;&#x4E0D;&#x662F; API</text>
+
+  <rect x="24" y="78" width="180" height="320" rx="10" fill="#e8f0fe" stroke="#4285f4" stroke-width="1.5"/>
+  <text x="114" y="120" font-size="14" fill="#1967d2" font-weight="700" text-anchor="middle">&#x5E97;&#x9762; / curl</text>
+  <text x="114" y="148" font-size="12" fill="#5f6368" text-anchor="middle">:5173</text>
+  <text x="114" y="180" font-size="13" fill="#202124" text-anchor="middle">&#x53EA;&#x62FC;&#x7F51;&#x5173;</text>
+  <text x="114" y="204" font-size="12" fill="#5f6368" text-anchor="middle">Idempotency-Key</text>
+  <text x="114" y="228" font-size="12" fill="#5f6368" text-anchor="middle">Bearer token</text>
+
+  <line x1="204" y1="238" x2="248" y2="238" stroke="#5f6368" stroke-width="2" marker-end="url(#arr)"/>
+
+  <rect x="248" y="78" width="280" height="320" rx="10" fill="#fef7e0" stroke="#f9ab00" stroke-width="1.5"/>
+  <text x="388" y="120" font-size="14" fill="#b06000" font-weight="700" text-anchor="middle">&#x7F51;&#x5173; :8080</text>
+  <text x="388" y="160" font-size="13" fill="#202124" text-anchor="middle">1. X-Request-Id</text>
+  <text x="388" y="192" font-size="13" fill="#202124" text-anchor="middle">2. &#x9650;&#x6D41; 20/s &#x2192; 429</text>
+  <text x="388" y="224" font-size="13" fill="#202124" text-anchor="middle">3. &#x7194;&#x65AD; &#x2192; 503</text>
+  <text x="388" y="256" font-size="13" fill="#202124" text-anchor="middle">4. lb://ink-workshop</text>
+  <text x="388" y="300" font-size="12" fill="#5f6368" text-anchor="middle">Nacos &#x70ED;&#x66F4;&#x65B0;&#x9650;&#x6D41;&#x6570;&#x5B57;</text>
+  <text x="388" y="324" font-size="12" fill="#5f6368" text-anchor="middle">&#x7F51;&#x5173;&#x81EA;&#x5DF1;&#x4E0D;&#x6CE8;&#x518C;</text>
+
+  <line x1="528" y1="200" x2="572" y2="150" stroke="#5f6368" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="528" y1="238" x2="572" y2="280" stroke="#5f6368" stroke-width="2" marker-end="url(#arr)"/>
+
+  <rect x="572" y="90" width="304" height="110" rx="10" fill="#e6f4ea" stroke="#34a853" stroke-width="1.5"/>
+  <text x="724" y="128" font-size="14" fill="#137333" font-weight="700" text-anchor="middle">&#x5E97;&#x94FA; :8083</text>
+  <text x="724" y="156" font-size="12" fill="#5f6368" text-anchor="middle">X-Instance-Port: 8083</text>
+  <text x="724" y="178" font-size="12" fill="#5f6368" text-anchor="middle">ink_order</text>
+
+  <rect x="572" y="230" width="304" height="110" rx="10" fill="#e6f4ea" stroke="#34a853" stroke-width="1.5"/>
+  <text x="724" y="268" font-size="14" fill="#137333" font-weight="700" text-anchor="middle">&#x5E97;&#x94FA; :8084</text>
+  <text x="724" y="296" font-size="12" fill="#5f6368" text-anchor="middle">X-Instance-Port: 8084</text>
+  <text x="724" y="318" font-size="12" fill="#5f6368" text-anchor="middle">&#x540C;&#x4E00;&#x5F20;&#x53D1;&#x4EF6;&#x7BB1;</text>
+
+  <text x="248" y="420" font-size="13" fill="#5f6368">8081-8084 &#x4E0D;&#x5BF9;&#x6D4F;&#x89C8;&#x5668;&#x5F00;&#x653E;</text>
+
+</svg>

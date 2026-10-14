@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 460" font-family="Segoe UI, PingFang SC, Microsoft YaHei, sans-serif">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#5f6368"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="900" height="460" fill="#ffffff"/>
+  <text x="24" y="32" font-size="20" fill="#202124" font-weight="700">&#x8BA2;&#x5355;&#x72B6;&#x6001;&#x53EA;&#x5728;&#x5E97;&#x94FA;&#x5E93;&#x91CC;&#x63A8;&#x8FDB;</text>
+  <text x="24" y="54" font-size="13" fill="#5f6368">202 PENDING &#x4E0D;&#x662F;&#x8D27;&#x5DF2;&#x7559;&#x4E0B; &#xB7; &#x4ED8;&#x6B3E;&#x53EA;&#x63A5;&#x53D7; RESERVED</text>
+
+  <rect x="360" y="80" width="180" height="56" rx="8" fill="#e8f0fe" stroke="#4285f4" stroke-width="1.5"/>
+  <text x="450" y="114" font-size="16" fill="#202124" font-weight="700" text-anchor="middle">PENDING</text>
+
+  <line x1="450" y1="136" x2="240" y2="176" stroke="#5f6368" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="450" y1="136" x2="660" y2="176" stroke="#5f6368" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="300" y="164" font-size="11" fill="#5f6368">&#x5E93;&#x5B58; APPLIED</text>
+  <text x="580" y="164" font-size="11" fill="#5f6368">&#x5E93;&#x5B58;&#x4E0D;&#x591F;</text>
+
+  <rect x="150" y="176" width="180" height="56" rx="8" fill="#e6f4ea" stroke="#34a853" stroke-width="1.5"/>
+  <text x="240" y="210" font-size="16" fill="#202124" font-weight="700" text-anchor="middle">RESERVED</text>
+
+  <rect x="570" y="176" width="180" height="56" rx="8" fill="#fce8e6" stroke="#ea4335" stroke-width="1.5"/>
+  <text x="660" y="210" font-size="16" fill="#202124" font-weight="700" text-anchor="middle">REJECTED</text>
+
+  <line x1="240" y1="232" x2="140" y2="276" stroke="#5f6368" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="240" y1="232" x2="340" y2="276" stroke="#5f6368" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="90" y="260" font-size="11" fill="#5f6368">&#x4F59;&#x989D;&#x591F;</text>
+  <text x="300" y="260" font-size="11" fill="#5f6368">&#x4F59;&#x989D;&#x4E0D;&#x591F;</text>
+
+  <rect x="50" y="276" width="180" height="56" rx="8" fill="#e6f4ea" stroke="#34a853" stroke-width="1.5"/>
+  <text x="140" y="310" font-size="16" fill="#202124" font-weight="700" text-anchor="middle">PAID</text>
+
+  <rect x="250" y="276" width="180" height="56" rx="8" fill="#fef7e0" stroke="#f9ab00" stroke-width="1.5"/>
+  <text x="340" y="310" font-size="16" fill="#202124" font-weight="700" text-anchor="middle">RELEASING</text>
+
+  <line x1="340" y1="332" x2="340" y2="376" stroke="#5f6368" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="352" y="360" font-size="11" fill="#5f6368">&#x5E93;&#x5B58;&#x52A0;&#x56DE;</text>
+
+  <rect x="250" y="376" width="180" height="56" rx="8" fill="#e8eaed" stroke="#5f6368" stroke-width="1.5"/>
+  <text x="340" y="410" font-size="16" fill="#202124" font-weight="700" text-anchor="middle">CANCELLED</text>
+
+  <text x="520" y="300" font-size="13" fill="#5f6368">REJECTED / PAID / CANCELLED &#x90FD;&#x662F;&#x7EC8;&#x6001;</text>
+  <text x="520" y="324" font-size="13" fill="#5f6368">&#x9875;&#x9762;&#x5237;&#x65B0;&#x540E;&#x7EE7;&#x7EED;&#x7B49;&#x5230;&#x7ED3;&#x679C;</text>
+
+</svg>

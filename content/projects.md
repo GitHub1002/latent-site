@@ -10,6 +10,14 @@ ShowPostNavLinks: false
 
 ## 精选项目
 
+### 墨坊
+
+卖墨、纸、印泥的 Java 小店（Spring Boot 4 + 网关 + 三库）。浏览器只访问 8080；下单先 202 收下，库存经 RabbitMQ 后扣，余额不够再把库存加回去。两份店铺注册到 Nacos，门口限流与熔断。
+
+`Java 21` `Spring` `RabbitMQ` `Nacos` · [系列解读 →]({{< relref "posts/ink-workshop-01-thesis.md" >}}) · [GitHub →](https://github.com/GitHub1002/ink-workshop)
+
+---
+
 ### PocketPilot
 
 本地优先、策略可控、可审计的个人 Agent Runtime（Python 3.12 + Next.js）。用户授权工作区后，Agent 可以读文件、抽文档、写报告；**凡有副作用的工具调用都必须先过策略检查与人工审批**，过程以结构化事件落库，并可经 SSE 观察。

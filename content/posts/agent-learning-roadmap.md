@@ -26,8 +26,9 @@ ShowToc: true
 | **源码样本 · 分层引擎** | [nanobot 00–09]({{< relref "nanobot-00-roadmap.md" >}}) + [面试通关]({{< relref "nanobot-interview-01-basics.md" >}}) | 完整 |
 | **源码样本 · 插件树** | [DeepSeek Harness 01–03]({{< relref "harness-01-plugin-engine.md" >}}) → [对照篇]({{< relref "harness-vs-nanobot.md" >}}) | 完整 |
 | **源码样本 · 策略可控** | [PocketPilot 01–04]({{< relref "pocketpilot-01-thesis.md" >}}) | 本站自己的个人 Agent Runtime |
+| **工程样本 · 分布式小店** | [墨坊 01–04]({{< relref "ink-workshop-01-thesis.md" >}}) | 本站自己的 Java 店铺：网关、三库、异步扣库存 |
 
-建议顺序：概念课过一遍主干 → 系列二体会「做一个能用的」→ 再用 nanobot / Harness / PocketPilot 三份源码对照「Runtime 有几种长法」。PocketPilot 的卖点不是又一个循环，而是**副作用必须过策略与人工审批**。
+建议顺序：概念课过一遍主干 → 系列二体会「做一个能用的」→ 再用 nanobot / Harness / PocketPilot 三份源码对照「Runtime 有几种长法」。PocketPilot 的卖点不是又一个循环，而是**副作用必须过策略与人工审批**。墨坊不进 Agent 课：它回答「没有模型时，订单如何在多进程里失败而不超卖」。
 
 ---
 
