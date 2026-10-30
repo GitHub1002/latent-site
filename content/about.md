@@ -36,13 +36,6 @@ AI Researcher / Engineer · 坐标中国
 
 更完整的介绍和系列入口在 [项目]({{< relref "projects.md" >}}) 页。
 
-## 研究方向
-
-- 智能体系统：规划、工具使用、策略与人工审批
-- 检索增强生成（RAG）与权限边界
-- 大语言模型应用：本地 Runtime、对岗写作、多模型接入
-- 分布式后端：发件箱、幂等、网关限流与熔断
-
 ## 联系方式
 
 - GitHub: [GitHub1002](https://github.com/GitHub1002)
