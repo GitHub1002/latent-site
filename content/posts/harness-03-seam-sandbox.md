@@ -65,4 +65,4 @@ nanobot 的方式直观、好懂；Harness 的方式在「要频繁换底座 / �
 
 Harness 的扩展哲学可以浓缩成一句：**能力的「接口 / 实现 / 消费」三者解耦，切换实现是配置级操作，而统一沙箱世界把这种切换的威力放大到了整个执行面。**
 
-到这三篇，Harness 最独到的三处（插件模型与引擎、工具流水线并发、seam 沙箱）已经讲透。若想收个尾，可以把它们与 nanobot 摆在一起对照——那篇《nanobot vs DeepSeek Harness》已在站内，正好作收束。
+到这三篇，Harness 最独到的三处（插件模型与引擎、工具流水线并发、seam 沙箱）已经讲透。若想收个尾，可以把它们与 nanobot 摆在一起对照——[对照篇]({{< relref "harness-vs-nanobot.md" >}})已在站内。对照之后，读 [Superagent]({{< relref "superagent-01-attention.md" >}})，看这个底座上的团队包怎样把「少占注意力」写成授权和工单。

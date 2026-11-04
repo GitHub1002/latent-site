@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 480" font-family="Segoe UI, PingFang SC, Microsoft YaHei, sans-serif">
+  <rect width="860" height="480" fill="#ffffff"/>
+  <text x="24" y="34" font-size="20" fill="#202124" font-weight="700">&#x4E3B; Session &#x8DEF;&#x7531;&#xFF0C;Worker &#x5360;&#x69FD;&#x5E72;&#x6D3B;</text>
+  <text x="24" y="56" font-size="13" fill="#5f6368">&#x4EBA;&#x7684;&#x6D88;&#x606F;&#x591A;&#x4E00;&#x4E2A;&#x69FD;&#xFF0C;&#x5E76;&#x4E14;&#x6BD4;&#x65B0;&#x5F00;&#x5DE5;&#x4F18;&#x5148;</text>
+  <rect x="24" y="76" width="812" height="64" rx="10" fill="#e8f0fe" stroke="#4285f4" stroke-width="1.5"/>
+  <text x="44" y="104" font-size="15" fill="#1967d2" font-weight="700">&#x4E3B; Session &#xB7; dsh-superagent-router</text>
+  <text x="44" y="124" font-size="13" fill="#5f6368">&#x8BC4;&#x4F30;&#x3001;&#x6D3E;&#x5DE5;&#x3001;&#x8F6C;&#x53D1;&#x95EE;&#x9898;&#x3002;&#x4E0D;&#x505A;&#x6280;&#x672F;&#x51B3;&#x5B9A;&#xFF0C;&#x4E5F;&#x4E0D;&#x5E72;&#x7B49;&#x3002;</text>
+  <rect x="24" y="164" width="250" height="120" rx="10" fill="#e6f4ea" stroke="#34a853" stroke-width="1.5"/>
+  <text x="40" y="194" font-size="14" fill="#137333" font-weight="700">worker &#x69FD; 1</text>
+  <text x="40" y="218" font-size="13" fill="#202124">&#x4E00;&#x4E2A; Session</text>
+  <text x="40" y="240" font-size="13" fill="#202124">&#x4E00;&#x4E2A;&#x76EE;&#x5F55;</text>
+  <text x="40" y="262" font-size="12" fill="#5f6368">&#x524D;&#x53F0;&#x547D;&#x4EE4; 5 &#x79D2;&#x8F6C;&#x540E;&#x53F0;</text>
+  <rect x="292" y="164" width="250" height="120" rx="10" fill="#e6f4ea" stroke="#34a853" stroke-width="1.5"/>
+  <text x="308" y="194" font-size="14" fill="#137333" font-weight="700">worker &#x69FD; 2</text>
+  <text x="308" y="218" font-size="13" fill="#202124">prepare &#x6700;&#x591A; 10 &#x5206;&#x949F;</text>
+  <text x="308" y="240" font-size="13" fill="#202124">&#x5E38;&#x89C1;&#x662F; git worktree</text>
+  <text x="308" y="262" font-size="12" fill="#5f6368">&#x540E;&#x53F0;&#x5DE5;&#x4F5C;&#x6700;&#x591A; 30 &#x5206;&#x949F;</text>
+  <rect x="560" y="164" width="276" height="120" rx="10" fill="#fef7e0" stroke="#f9ab00" stroke-width="1.5"/>
+  <text x="576" y="194" font-size="14" fill="#b06000" font-weight="700">&#x7ED9;&#x4EBA;&#x7684;&#x989D;&#x5916;&#x69FD;</text>
+  <text x="576" y="218" font-size="13" fill="#202124">&#x69FD;&#x6EE1;&#x4ECD;&#x80FD;&#x53EB;&#x9192;&#x5DF2;&#x6709;&#x5DE5;&#x5355;</text>
+  <text x="576" y="240" font-size="13" fill="#202124">&#x6BD4;&#x65B0;&#x7684; launch &#x4F18;&#x5148;</text>
+  <text x="576" y="262" font-size="12" fill="#5f6368">CI &#x53EA;&#x80FD;&#x7B49;&#x666E;&#x901A;&#x69FD;</text>
+  <rect x="24" y="308" width="812" height="144" rx="10" fill="#f8f9fa" stroke="#dadce0" stroke-width="1.5"/>
+  <text x="44" y="336" font-size="14" fill="#202124" font-weight="700">&#x9636;&#x6BB5;&#x4ECE;&#x4E0A;&#x5230;&#x4E0B;&#xFF0C;&#x7B2C;&#x4E00;&#x6761;&#x547D;&#x4E2D;&#x7684;&#x7B97;&#x6570;</text>
+  <text x="44" y="364" font-size="13" fill="#202124">&#x6295;&#x9012;&#x5931;&#x8D25; &#x2192; &#x7B49;&#x4EBA;&#x56DE;&#x7B54; &#x2192; &#x7B49;&#x4EBA;&#x8BC4;&#x5BA1; &#x2192; &#x5361;&#x4F4F;&#x6216;&#x5931;&#x8D25;</text>
+  <text x="44" y="388" font-size="13" fill="#202124">&#x6392;&#x961F; &#x2192; &#x7A7A;&#x95F2;&#x7B49;&#x4E0B;&#x4E00;&#x6761; Trigger &#x2192; &#x5176;&#x4F59;&#x90FD;&#x662F; Working</text>
+  <text x="44" y="420" font-size="12" fill="#5f6368">Awaiting review = ready &#x7684;&#x62A5;&#x544A;&#xFF0C;&#x5E76;&#x4E14;&#x8FD8;&#x6709;&#x6253;&#x5F00;&#x7684; PR&#x3002;&#x81EA;&#x7531;&#x6587;&#x672C;&#x6539;&#x53D8;&#x4E0D;&#x4E86;&#x9636;&#x6BB5;&#x3002;</text>
+</svg>
