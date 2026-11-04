@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 560" font-family="Segoe UI, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="860" height="560" fill="#ffffff"/>
+<text x="24" y="34" font-size="20" fill="#202124" font-weight="700">&#x4ECE;&#x4E00;&#x6761;&#x8BC4;&#x8BBA;&#x5230;&#x4E00;&#x5F20;&#x5DE5;&#x5355;</text>
+<text x="24" y="56" font-size="13" fill="#5f6368">&#x5DF2;&#x8BA2;&#x9605;&#x7684;&#x540E;&#x7EED;&#x8BA8;&#x8BBA;&#x4ECE; Thread &#x76F4;&#x63A5;&#x6247;&#x51FA;&#xFF0C;&#x4E0D;&#x518D;&#x8FDB;&#x5165; Eval</text>
+<rect x="24" y="78" width="620" height="62" rx="10" fill="#e8f0fe" stroke="#4285f4" stroke-width="1.5"/>
+<text x="44" y="104" font-size="15" fill="#202124" font-weight="700">Source</text>
+<text x="44" y="124" font-size="13" fill="#5f6368">GitHub &#x6216;&#x98DE;&#x4E66;&#x3002;&#x8BB0;&#x4F4F;&#x8BFB;&#x4F4D;&#x7F6E;&#xFF0C;&#x4E22;&#x6389;&#x673A;&#x5668;&#x4EBA;&#x81EA;&#x5DF1;&#x7684;&#x6D88;&#x606F;</text>
+<line x1="334" y1="140" x2="334" y2="150" stroke="#5f6368" stroke-width="2"/>
+<rect x="24" y="150" width="620" height="62" rx="10" fill="#e8f0fe" stroke="#4285f4" stroke-width="1.5"/>
+<text x="44" y="176" font-size="15" fill="#202124" font-weight="700">Trigger / Thread</text>
+<text x="44" y="196" font-size="13" fill="#5f6368">&#x4E0D;&#x53EF;&#x53D8;&#x4E8B;&#x4EF6;&#xFF0C;&#x5F52;&#x5165;&#x6309;&#x65F6;&#x95F4;&#x6392;&#x7684;&#x7EBF;&#x7A0B;&#x3002;&#x540C;&#x4E00;&#x7EBF;&#x7A0B;&#x540C;&#x65F6;&#x53EA;&#x6709;&#x4E00;&#x4E2A; Eval</text>
+<line x1="334" y1="212" x2="334" y2="222" stroke="#5f6368" stroke-width="2"/>
+<rect x="24" y="222" width="620" height="62" rx="10" fill="#fef7e0" stroke="#f9ab00" stroke-width="1.5"/>
+<text x="44" y="248" font-size="15" fill="#202124" font-weight="700">Eval</text>
+<text x="44" y="268" font-size="13" fill="#5f6368">&#x5148; Gate&#xFF0C;&#x518D;&#x6A21;&#x578B;&#x7814;&#x5224;&#x3002;accept / stop / ignore / unavailable</text>
+<line x1="334" y1="284" x2="334" y2="294" stroke="#5f6368" stroke-width="2"/>
+<rect x="24" y="294" width="620" height="62" rx="10" fill="#fce8e6" stroke="#ea4335" stroke-width="1.5"/>
+<text x="44" y="320" font-size="15" fill="#202124" font-weight="700">Mandate + Ticket</text>
+<text x="44" y="340" font-size="13" fill="#5f6368">&#x6388;&#x6743;&#x4E0D;&#x53EF;&#x53D8;&#x3002;&#x53EA;&#x6709; Eval &#x80FD;&#x521B;&#x5EFA;&#x5DE5;&#x5355;&#x3002;&#x8303;&#x56F4;&#x53D8;&#x5927;&#x5C31;&#x5F00;&#x65B0;&#x5355;</text>
+<line x1="334" y1="356" x2="334" y2="366" stroke="#5f6368" stroke-width="2"/>
+<rect x="24" y="366" width="620" height="62" rx="10" fill="#e6f4ea" stroke="#34a853" stroke-width="1.5"/>
+<text x="44" y="392" font-size="15" fill="#202124" font-weight="700">Assignment / Executor</text>
+<text x="44" y="412" font-size="13" fill="#5f6368">&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x7ED1;&#x5B9A;&#x4E00;&#x4E2A; worker Session &#x548C;&#x4E00;&#x4E2A;&#x76EE;&#x5F55;</text>
+<line x1="334" y1="428" x2="334" y2="438" stroke="#5f6368" stroke-width="2"/>
+<rect x="24" y="438" width="620" height="62" rx="10" fill="#f3e8fd" stroke="#a142f4" stroke-width="1.5"/>
+<text x="44" y="464" font-size="15" fill="#202124" font-weight="700">Channel</text>
+<text x="44" y="484" font-size="13" fill="#5f6368">&#x786E;&#x8BA4;&#x3001;&#x56DE;&#x590D;&#x3001;PR &#x5199;&#x56DE;&#x539F;&#x6765;&#x7684;&#x6765;&#x6E90;</text>
+<rect x="664" y="150" width="172" height="150" rx="10" fill="#fff" stroke="#5f6368" stroke-width="1.5"/>
+<text x="680" y="180" font-size="13" fill="#202124" font-weight="700">&#x8BA2;&#x9605;&#x6247;&#x51FA;</text>
+<text x="680" y="206" font-size="12" fill="#5f6368">&#x7ED5;&#x8FC7; Gate</text>
+<text x="680" y="228" font-size="12" fill="#5f6368">&#x4E0D;&#x7B7E;&#x53D1;&#x65B0;&#x6388;&#x6743;</text>
+<text x="680" y="258" font-size="12" fill="#5f6368">&#x4EBA;&#x7684;&#x8BDD;&#x5F52; Executor</text>
+<text x="680" y="280" font-size="12" fill="#5f6368">CI &#x53EA;&#x662F;&#x4E0A;&#x4E0B;&#x6587;</text>
+</svg>

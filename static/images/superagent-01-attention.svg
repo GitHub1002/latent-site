@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 420" font-family="Segoe UI, PingFang SC, Microsoft YaHei, sans-serif">
+  <rect width="860" height="420" fill="#ffffff"/>
+  <text x="24" y="36" font-size="20" fill="#202124" font-weight="700">&#x5C11;&#x5360;&#x6CE8;&#x610F;&#x529B;&#x7684;&#x4E24;&#x9053;&#x95E8;</text>
+  <text x="24" y="58" font-size="13" fill="#5f6368">&#x4E00;&#x6761;&#x6D88;&#x606F;&#x3001;&#x4E00;&#x6B21;&#x901A;&#x77E5;&#x3001;&#x4E00;&#x5757;&#x9762;&#x677F;&#xFF0C;&#x90FD;&#x5148;&#x95EE;&#x8FC7;&#x6210;&#x672C;</text>
+  <rect x="24" y="80" width="396" height="220" rx="12" fill="#e8f0fe" stroke="#4285f4" stroke-width="1.5"/>
+  <text x="44" y="112" font-size="16" fill="#1967d2" font-weight="700">&#x52A8;&#x624B;</text>
+  <text x="44" y="148" font-size="14" fill="#202124">&#x5141;&#x8BB8;&#x540D;&#x5355;&#x4E0A;&#x7684;&#x4EBA;&#x70B9;&#x540D;</text>
+  <text x="44" y="176" font-size="14" fill="#202124">&#x6216;&#x56E2;&#x961F;&#x4E8B;&#x5148;&#x5199;&#x597D;&#x7684;&#x89C4;&#x5219;&#x5141;&#x8BB8;</text>
+  <text x="44" y="220" font-size="13" fill="#5f6368">&#x9ED8;&#x8BA4;&#x5148;&#x8BB0;&#x5F55;&#x300C;&#x672C;&#x6765;&#x4F1A;&#x505A;&#x300D;</text>
+  <text x="44" y="244" font-size="13" fill="#5f6368">&#x770B;&#x8FC7; Decision &#x518D;&#x6253;&#x5F00;&#x81EA;&#x52A8;&#x63A5;&#x5355;</text>
+  <text x="44" y="276" font-size="12" fill="#1967d2">explicit &#x59CB;&#x7EC8;&#x6709;&#x6548; &#xB7; inferred &#x770B;&#x6A21;&#x5F0F;</text>
+  <rect x="440" y="80" width="396" height="220" rx="12" fill="#e6f4ea" stroke="#34a853" stroke-width="1.5"/>
+  <text x="460" y="112" font-size="16" fill="#137333" font-weight="700">&#x5F00;&#x53E3;</text>
+  <text x="460" y="148" font-size="14" fill="#202124">&#x7ED3;&#x679C;&#x53EF;&#x4EE5;&#x8BC4;&#x5BA1;&#x6216;&#x4F7F;&#x7528;</text>
+  <text x="460" y="176" font-size="14" fill="#202124">&#x9700;&#x8981;&#x4EBA;&#x505A;&#x4E00;&#x4E2A;&#x51B3;&#x5B9A;</text>
+  <text x="460" y="204" font-size="14" fill="#202124">&#x8FD9;&#x4EF6;&#x6D3B;&#x505A;&#x4E0D;&#x5B8C;</text>
+  <text x="460" y="248" font-size="13" fill="#5f6368">&#x786E;&#x8BA4;&#x53EA;&#x8BF4;&#x4E00;&#x6B21;&#xFF0C;&#x56DE;&#x5230;&#x539F;&#x5BF9;&#x8BDD;</text>
+  <text x="460" y="276" font-size="12" fill="#137333">&#x4E00;&#x6B21;&#x53EA;&#x95EE;&#x4E00;&#x4E2A;&#x5177;&#x4F53;&#x95EE;&#x9898;</text>
+  <rect x="24" y="320" width="812" height="72" rx="12" fill="#fef7e0" stroke="#f9ab00" stroke-width="1.5"/>
+  <text x="44" y="350" font-size="14" fill="#b06000" font-weight="700">&#x5E72;&#x6D3B;&#x65F6;&#x4FDD;&#x6301;&#x5B89;&#x9759;</text>
+  <text x="44" y="374" font-size="13" fill="#202124">&#x4E00;&#x4E2A; GitHub &#x4ED3;&#x5E93;&#xFF0C;&#x98DE;&#x4E66;&#x53EF;&#x9009;&#x3002;&#x8349;&#x7A3F;&#x6807;&#x672A;&#x5B8C;&#x6210;&#xFF0C;&#x5931;&#x8D25;&#x5C31;&#x8BF4;&#x5931;&#x8D25;&#x3002;</text>
+</svg>
