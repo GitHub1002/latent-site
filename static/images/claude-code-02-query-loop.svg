@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 460" font-family="Segoe UI, PingFang SC, Microsoft YaHei, sans-serif">
+  <rect width="860" height="460" fill="#ffffff"/>
+  <text x="24" y="34" font-size="20" fill="#202124" font-weight="700">&#x56DB;&#x5C42;&#x628A;&#x4E8B;&#x4EF6;&#x9001;&#x51FA;&#x6765;&#xFF0C;&#x4E00;&#x8F6E;&#x505A;&#x4E94;&#x6B65;</text>
+  <rect x="24" y="56" width="250" height="250" rx="12" fill="#e8f0fe" stroke="#4285f4" stroke-width="1.5"/>
+  <text x="40" y="86" font-size="14" fill="#1967d2" font-weight="700">&#x4ECE;&#x5916;&#x5230;&#x5185;</text>
+  <text x="40" y="118" font-size="14" fill="#202124">ask</text>
+  <text x="40" y="142" font-size="13" fill="#5f6368">&#x4E00;&#x6B21;&#x6027;&#x5165;&#x53E3;</text>
+  <text x="40" y="172" font-size="14" fill="#202124">QueryEngine</text>
+  <text x="40" y="196" font-size="13" fill="#5f6368">&#x4F1A;&#x8BDD;&#x8BB0;&#x8D26;</text>
+  <text x="40" y="226" font-size="14" fill="#202124">query</text>
+  <text x="40" y="250" font-size="13" fill="#5f6368">&#x6D41;&#x5F0F;&#x5305;&#x88C5;</text>
+  <text x="40" y="280" font-size="14" fill="#202124">queryLoop</text>
+  <rect x="300" y="56" width="536" height="250" rx="12" fill="#e6f4ea" stroke="#34a853" stroke-width="1.5"/>
+  <text x="320" y="86" font-size="14" fill="#137333" font-weight="700">&#x6BCF;&#x4E00;&#x8F6E;</text>
+  <text x="320" y="122" font-size="14" fill="#202124">1 &#x51C6;&#x5907;&#x6D88;&#x606F;&#xFF0C;&#x88AB;&#x62D2;&#x6536;&#x624D;&#x538B;&#x7F29;</text>
+  <text x="320" y="152" font-size="14" fill="#202124">2 &#x6D41;&#x5F0F;&#x63A5;&#x6536;&#xFF0C;&#x6587;&#x5B57;&#x7ACB;&#x523B;&#x5411;&#x5916;&#x629B;</text>
+  <text x="320" y="182" font-size="14" fill="#202124">3 &#x6709; tool_use &#x5C31;&#x7EE7;&#x7EED;</text>
+  <text x="320" y="212" font-size="14" fill="#202124">4 &#x53EA;&#x8BFB;&#x5DE5;&#x5177;&#x8FB9;&#x5410;&#x5B57;&#x8FB9;&#x5F00;&#x8DD1;</text>
+  <text x="320" y="242" font-size="14" fill="#202124">5 &#x7ED3;&#x679C;&#x5199;&#x56DE; State&#xFF0C;&#x56DE;&#x5230;&#x5FAA;&#x73AF;&#x5934;</text>
+  <text x="320" y="278" font-size="13" fill="#5f6368">&#x4F1A;&#x6539;&#x72B6;&#x6001;&#x7684;&#x5DE5;&#x5177;&#x4E32;&#x884C;&#x3002;&#x6F0F;&#x58F0;&#x660E;&#x5C31;&#x5F53;&#x6210;&#x4F1A;&#x6539;&#x3002;</text>
+  <rect x="24" y="326" width="812" height="108" rx="12" fill="#fef7e0" stroke="#f9ab00" stroke-width="1.5"/>
+  <text x="44" y="358" font-size="14" fill="#b06000" font-weight="700">&#x5931;&#x8D25;&#x4E5F;&#x8981;&#x914D;&#x6210;&#x4E00;&#x5BF9;</text>
+  <text x="44" y="386" font-size="13" fill="#202124">&#x5B64;&#x7ACB;&#x7684; tool_use &#x8865;&#x4E00;&#x6761;&#x9519;&#x8BEF; tool_result&#x3002;&#x540C;&#x4E00;&#x8F6E;&#x538B;&#x7F29;&#x53EA;&#x505A;&#x4E00;&#x6B21;&#x3002;&#x8F93;&#x51FA;&#x622A;&#x65AD;&#x5148;&#x5347;&#x6863;&#xFF0C;&#x518D;&#x6709;&#x9650;&#x6B21;&#x7EED;&#x5199;&#x3002;</text>
+  <text x="44" y="410" font-size="13" fill="#5f6368">Plan Mode &#x662F; EnterPlanMode &#x548C; ExitPlanMode &#x4E24;&#x4E2A;&#x5DE5;&#x5177;&#xFF0C;&#x5FAA;&#x73AF;&#x4E0D;&#x7528;&#x53E6;&#x5199;&#x3002;</text>
+</svg>

@@ -148,4 +148,4 @@ Alice 的 `accept` 已经落库。
 - 合并条件写在 prompt 里，分支保护写在 GitHub 上。包装目录不是安全边界。
 - 发送、投递、评估都是提交之后的副作用。连续失败三次才升格成系统问题。
 
-四篇到这里可以收束。Harness 三篇讲底座怎么换插件，这四篇讲底座上的团队包怎么把「少占注意力」写成 Gate、Mandate、工单阶段和面板。若要看另一种副作用故事，回到 [PocketPilot 的策略与审批]({{< relref "pocketpilot-03-policy.md" >}})。若要从概念课重新串，从 [学习路线图]({{< relref "agent-learning-roadmap.md" >}}) 进。
+四篇到这里可以收束。Harness 三篇讲底座怎么换插件，这四篇讲底座上的团队包怎么把「少占注意力」写成 Gate、Mandate、工单阶段和面板。终端里的产品形态见 [Claude Code]({{< relref "claude-code-01-toolkit.md" >}})。若要看另一种副作用故事，回到 [PocketPilot 的策略与审批]({{< relref "pocketpilot-03-policy.md" >}})。若要从概念课重新串，从 [学习路线图]({{< relref "agent-learning-roadmap.md" >}}) 进。

@@ -26,10 +26,11 @@ ShowToc: true
 | **源码样本 · 分层引擎** | [nanobot 00–09]({{< relref "nanobot-00-roadmap.md" >}}) + [面试通关]({{< relref "nanobot-interview-01-basics.md" >}}) | 完整 |
 | **源码样本 · 插件树** | [DeepSeek Harness 01–03]({{< relref "harness-01-plugin-engine.md" >}}) → [对照篇]({{< relref "harness-vs-nanobot.md" >}}) | 完整 |
 | **源码样本 · 团队包** | [Superagent 01–04]({{< relref "superagent-01-attention.md" >}}) | Harness 上的主动编码代理：少占注意力，先授权再开工 |
+| **产品样本 · 终端 Agent** | [Claude Code 01–04]({{< relref "claude-code-01-toolkit.md" >}}) | 六件套、主循环、压缩与 Grep、子 Agent 与记忆 |
 | **源码样本 · 策略可控** | [PocketPilot 01–04]({{< relref "pocketpilot-01-thesis.md" >}}) | 本站自己的个人 Agent Runtime |
 | **工程样本 · 分布式小店** | [墨坊 01–04]({{< relref "ink-workshop-01-thesis.md" >}}) | 本站自己的 Java 店铺：网关、三库、异步扣库存 |
 
-建议顺序：概念课过一遍主干 → 系列二体会「做一个能用的」→ 再用 nanobot / Harness / Superagent / PocketPilot 对照「Runtime 有几种长法」。Superagent 是 Harness 上的团队包，成功标准是少占人的注意力。PocketPilot 的卖点是**副作用必须过策略与人工审批**。墨坊不进 Agent 课：它回答「没有模型时，订单如何在多进程里失败而不超卖」。
+建议顺序：概念课过一遍主干 → 系列二体会「做一个能用的」→ 再用 nanobot / Harness / Superagent / Claude Code / PocketPilot 对照「Runtime 有几种长法」。Superagent 是 Harness 上的团队包，成功标准是少占人的注意力。Claude Code 是终端里的编程 Agent，六件套决定同一模型能不能稳定干活。PocketPilot 的卖点是**副作用必须过策略与人工审批**。墨坊不进 Agent 课：它回答「没有模型时，订单如何在多进程里失败而不超卖」。
 
 ---
 

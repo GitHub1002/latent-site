@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 440" font-family="Segoe UI, PingFang SC, Microsoft YaHei, sans-serif">
+<rect width="860" height="440" fill="#ffffff"/>
+<text x="24" y="34" font-size="20" fill="#202124" font-weight="700">&#x8F7B;&#x7684;&#x5148;&#x505A;&#xFF0C;&#x4EE3;&#x7801;&#x73B0;&#x67E5;</text>
+<rect x="24" y="56" width="520" height="60" rx="10" fill="#e8f0fe" stroke="#4285f4" stroke-width="1.5"/>
+<text x="40" y="82" font-size="14" fill="#202124" font-weight="700">&#x5927;&#x7ED3;&#x679C;&#x843D;&#x76D8;</text>
+<text x="40" y="102" font-size="13" fill="#5f6368">&#x5168;&#x6587;&#x5728;&#x78C1;&#x76D8;&#xFF0C;&#x6D88;&#x606F;&#x91CC;&#x7559;&#x9884;&#x89C8;</text>
+<rect x="24" y="126" width="484" height="60" rx="10" fill="#e6f4ea" stroke="#34a853" stroke-width="1.5"/>
+<text x="40" y="152" font-size="14" fill="#202124" font-weight="700">Snip</text>
+<text x="40" y="172" font-size="13" fill="#5f6368">&#x6807;&#x51FA;&#x53EF;&#x4EE5;&#x4E22;&#x6389;&#x7684;&#x65E9;&#x671F;&#x6D88;&#x606F;</text>
+<rect x="24" y="196" width="448" height="60" rx="10" fill="#fef7e0" stroke="#f9ab00" stroke-width="1.5"/>
+<text x="40" y="222" font-size="14" fill="#202124" font-weight="700">Micro-Compact</text>
+<text x="40" y="242" font-size="13" fill="#5f6368">&#x6E05;&#x6389;&#x53EF;&#x4EE5;&#x518D;&#x53D6;&#x7684;&#x65E7;&#x5DE5;&#x5177;&#x7ED3;&#x679C;</text>
+<rect x="24" y="266" width="412" height="60" rx="10" fill="#fce8e6" stroke="#ea4335" stroke-width="1.5"/>
+<text x="40" y="292" font-size="14" fill="#202124" font-weight="700">Auto-Compact</text>
+<text x="40" y="312" font-size="13" fill="#5f6368">&#x79BB;&#x4E0A;&#x9650;&#x56FA;&#x5B9A;&#x8DDD;&#x79BB;&#x65F6;&#x91CD;&#x5199;&#x6574;&#x6BB5;</text>
+<rect x="560" y="56" width="276" height="340" rx="12" fill="#f8f9fa" stroke="#dadce0" stroke-width="1.5"/>
+<text x="576" y="88" font-size="14" fill="#202124" font-weight="700">&#x73B0;&#x67E5;&#x4E09;&#x6B65;</text>
+<text x="576" y="122" font-size="14" fill="#202124">Glob</text>
+<text x="576" y="144" font-size="12" fill="#5f6368">&#x6309;&#x6587;&#x4EF6;&#x540D;&#xFF0C;&#x6700;&#x8FD1;&#x4FEE;&#x6539;&#x5728;&#x524D;</text>
+<text x="576" y="178" font-size="14" fill="#202124">Grep</text>
+<text x="576" y="200" font-size="12" fill="#5f6368">ripgrep&#xFF0C;&#x4E09;&#x79CD;&#x8F93;&#x51FA;&#x7C92;&#x5EA6;</text>
+<text x="576" y="234" font-size="14" fill="#202124">Read</text>
+<text x="576" y="256" font-size="12" fill="#5f6368">&#x6309;&#x504F;&#x79FB;&#x8BFB;&#x5F53;&#x524D;&#x78C1;&#x76D8;</text>
+<text x="576" y="300" font-size="13" fill="#202124">&#x8D85;&#x8FC7;&#x5927;&#x7EA6;&#x4E09;&#x6B21;&#x67E5;&#x8BE2;</text>
+<text x="576" y="324" font-size="13" fill="#202124">&#x6D3E;&#x53EA;&#x8BFB; Explore</text>
+<text x="576" y="356" font-size="12" fill="#5f6368">&#x4E3B;&#x5BF9;&#x8BDD;&#x53EA;&#x6536;&#x7ED3;&#x8BBA;</text>
+</svg>
